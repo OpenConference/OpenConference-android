@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.getkeepsafe.dexcount'
+
+android {
+
+  compileOptions.incremental = false
+
+  compileSdkVersion compileSdk
+  buildToolsVersion buildTools
+
+  defaultConfig {
+    applicationId "com.droidcon"
+    minSdkVersion minSdk
+    targetSdkVersion targetSdk
+    versionCode versionCode
+    versionName versionName
+    multiDexEnabled = true
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+  }
+
+  dexOptions {
+    javaMaxHeapSize "4g"
+    incremental true
+  }
+}
+
+kapt {
+  generateStubs = true
+}
+
+dependencies {
+  compile libs.supportLib
+  compile libs.recyclerView
+  compile libs.kotlinStdLib
+  compile libs.sqlBriteDao
+  compile libs.mosby
+  compile libs.adapterDelegates
+  compile libs.threetenabp
+
+  compile libs.picasso
+  compile libs.picassoOkHttp3
+
+  compile libs.rxJava
+  compile libs.rxAndroid
+
+  compile libs.retrofit
+  compile libs.retrofitRxJava
+  compile libs.retrofitMoshi
+
+  compile libs.dagger
+  kapt libs.daggerCompiler
+
+  kapt libs.autoValueCompiler
+  provided libs.autoValueAnnotations
+  provided libs.autoValueCursor
+  kapt libs.autoValueCursorCompiler
+  kapt libs.autoValueMoshiCompiler
+  kapt libs.autoValueParcelableCompiler
+  compile libs.autoValueParcelableAdapter
+
+
+  testCompile libs.junit
+  testCompile libs.kotlinJunit
+  testCompile libs.robolectric
+  testCompile libs.mockito
+
+
+  androidTestCompile libs.supportAnnotations
+  androidTestCompile libs.supportTestRunner
+  androidTestCompile libs.supportTestRule
+  androidTestCompile libs.espresso
+  androidTestCompile libs.kotlinJunit
+}

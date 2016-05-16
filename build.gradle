@@ -1,0 +1,107 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+  repositories {
+    jcenter()
+    maven {
+      url 'https://dl.bintray.com/kotlin/kotlin-eap'
+    }
+  }
+
+
+  ext.versions = [supportLib          : '23.4.0',
+                  kotlin              : '1.0.2',
+                  dagger              : '2.4',
+                  rxJava              : '1.1.5',
+                  retrofit            : '2.0.2',
+                  rxAndroid           : '1.2.0',
+                  autoValue           : '1.2',
+                  autoValueParcelable : '0.2.1',
+                  autoValueMoshi      : '0.3.0',
+                  autoValueCursor     : '0.4.0',
+                  autoValueAnnotations: '1.2-update1',
+                  sqlBriteDao         : '0.6.1',
+                  mosby               : '2.0.1',
+                  adapterDelegates    : '2.0.0',
+                  picasso             : '2.5.2',
+                  picassoOkHttp3      : '1.0.2',
+                  threetenabp         : '1.0.3',
+
+                  junit               : '4.12',
+                  mockito             : '1.10.19',
+                  mockitoKotlin       : '0.4.0',
+                  robolectric         : '3.0',
+                  espresso            : '2.2.2',
+                  supportTest         : '0.4.1']
+  ext {
+
+    minSdk = 21
+    targetSdk = 23
+    compileSdk = 23
+    buildTools = "23.0.3"
+
+    versionName = "0.1.0"
+    versionCode = 1
+
+
+    libs = [supportLib                 : "com.android.support:appcompat-v7:$versions.supportLib",
+            recyclerView               : "com.android.support:recyclerview-v7:$versions.supportLib",
+            cardView                   : "com.android.support:cardview-v7:$versions.supportLib",
+            palette                    : "com.android.support:palette-v7:$versions.supportLib",
+            supportAnnotations         : "com.android.support:support-annotations:$versions.supportLib",
+            supportDesign              : "com.android.support:design:$versions.supportLib",
+            kotlinStdLib               : "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin",
+            kotlinJunit                : "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin",
+            dagger                     : "com.google.dagger:dagger:$versions.dagger",
+            daggerCompiler             : "com.google.dagger:dagger-compiler:$versions.dagger",
+            rxJava                     : "io.reactivex:rxjava:$versions.rxJava",
+            rxAndroid                  : "io.reactivex:rxandroid:$versions.rxAndroid",
+            retrofit                   : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            retrofitRxJava             : "com.squareup.retrofit2:adapter-rxjava:$versions.retrofit",
+            retrofitMoshi              : "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
+            autoValueCompiler          : "com.google.auto.value:auto-value:$versions.autoValue",
+            autoValueAnnotations       : "com.jakewharton.auto.value:auto-value-annotations:$versions.autoValueAnnotations",
+            autoValueParcelableCompiler: "com.ryanharter.auto.value:auto-value-parcel:$versions.autoValueParcelable",
+            autoValueParcelableAdapter : "com.ryanharter.auto.value:auto-value-parcel-adapter:$versions.autoValueParcelable",
+            autoValueMoshiCompiler     : "com.ryanharter.auto.value:auto-value-moshi:$versions.autoValueMoshi",
+            autoValueCursorCompiler    : "com.gabrielittner.auto.value:auto-value-cursor:$versions.autoValueCursor",
+            autoValueCursor            : "com.gabrielittner.auto.value:auto-value-cursor-annotations:$versions.autoValueCursor",
+            sqlBriteDao                : "com.hannesdorfmann.sqlbrite:dao:$versions.sqlBriteDao",
+            mosby                      : "com.hannesdorfmann.mosby:viewstate:$versions.mosby",
+            adapterDelegates           : "com.hannesdorfmann:adapterdelegates2:$versions.adapterDelegates",
+            picasso                    : "com.squareup.picasso:picasso:$versions.picasso",
+            picassoOkHttp3             : "com.jakewharton.picasso:picasso2-okhttp3-downloader:$versions.picassoOkHttp3",
+            threetenabp                : "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp",
+
+            junit                      : "junit:junit:$versions.junit",
+            mockito                    : "org.mockito:mockito-core:$versions.mockito",
+            mockitoKotlin              : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin",
+            robolectric                : "org.robolectric:robolectric:$versions.robolectric",
+            supportTestRunner          : "com.android.support.test:runner:$versions.supportTest",
+            supportTestRule            : "com.android.support.test:rules:$versions.supportTest",
+            espresso                   : "com.android.support.test.espresso:espresso-core:$versions.espresso"]
+  }
+
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:2.1.0'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0'
+  }
+}
+
+allprojects {
+  repositories {
+    jcenter()
+    maven {
+      url 'https://dl.bintray.com/kotlin/kotlin-eap'
+    }
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
+
