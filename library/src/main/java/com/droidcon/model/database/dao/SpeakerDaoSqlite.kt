@@ -11,7 +11,7 @@ import rx.Observable
  *
  * @author Hannes Dorfmann
  */
-class SpeakerDaoSqlite : SpeakerDao, Dao() {
+open class SpeakerDaoSqlite : SpeakerDao, Dao() {
 
   companion object {
     const val TABLE = "Speaker"

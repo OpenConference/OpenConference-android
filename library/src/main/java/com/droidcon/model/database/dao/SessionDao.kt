@@ -1,6 +1,7 @@
 package com.droidcon.model.database.dao
 
 import com.droidcon.model.Session
+import com.squareup.sqlbrite.BriteDatabase
 import org.threeten.bp.Instant
 import rx.Observable
 
@@ -58,5 +59,9 @@ interface SessionDao {
   /**
    * Get a list with all sessions marked as favorite
    */
-  fun getFavoriteSessions() : Observable<List<Session>>
+  fun getFavoriteSessions(): Observable<List<Session>>
+
+  // TODO refactor that
+  fun getBriteDatabase(): BriteDatabase
+
 }

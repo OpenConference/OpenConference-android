@@ -11,7 +11,7 @@ import rx.Observable
  *
  * @author Hannes Dorfmann
  */
-class LocationDaoSqlite : LocationDao, Dao() {
+open class LocationDaoSqlite : LocationDao, Dao() {
 
   companion object {
     const val TABLE = "Location"

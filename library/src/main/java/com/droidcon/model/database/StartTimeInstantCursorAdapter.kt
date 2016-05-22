@@ -15,8 +15,12 @@ class StartTimeInstantCursorAdapter {
     @JvmStatic
     fun createFromCursor(c: Cursor): Instant? {
       val index = c.getColumnIndex(SessionDaoSqlite.COL_START_TIME)
-      return if (index >= 0 ) {
-        Instant.ofEpochMilli(c.getLong(index))
+      return if (index >= 0) {
+        if (c.isNull(index)) {
+          null
+        } else {
+          Instant.ofEpochMilli(c.getLong(index))
+        }
       } else null
     }
   }

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import com.droidcon.model.Session
 import com.droidcon.util.putOrNull
 import com.hannesdorfmann.sqlbrite.dao.Dao
+import com.squareup.sqlbrite.BriteDatabase
 import org.threeten.bp.Instant
 import rx.Observable
 
@@ -13,7 +14,7 @@ import rx.Observable
  *
  * @author Hannes Dorfmann
  */
-class SessionDaoSqlite : SessionDao, Dao() {
+open class SessionDaoSqlite : SessionDao, Dao() {
 
 
   companion object {
@@ -116,7 +117,8 @@ class SessionDaoSqlite : SessionDao, Dao() {
     return insert(TABLE, cv, SQLiteDatabase.CONFLICT_REPLACE)
   }
 
-  override fun remove(id: String): Observable<Int> = delete(TABLE, "$COL_ID = ?", id)
+  override fun remove(id: String): Observable<Int> = delete(TABLE, "$COL_ID = ?",
+      id).flatMap { delete(GiveTalk.TABLE, "${GiveTalk.COL_SESSION_ID} = ?", id) }
 
   override fun removeAll(): Observable<Int> = delete(TABLE)
 
@@ -156,4 +158,6 @@ class SessionDaoSqlite : SessionDao, Dao() {
           .run()
           .mapToList(SessionJoinResult.mapper())
           .map(::mapJoinResultToSessions)
+
+  override fun getBriteDatabase(): BriteDatabase = db
 }
