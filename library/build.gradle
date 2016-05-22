@@ -73,6 +73,8 @@ dependencies {
   testCompile libs.kotlinJunit
   testCompile libs.robolectric
   testCompile libs.mockito
+  testCompile libs.powerMock
+  testCompile libs.powerMockJunit
 
 
   androidTestCompile libs.supportAnnotations

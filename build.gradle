@@ -31,6 +31,7 @@ buildscript {
                   junit               : '4.12',
                   mockito             : '1.10.19',
                   mockitoKotlin       : '0.4.0',
+                  powerMock           : '1.6.5',
                   robolectric         : '3.0',
                   espresso            : '2.2.2',
                   supportTest         : '0.4.1']
@@ -77,6 +78,8 @@ buildscript {
             junit                      : "junit:junit:$versions.junit",
             mockito                    : "org.mockito:mockito-core:$versions.mockito",
             mockitoKotlin              : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin",
+            powerMock                  : "org.powermock:powermock-api-mockito:$versions.powerMock",
+            powerMockJunit             : "org.powermock:powermock-module-junit4:$versions.powerMock",
             robolectric                : "org.robolectric:robolectric:$versions.robolectric",
             supportTestRunner          : "com.android.support.test:runner:$versions.supportTest",
             supportTestRule            : "com.android.support.test:rules:$versions.supportTest",

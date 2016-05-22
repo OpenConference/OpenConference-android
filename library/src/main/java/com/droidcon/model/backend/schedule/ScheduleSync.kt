@@ -23,6 +23,7 @@ class ScheduleSync @Inject constructor(
     private val speakerDao: SpeakerDao,
     private val locationDao: LocationDao) {
 
+
   /**
    * Loads the data from backend and stores it into the local persistent storage for offline support
    */
