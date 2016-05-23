@@ -1,12 +1,9 @@
-package com.droidcon.model.backend
+package com.droidcon.model.backend.schedule
 
 import com.droidcon.BuildConfig
 import com.droidcon.model.Location
 import com.droidcon.model.Session
 import com.droidcon.model.Speaker
-import com.droidcon.model.backend.schedule.BackendScheduleAdapter
-import com.droidcon.model.backend.schedule.BackendScheduleResponse
-import com.droidcon.model.backend.schedule.ScheduleSync
 import com.droidcon.model.database.LocationAutoValue
 import com.droidcon.model.database.SessionAutoValue
 import com.droidcon.model.database.SpeakerAutoValue
@@ -148,7 +145,8 @@ class ScheduleSyncTest {
     val locations = locationDao.getLocations().toBlocking().first()
 
     assertEquals(
-        listOf(LocationAutoValue.create("1", "notChanged"), LocationAutoValue.create("3", "added")),
+        listOf(LocationAutoValue.Companion.create("1", "notChanged"),
+            LocationAutoValue.Companion.create("3", "added")),
         locations)
   }
 
@@ -203,8 +201,10 @@ class ScheduleSyncTest {
 
     assertEquals(
         listOf(
-            SpeakerAutoValue.create("1", "notChanged", null, null, null, null, null, null, null),
-            SpeakerAutoValue.create("3", "added", null, null, null, null, null, null, null)
+            SpeakerAutoValue.Companion.create("1", "notChanged", null, null, null, null, null, null,
+                null),
+            SpeakerAutoValue.Companion.create("3", "added", null, null, null, null, null, null,
+                null)
         ),
         speakers)
   }
