@@ -9,6 +9,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
 import org.threeten.bp.Instant
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  *
@@ -79,6 +80,40 @@ class TimebaseScheduleDataStateDeterminerTest {
         ScheduleDataStateDeterminer.ScheduleDataState.RUN_BACKGROUND_SYNC,
         determiner.getScheduleSyncDataState().toBlocking().first()
     )
+  }
+
+  @Test
+  fun markScheduleSyncedSuccessful() {
+    val expiresAfter = 10L
+    val sharedPrefs = Mockito.mock(SharedPreferences::class.java)
+    val determiner = PowerMockito.spy(
+        TimebaseScheduleDataStateDeterminer(sharedPrefs, expiresAfter))
+
+    val editor = Mockito.mock(SharedPreferences.Editor::class.java)
+    val now = Instant.now()
+
+    Mockito.doReturn(editor).`when`(sharedPrefs).edit()
+    Mockito.doReturn(now).`when`(determiner).currentTime()
+    Mockito.doReturn(true).`when`(editor).commit()
+
+    Mockito.doReturn(editor).`when`(editor).putBoolean(
+        Mockito.eq(TimebaseScheduleDataStateDeterminer.KEY_RUN_AT_LEAST_ONCE), Mockito.eq(true))
+    Mockito.doReturn(editor).`when`(editor).putLong(
+        Mockito.eq(TimebaseScheduleDataStateDeterminer.KEY_LAST_SYNC),
+        Mockito.eq(now.toEpochMilli()))
+
+    assertTrue (determiner.markScheduleSyncedSuccessful().toBlocking().first())
+
+    Mockito.verify(editor, Mockito.times(1)).putBoolean(
+        Mockito.eq(TimebaseScheduleDataStateDeterminer.KEY_RUN_AT_LEAST_ONCE), Mockito.eq(true))
+    Mockito.verify(editor, Mockito.times(1)).putLong(
+        Mockito.eq(TimebaseScheduleDataStateDeterminer.KEY_LAST_SYNC),
+        Mockito.eq(now.toEpochMilli()))
+    Mockito.verify(editor, Mockito.times(1)).commit()
+
+    Mockito.verifyNoMoreInteractions(editor)
+
+
   }
 
 }
