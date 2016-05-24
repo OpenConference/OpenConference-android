@@ -4,7 +4,6 @@ import com.droidcon.model.backend.schedule.ScheduleDataStateDeterminer
 import com.droidcon.model.backend.schedule.ScheduleSync
 import rx.Observable
 import rx.Scheduler
-import javax.inject.Inject
 
 /**
  * This is a Factory that creates an rx Observable that before running checks if the schedule data
@@ -13,7 +12,7 @@ import javax.inject.Inject
  *
  * @author Hannes Dorfmann
  */
-class ScheduleDataAwareObservableFactory @Inject constructor(private val scheduleSync: ScheduleSync, private val scheduleDataStateDeterminer: ScheduleDataStateDeterminer, private val backgroundSyncScheduler: Scheduler) {
+class ScheduleDataAwareObservableFactory(private val scheduleSync: ScheduleSync, private val scheduleDataStateDeterminer: ScheduleDataStateDeterminer, private val backgroundSyncScheduler: Scheduler) {
 
   /**
    * Creates an Observable that is aware of the schedule data on the users device.

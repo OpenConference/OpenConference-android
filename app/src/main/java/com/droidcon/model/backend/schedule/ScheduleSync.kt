@@ -10,13 +10,12 @@ import com.droidcon.model.notification.NotificationSchedulerCommand
 import com.droidcon.model.notification.RemoveScheduledNotificationCommand
 import rx.Observable
 import java.util.*
-import javax.inject.Inject
 
 /**
  * Responsible to sync the local database with your conferences backend
  * @author Hannes Dorfmann
  */
-class ScheduleSync @Inject constructor(
+class ScheduleSync(
     private val backend: BackendScheduleAdapter,
     private val notificationScheduler: NotificationScheduler,
     private val sessionDao: SessionDao,

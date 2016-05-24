@@ -3,7 +3,7 @@
     package="com.droidcon">
 
   <application
-      android:name=".App"
+      android:name=".OpenConfApp"
       android:theme="@style/AppTheme">
     <activity android:name=".MainActivity">
       <intent-filter>
