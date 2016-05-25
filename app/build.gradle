@@ -12,7 +12,7 @@ android {
   buildToolsVersion buildTools
 
   defaultConfig {
-    applicationId "com.droidcon"
+    applicationId "org.openconf"
     minSdkVersion minSdk
     targetSdkVersion targetSdk
     versionCode versionCode
