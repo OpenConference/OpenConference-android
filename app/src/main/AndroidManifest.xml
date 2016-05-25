@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.droidcon">
+    package="com.openconference">
 
   <application
-      android:name=".OpenConfApp"
+      android:name="com.openconference.OpenConfApp"
       android:theme="@style/AppTheme">
     <activity android:name=".main.ViewPagerMainActivity">
       <intent-filter>
