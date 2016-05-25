@@ -7,6 +7,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 
 /**
  * Custom application mainly to integrate dagger
+ * 
  * @author Hannes Dorfmann
  */
 class OpenConfApp : Application() {

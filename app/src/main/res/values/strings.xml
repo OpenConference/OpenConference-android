@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">droidcon-app</string>
+
+  <string name="screen_title_sessions">Sessions</string>
+  <string name="screen_title_my_schedule">My Schedule</string>
+  <string name="screen_title_speakers">Speakers</string>
 </resources>

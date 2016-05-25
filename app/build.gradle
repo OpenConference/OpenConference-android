@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'kotlin-android-extensions'
+
 
 android {
 
@@ -42,10 +44,14 @@ dependencies {
   compile libs.supportLib
   compile libs.recyclerView
   compile libs.kotlinStdLib
+  compile libs.supportDesign
   compile libs.sqlBriteDao
   compile libs.mosby
   compile libs.adapterDelegates
   compile libs.threetenabp
+  compile libs.kotterknife
+
+  compile libs.smoothProgressBar
 
   compile libs.picasso
   compile libs.picassoOkHttp3
@@ -56,6 +62,7 @@ dependencies {
   compile libs.retrofit
   compile libs.retrofitRxJava
   compile libs.retrofitMoshi
+  compile libs.okhttp
 
   compile libs.dagger
   kapt libs.daggerCompiler

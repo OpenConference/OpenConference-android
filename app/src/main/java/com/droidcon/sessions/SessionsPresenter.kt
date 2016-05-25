@@ -17,8 +17,7 @@ class SessionsPresenter @Inject constructor(scheduler: SchedulerTransformer, pri
     view?.showLoading()
     subscribe(sessionsLoader.allSessions(),
         {
-          view?.setData(it)
-          view?.showContent()
+          view?.showContent(it)
         },
         {
           view?.showError(it)

@@ -1,6 +1,7 @@
 package com.droidcon.dagger
 
 import com.droidcon.util.DefaultSchedulerTransformer
+import com.droidcon.util.SchedulerTransformer
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -10,11 +11,10 @@ import javax.inject.Singleton
  * @author Hannes Dorfmann
  */
 @Module
-@Singleton
-class SchedulingModule internal constructor() {
+class SchedulingModule() {
 
   @Provides
   @Singleton
-  fun provideSchedulerTransformer() = DefaultSchedulerTransformer()
+  fun provideSchedulerTransformer() :SchedulerTransformer = DefaultSchedulerTransformer()
 
 }

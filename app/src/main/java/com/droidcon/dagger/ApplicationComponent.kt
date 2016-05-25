@@ -1,5 +1,6 @@
 package com.droidcon.dagger
 
+import com.droidcon.sessions.SessionsPresenter
 import dagger.Component
 import javax.inject.Singleton
 
@@ -7,9 +8,9 @@ import javax.inject.Singleton
  * A Dagger component providing application wide dependencies
  * @author Hannes Dorfmann
  */
-@Component(modules = arrayOf(DaoModule::class, LoadersModule::class, SchedulingModule::class))
+@Component(modules = arrayOf(ApplicationModule::class))
 @Singleton
 interface ApplicationComponent {
 
-
+  fun sessionPresenter(): SessionsPresenter
 }

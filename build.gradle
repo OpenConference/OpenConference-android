@@ -27,6 +27,9 @@ buildscript {
                   picasso             : '2.5.2',
                   picassoOkHttp3      : '1.0.2',
                   threetenabp         : '1.0.3',
+                  smoothProgressBar   : '1.2.0',
+                  kotterknife         : '0.1.0-SNAPSHOT',
+                  okhttp              : '3.3.0',
 
                   junit               : '4.12',
                   mockito             : '1.10.19',
@@ -61,6 +64,7 @@ buildscript {
             retrofit                   : "com.squareup.retrofit2:retrofit:$versions.retrofit",
             retrofitRxJava             : "com.squareup.retrofit2:adapter-rxjava:$versions.retrofit",
             retrofitMoshi              : "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
+            okhttp                     : "com.squareup.okhttp3:okhttp:$versions.okhttp",
             autoValueCompiler          : "com.google.auto.value:auto-value:$versions.autoValue",
             autoValueAnnotations       : "com.jakewharton.auto.value:auto-value-annotations:$versions.autoValueAnnotations",
             autoValueParcelableCompiler: "com.ryanharter.auto.value:auto-value-parcel:$versions.autoValueParcelable",
@@ -74,7 +78,8 @@ buildscript {
             picasso                    : "com.squareup.picasso:picasso:$versions.picasso",
             picassoOkHttp3             : "com.jakewharton.picasso:picasso2-okhttp3-downloader:$versions.picassoOkHttp3",
             threetenabp                : "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp",
-
+            smoothProgressBar          : "com.github.castorflex.smoothprogressbar:library-circular:$versions.smoothProgressBar",
+            kotterknife                : "com.jakewharton:kotterknife:$versions.kotterknife",
             junit                      : "junit:junit:$versions.junit",
             mockito                    : "org.mockito:mockito-core:$versions.mockito",
             mockitoKotlin              : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin",
@@ -100,6 +105,9 @@ allprojects {
     jcenter()
     maven {
       url 'https://dl.bintray.com/kotlin/kotlin-eap'
+    }
+    maven {
+      url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
   }
 }
