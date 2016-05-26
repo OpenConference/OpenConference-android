@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.bindView
+import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs
 import com.openconference.R
 import com.openconference.model.Session
 import com.openconference.util.applicationComponent
@@ -19,6 +20,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
  *
  * @author Hannes Dorfmann
  */
+@FragmentWithArgs
 class SessionsFragment : SessionsView, LceAnimatable<List<Session>>, MvpViewStateFragment<SessionsView, SessionsPresenter>() {
 
   override val contentView: View by bindView(R.id.contentView)

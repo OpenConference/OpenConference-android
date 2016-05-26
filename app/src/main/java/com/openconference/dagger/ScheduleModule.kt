@@ -15,9 +15,9 @@ import javax.inject.Singleton
  * @author Hannes Dorfmann
  */
 @Module
-class ScheduleModule(c: Context) {
+open class ScheduleModule(c: Context) {
 
-  private val context: Context
+  protected val context: Context
 
   init {
     context = c.applicationContext

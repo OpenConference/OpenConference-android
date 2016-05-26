@@ -1,8 +1,8 @@
 package com.openconference.dagger
 
 import android.content.Context
-import com.openconference.model.database.dao.*
 import com.hannesdorfmann.sqlbrite.dao.DaoManager
+import com.openconference.model.database.dao.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -31,6 +31,8 @@ class DaoModule(context: Context) {
         .add(sessionDao)
         .add(speakerDao)
         .add(locationDao)
+        .version(1)
+        .databaseName("schedule.db")
         .build()
   }
 

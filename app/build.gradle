@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.getkeepsafe.dexcount'
-apply plugin: 'kotlin-android-extensions'
 
 
 android {
@@ -26,13 +25,17 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
-  sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-  }
+
 
   dexOptions {
     javaMaxHeapSize "4g"
     incremental true
+  }
+
+  productFlavors {
+    droidconBerlin {
+      applicationId "de.droidcon"
+    }
   }
 }
 
@@ -67,6 +70,9 @@ dependencies {
   compile libs.dagger
   kapt libs.daggerCompiler
 
+  compile libs.fragmentArgs
+  kapt libs.fragmentArgsCompiler
+
   kapt libs.autoValueCompiler
   provided libs.autoValueAnnotations
   provided libs.autoValueCursor
@@ -89,4 +95,12 @@ dependencies {
   androidTestCompile libs.supportTestRule
   androidTestCompile libs.espresso
   androidTestCompile libs.kotlinJunit
+
+
+  //
+  // Droidcon Berlin
+  //
+  compile libs.loganSquare
+  kapt libs.loganSquareCompiler
+  compile libs.loganSquareConverter
 }

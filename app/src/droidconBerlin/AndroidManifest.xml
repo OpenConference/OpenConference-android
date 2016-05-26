@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.openconference"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <application
+      android:name="de.droidcon.DroidconBerlinApp"
+      tools:replace="android:name"
+      />
+
+</manifest>
