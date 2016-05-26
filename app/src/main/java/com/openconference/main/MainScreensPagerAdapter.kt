@@ -9,8 +9,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ImageSpan
 import com.openconference.model.screen.Screen
-import com.openconference.model.screen.SessionsScreen
-import com.openconference.sessions.SessionsFragment
 
 /**
  * ViewPagerAdapter for MainScreens
@@ -21,7 +19,7 @@ class MainScreensPagerAdapter(private val activity: AppCompatActivity, private v
 
 
   override fun getItem(position: Int): Fragment = when (screens[position]) {
-    is SessionsScreen -> SessionsFragment
+    //is SessionsScreen ->
     else -> throw IllegalArgumentException("Unknown type for screen at position $position")
   }
 

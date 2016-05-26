@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.bindView
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs
+import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
 import com.openconference.R
 import com.openconference.model.Session
 import com.openconference.util.applicationComponent
 import com.openconference.util.lce.LceAnimatable
 import com.openconference.util.lce.LceViewState
-import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
 
 /**
  *
