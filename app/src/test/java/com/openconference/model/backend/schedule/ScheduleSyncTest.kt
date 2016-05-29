@@ -1,5 +1,7 @@
 package com.openconference.model.backend.schedule
 
+import com.hannesdorfmann.sqlbrite.dao.Dao
+import com.hannesdorfmann.sqlbrite.dao.DaoManager
 import com.openconference.BuildConfig
 import com.openconference.model.Location
 import com.openconference.model.Session
@@ -9,8 +11,6 @@ import com.openconference.model.database.SessionAutoValue
 import com.openconference.model.database.SpeakerAutoValue
 import com.openconference.model.database.dao.*
 import com.openconference.model.notification.NotificationScheduler
-import com.hannesdorfmann.sqlbrite.dao.Dao
-import com.hannesdorfmann.sqlbrite.dao.DaoManager
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -234,15 +234,9 @@ class ScheduleSyncTest {
         emptyList()) // TODO set speaker
 
     locationDao.insertOrUpdate(location1.id(), location1.name()).toBlocking().first()
-    sessionDao.insertOrUpdate(session1.id(), session1.title(), session1.description(),
-        session1.tags(), session1.locationId(), session1.startTime(), session1.endTime(),
-        session1.favorite()).toBlocking().first()
-    sessionDao.insertOrUpdate(session2.id(), session2.title(), session2.description(),
-        session2.tags(), session2.locationId(), session2.startTime(), session2.endTime(),
-        session2.favorite()).toBlocking().first()
-    sessionDao.insertOrUpdate(session3.id(), session3.title(), session3.description(),
-        session3.tags(), session3.locationId(), session3.startTime(), session3.endTime(),
-        session3.favorite()).toBlocking().first()
+    sessionDao.insertOrUpdate(session1, session1.favorite()).toBlocking().first()
+    sessionDao.insertOrUpdate(session2, session2.favorite()).toBlocking().first()
+    sessionDao.insertOrUpdate(session3, session3.favorite()).toBlocking().first()
 
     assertEquals(
         listOf(session1, session2, session3),

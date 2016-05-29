@@ -34,6 +34,11 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<Session>>, MvpVie
   protected val recyclerView: RecyclerView by bindView(R.id.recyclerView)
   protected lateinit var adapter: ListDelegationAdapter<List<Session>>
 
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    retainInstance = true
+  }
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?): View? =
       inflater.inflate(R.layout.fragment_sessions, container, false)
@@ -51,8 +56,8 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<Session>>, MvpVie
    * Creates an Adapter to display sessions in RecyclerView
    */
   open fun createAdapter() = ListDelegationAdapter<List<Session>>(
-      AdapterDelegatesManager<List<Session>>().addDelegate(
-          SessionItemAdapterDelegate(layoutInflater()))
+      AdapterDelegatesManager<List<Session>>()
+          .addDelegate(SessionItemAdapterDelegate(layoutInflater()))
   )
 
   /**

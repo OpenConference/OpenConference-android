@@ -37,7 +37,5 @@ class DroidconBerlinBackendModule(context: Context) : BackendModule(context) {
 
   override fun provideOkHttp(): OkHttpClient = okHttp
 
-  override fun provideRetrofit(client: OkHttpClient): Retrofit = retrofit
-
   override fun provideBackendAdapter(): BackendScheduleAdapter = backendAdapter
 }

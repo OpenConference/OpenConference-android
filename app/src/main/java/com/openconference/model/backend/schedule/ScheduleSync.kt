@@ -90,10 +90,7 @@ class ScheduleSync(
                     AddOrRescheduleNotificationCommand(newSession, notificationScheduler))
               }
 
-              sessionDao.insertOrUpdate(newSession.id(), newSession.title(),
-                  newSession.description(), newSession.tags(), newSession.locationId(),
-                  newSession.startTime(), newSession.endTime(), it.favorite()).toBlocking().first()
-
+              sessionDao.insertOrUpdate(newSession, it.favorite()).toBlocking().first()
 
               // Handled session, so can be removed
               newSessionData.remove(newSession.id())
@@ -102,11 +99,9 @@ class ScheduleSync(
 
           // Contains only unhandled values, so then new Sessions should be added
           newSessionData.values.forEach {
-            sessionDao.insertOrUpdate(it.id(), it.title(), it.description(), it.tags(),
-                it.locationId(), it.startTime(), it.endTime(), false).toBlocking().first()
+            sessionDao.insertOrUpdate(it, false).toBlocking().first()
           }
         }
-
 
         transaction.markSuccessful()
         notificaionSchedulerCommands.forEach { it.execute() } // Execute only if transaction was successful

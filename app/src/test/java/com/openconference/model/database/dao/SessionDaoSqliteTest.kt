@@ -1,10 +1,10 @@
 package com.openconference.model.database.dao
 
+import com.hannesdorfmann.sqlbrite.dao.Dao
+import com.hannesdorfmann.sqlbrite.dao.DaoManager
 import com.openconference.BuildConfig
 import com.openconference.model.database.SessionAutoValue
 import com.openconference.model.database.SpeakerAutoValue
-import com.hannesdorfmann.sqlbrite.dao.Dao
-import com.hannesdorfmann.sqlbrite.dao.DaoManager
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -80,23 +80,15 @@ class SessionDaoSqliteTest {
         speaker2.profilePic(), speaker2.company(), speaker2.jobTitle(), speaker2.link1(),
         speaker2.link2(), speaker2.link3()).toBlocking().first()
 
-    sessionDao.addSpeaker(session1.id(), speaker1.id()).toBlocking().first()
-    sessionDao.addSpeaker(session1.id(), speaker2.id()).toBlocking().first()
 
-
-    sessionDao.insertOrUpdate(session1.id(), session1.title(), session1.description(),
-        session1.tags(),
-        session1.locationId(), session1.startTime(), session1.endTime(), true).toBlocking().first()
+    sessionDao.insertOrUpdate(session1, true).toBlocking().first()
 
     val queried = sessionDao.getSessions().toBlocking().first()
     assertEquals(1, queried.size)
     assertEquals(listOf(session1), queried)
 
     // insert second session
-    sessionDao.insertOrUpdate(session2.id(), session2.title(), session2.description(),
-        session2.tags(),
-        session2.locationId(), session2.startTime(), session2.endTime(), true).toBlocking().first()
-    sessionDao.addSpeaker(session2.id(), speaker2.id()).toBlocking().first()
+    sessionDao.insertOrUpdate(session2, true).toBlocking().first()
 
     val queriedTwoSessions = sessionDao.getSessions().toBlocking().first()
     assertEquals(2, queriedTwoSessions.size)
@@ -130,30 +122,6 @@ class SessionDaoSqliteTest {
     assertEquals(listOf(session1WithoutLocationWithoutSpeaker1, session2WithoutLocation),
         queriedTwoSessionsWithoutSpeaker1)
 
-
-    // Remove speaker from session
-    sessionDao.removeSpeaker(session2.id(), speaker2.id()).toBlocking().first()
-
-    val queryWithoutSpeaker1Speaker2Location1 = sessionDao.getSessions().toBlocking().first()
-
-    val session2WithoutLocationWithoutSpeaker2 = SessionAutoValue.create(session2.id(),
-        session2.title(),
-        session2.description(), session2.tags(), session2.startTime(), session2.endTime(),
-        null, null, true, listOf())
-
-    assertEquals(2, queryWithoutSpeaker1Speaker2Location1.size)
-    assertEquals(
-        listOf(session1WithoutLocationWithoutSpeaker1, session2WithoutLocationWithoutSpeaker2),
-        queryWithoutSpeaker1Speaker2Location1)
-
-
-    // delete session
-    sessionDao.remove(session1.id()).toBlocking().first()
-
-    val querySession2 = sessionDao.getSessions().toBlocking().first()
-    assertEquals(1, querySession2.size)
-    assertEquals(listOf(session2WithoutLocationWithoutSpeaker2), querySession2)
-
   }
 
   @Test
@@ -183,17 +151,9 @@ class SessionDaoSqliteTest {
         speaker2.profilePic(), speaker2.company(), speaker2.jobTitle(), speaker2.link1(),
         speaker2.link2(), speaker2.link3()).toBlocking().first()
 
-    sessionDao.addSpeaker(session1.id(), speaker1.id()).toBlocking().first()
-    sessionDao.addSpeaker(session1.id(), speaker2.id()).toBlocking().first()
+    sessionDao.insertOrUpdate(session1, true).toBlocking().first()
 
-
-    sessionDao.insertOrUpdate(session1.id(), session1.title(), session1.description(),
-        session1.tags(),
-        session1.locationId(), session1.startTime(), session1.endTime(), true).toBlocking().first()
-
-    sessionDao.insertOrUpdate(session2.id(), session2.title(), session2.description(),
-        session2.tags(),
-        session2.locationId(), session2.startTime(), session2.endTime(), false).toBlocking().first()
+    sessionDao.insertOrUpdate(session2, false).toBlocking().first()
 
 
     val all = sessionDao.getSessions().toBlocking().first()
@@ -236,17 +196,11 @@ class SessionDaoSqliteTest {
         speaker2.profilePic(), speaker2.company(), speaker2.jobTitle(), speaker2.link1(),
         speaker2.link2(), speaker2.link3()).toBlocking().first()
 
-    sessionDao.addSpeaker(session1.id(), speaker1.id()).toBlocking().first()
-    sessionDao.addSpeaker(session1.id(), speaker2.id()).toBlocking().first()
 
 
-    sessionDao.insertOrUpdate(session1.id(), session1.title(), session1.description(),
-        session1.tags(),
-        session1.locationId(), session1.startTime(), session1.endTime(), true).toBlocking().first()
+    sessionDao.insertOrUpdate(session1, true).toBlocking().first()
 
-    sessionDao.insertOrUpdate(session2.id(), session2.title(), session2.description(),
-        session2.tags(),
-        session2.locationId(), session2.startTime(), session2.endTime(), false).toBlocking().first()
+    sessionDao.insertOrUpdate(session2, false).toBlocking().first()
 
 
     val favorites = sessionDao.getFavoriteSessions().toBlocking().first()

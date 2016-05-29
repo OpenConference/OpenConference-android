@@ -23,7 +23,7 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater) :
   override fun onBindViewHolder(item: Session, viewHolder: SessionItemViewHolder) {
     viewHolder.title.text = item.title()
 
-    if (item.locationName() != null && item.locationName()!!.isEmpty()) {
+    if (item.locationName() != null && item.locationName()!!.isNotEmpty()) {
       viewHolder.location.visibility = View.VISIBLE
       viewHolder.location.text = item.locationName()!!
     } else {

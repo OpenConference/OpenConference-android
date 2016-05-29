@@ -2,7 +2,6 @@ package com.openconference.model.database.dao
 
 import com.openconference.model.Session
 import com.squareup.sqlbrite.BriteDatabase
-import org.threeten.bp.Instant
 import rx.Observable
 
 /**
@@ -25,9 +24,7 @@ interface SessionDao {
   /**
    * Insert or update a Session
    */
-  fun insertOrUpdate(id: String, title: String?, description: String?, tags: String?,
-      locationId: String ?, start: Instant?, end: Instant?,
-      favorite: Boolean): Observable<Long>
+  fun insertOrUpdate(session: Session, favorite: Boolean): Observable<Long>
 
   /**
    * Removes a session
@@ -40,16 +37,6 @@ interface SessionDao {
    * @return Observable with the number of deleted sessions
    */
   fun removeAll(): Observable<Int>
-
-  /**
-   * Assign a speaker to a session
-   */
-  fun addSpeaker(sessionId: String, speakerId: String): Observable<Long>
-
-  /**
-   * Removes a speaker from a session
-   */
-  fun removeSpeaker(sessionId: String, speakerId: String): Observable<Int>
 
   /**
    * See [Session.favorite]

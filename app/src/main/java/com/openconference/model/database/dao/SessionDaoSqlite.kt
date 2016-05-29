@@ -2,11 +2,10 @@ package com.openconference.model.database.dao
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import com.hannesdorfmann.sqlbrite.dao.Dao
 import com.openconference.model.Session
 import com.openconference.util.putOrNull
-import com.hannesdorfmann.sqlbrite.dao.Dao
 import com.squareup.sqlbrite.BriteDatabase
-import org.threeten.bp.Instant
 import rx.Observable
 
 /**
@@ -101,37 +100,36 @@ open class SessionDaoSqlite : SessionDao, Dao() {
           .mapToList(SessionJoinResult.mapper())
           .map(::mapJoinResultToSessions)
 
-  override fun insertOrUpdate(id: String, title: String?, description: String?, tags: String?,
-      locationId: String?, start: Instant?, end: Instant?,
-      favorite: Boolean): Observable<Long> {
-
+  override fun insertOrUpdate(session: Session, favorite: Boolean): Observable<Long> {
     val cv = ContentValues()
-    cv.put(COL_ID, id)
-    cv.putOrNull(COL_TITLE, title)
-    cv.putOrNull(COL_DESCRIPTION, description)
-    cv.putOrNull(COL_TAGS, tags)
-    cv.putOrNull(COL_LOCATION_ID, locationId)
-    cv.putOrNull(COL_START_TIME, start)
-    cv.putOrNull(COL_END_TIME, end)
+    cv.put(COL_ID, session.id())
+    cv.putOrNull(COL_TITLE, session.title())
+    cv.putOrNull(COL_DESCRIPTION, session.description())
+    cv.putOrNull(COL_TAGS, session.tags())
+    cv.putOrNull(COL_LOCATION_ID, session.locationId())
+    cv.putOrNull(COL_START_TIME, session.startTime())
+    cv.putOrNull(COL_END_TIME, session.endTime())
     cv.put(COL_FAVORITE, favorite)
     return insert(TABLE, cv, SQLiteDatabase.CONFLICT_REPLACE)
+        .flatMap { delete(GiveTalk.TABLE, "${GiveTalk.COL_SESSION_ID} = ?", session.id()) }
+        .map {
+          session.speakers().forEach {
+            // Insert blocking
+            val cv = ContentValues()
+            cv.put(GiveTalk.COL_SESSION_ID, session.id())
+            cv.put(GiveTalk.COL_SPEAKER_ID, it.id())
+            getBriteDatabase().insert(GiveTalk.TABLE, cv)
+          }
+          1L // Everything was ok
+        }
   }
 
   override fun remove(id: String): Observable<Int> = delete(TABLE, "$COL_ID = ?",
-      id).flatMap { delete(GiveTalk.TABLE, "${GiveTalk.COL_SESSION_ID} = ?", id) }
-
-  override fun removeAll(): Observable<Int> = delete(TABLE)
-
-  override fun addSpeaker(sessionId: String, speakerId: String): Observable<Long> {
-    val cv = ContentValues()
-    cv.put(GiveTalk.COL_SESSION_ID, sessionId)
-    cv.put(GiveTalk.COL_SPEAKER_ID, speakerId)
-    return insert(GiveTalk.TABLE, cv)
+      id).flatMap { deleted ->
+    delete(GiveTalk.TABLE, "${GiveTalk.COL_SESSION_ID} = ?", id).map { deleted }
   }
 
-  override fun removeSpeaker(sessionId: String, speakerId: String): Observable<Int>
-      = delete(GiveTalk.TABLE, "${GiveTalk.COL_SESSION_ID} = ? AND ${GiveTalk.COL_SPEAKER_ID} = ?",
-      sessionId, speakerId)
+  override fun removeAll(): Observable<Int> = delete(TABLE)
 
   override fun setFavorite(sessionId: String, favorite: Boolean): Observable<Int> {
     val cv = ContentValues()
