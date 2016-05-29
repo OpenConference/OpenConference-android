@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
-import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**
@@ -16,22 +15,18 @@ import javax.inject.Singleton
 open class BackendModule(c: Context) {
 
   protected val context: Context
+  protected val okHttpClient: OkHttpClient
 
   init {
     context = c.applicationContext
+    okHttpClient = OkHttpClient.Builder()
+        .cache(Cache(context.cacheDir, 48 * 1024 * 1024))
+        .build()
   }
 
   @Provides
   @Singleton
-  open fun provideOkHttp() =
-      OkHttpClient.Builder().cache(Cache(context.cacheDir, 48 * 1024 * 1024))
-          .build()
-
-  @Provides
-  @Singleton
-  open fun provideRetrofit(client: OkHttpClient): Retrofit =
-      throw UnsupportedOperationException(
-          "Every Build Flavor / Conference app has to provide his own Retrofit instance")
+  open fun provideOkHttp() = okHttpClient
 
   @Provides
   @Singleton

@@ -20,4 +20,16 @@
     <item name="cpb_rotation_speed">@string/cpb_default_rotation_speed</item>
   </style>
 
+
+  <!-- Styling for a session text appeareance -->
+  <style name="ScheduleSessionTitle" parent="TextAppearance.AppCompat">
+    <item name="android:textColor">@color/textColorPrimary</item>
+    <item name="android:textSize">18sp</item>
+  </style>
+
+  <style name="ScheduleSessionSpeakers" parent="AlertDialog.AppCompat">
+    <item name="android:textColor">@color/textColorSecondary</item>
+    <item name="android:textSize">14sp</item>
+  </style>
+
 </resources>
