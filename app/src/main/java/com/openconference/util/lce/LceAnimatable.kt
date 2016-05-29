@@ -15,7 +15,7 @@ interface LceAnimatable<M> {
   val loadingView: View
 
   fun isRestoringViewState(): Boolean
-  fun getViewState() : LceViewState<M>
+  fun getViewState() : LceViewState<M>?
 
   /**
    * show the loading indicator
@@ -31,7 +31,7 @@ interface LceAnimatable<M> {
     }
     errorView.visibility = View.GONE
 
-    getViewState().showLoading()
+    getViewState()!!.showLoading()
   }
 
   /**
@@ -49,7 +49,7 @@ interface LceAnimatable<M> {
 
     contentView.visibility = View.GONE
 
-    getViewState().showError(throwable)
+    getViewState()!!.showError(throwable)
   }
 
   /**
@@ -67,6 +67,6 @@ interface LceAnimatable<M> {
     }
 
     errorView.visibility = View.GONE
-    getViewState().showContent(data)
+    getViewState()!!.showContent(data)
   }
 }

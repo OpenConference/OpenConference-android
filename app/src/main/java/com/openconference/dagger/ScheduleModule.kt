@@ -3,6 +3,7 @@ package com.openconference.dagger
 import android.content.Context
 import com.openconference.model.backend.schedule.ScheduleDataStateDeterminer
 import com.openconference.model.backend.schedule.TimebaseScheduleDataStateDeterminer
+import com.openconference.model.notification.DefaultNotificationScheduler
 import com.openconference.model.notification.NotificationScheduler
 import dagger.Module
 import dagger.Provides
@@ -33,5 +34,5 @@ open class ScheduleModule(c: Context) {
 
   @Provides
   @Singleton
-  fun provideNotificationScheduler(): NotificationScheduler = throw UnsupportedOperationException()
+  fun provideNotificationScheduler(): NotificationScheduler = DefaultNotificationScheduler()
 }

@@ -27,6 +27,7 @@ import com.openconference.util.lce.LceViewState
 @FragmentWithArgs
 open class SessionsFragment : SessionsView, LceAnimatable<List<Session>>, MvpViewStateFragment<SessionsView, SessionsPresenter>() {
 
+
   override val contentView: View by bindView(R.id.contentView)
   override val errorView: TextView by bindView(R.id.errorView)
   override val loadingView: View by bindView(R.id.loadingView)
@@ -68,10 +69,12 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<Session>>, MvpVie
   }
 
   override fun showContent(data: List<Session>) {
+    adapter.items = data
+    adapter.notifyDataSetChanged()
     super.showContent(data)
   }
 
-  private fun loadData() = presenter.loadSessions()
+  private inline fun loadData() = presenter.loadSessions()
 
   override fun onNewViewStateInstance() = loadData()
 
@@ -79,5 +82,5 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<Session>>, MvpVie
 
   override fun createViewState(): LceViewState<List<Session>> = LceViewState()
 
-  override fun getViewState(): LceViewState<List<Session>> = LceViewState<List<Session>>()
+  override fun getViewState(): LceViewState<List<Session>>? = super.getViewState() as LceViewState<List<Session>>?
 }
