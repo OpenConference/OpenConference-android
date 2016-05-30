@@ -1,6 +1,7 @@
 package com.openconference.main
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import butterknife.bindView
@@ -13,6 +14,7 @@ class ViewPagerMainActivity : AppCompatActivity() {
 
   @Inject lateinit var screens: Screens
   private val viewPager by bindView<ViewPager>(R.id.viewpager)
+  private val tabs by bindView<TabLayout>(R.id.tabs)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -26,6 +28,8 @@ class ViewPagerMainActivity : AppCompatActivity() {
 
     // Setup UI
     viewPager.adapter = MainScreensPagerAdapter(this, screens.screens)
+    tabs.setupWithViewPager(viewPager)
+
 
   }
 }

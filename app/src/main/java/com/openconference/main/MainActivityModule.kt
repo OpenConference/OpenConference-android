@@ -15,6 +15,7 @@ class MainActivityModule {
 
   @Provides
   @MainActivityScope
-  fun provideScreens(): Screens = Screens(listOf(SessionsScreen()))
+  fun provideScreens(): Screens = Screens(listOf(SessionsScreen(), SessionsScreen(),
+      SessionsScreen()))
 
 }
