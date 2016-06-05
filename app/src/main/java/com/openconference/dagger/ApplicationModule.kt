@@ -20,7 +20,8 @@ import javax.inject.Singleton
     LoadersModule::class,
     SchedulingModule::class,
     BackendModule::class,
-    ScheduleModule::class)
+    ScheduleModule::class,
+    ErrorMessageModule::class)
 )
 class ApplicationModule {
 

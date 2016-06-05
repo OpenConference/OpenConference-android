@@ -19,6 +19,7 @@ import rx.Observable
  */
 class MockSchedulerAdapterStub : BackendScheduleAdapter {
 
+  val loremIpsum = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\nDuis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.\n\nUt wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.\n\nNam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer"
   val formater = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
   //
@@ -31,7 +32,8 @@ class MockSchedulerAdapterStub : BackendScheduleAdapter {
       "Alphabet", "CEO", "http://www.google.com", null, null)
   private val speaker3 = SpeakerAutoValue.create("3", "Chet Haase", null, null,
       "Google", null, "http://www.google.com", null, null)
-  private val speaker4 = SpeakerAutoValue.create("4", "Colt McAnlis", "Colt McAnlis is a Developer Advocate at Google focusing on Performance & Compression", null,
+  private val speaker4 = SpeakerAutoValue.create("4", "Colt McAnlis",
+      "Colt McAnlis is a Developer Advocate at Google focusing on Performance & Compression", null,
       "Google", null, "http://www.google.com", null, null)
 
   //
@@ -44,7 +46,7 @@ class MockSchedulerAdapterStub : BackendScheduleAdapter {
   // Some mock Sessions
   //
   private val session1 = SessionAutoValue.create("1", "The making of Google",
-      "In this talk Larry Page will talk about the making of Google", "Founding Startup",
+      loremIpsum, "Founding Startup",
       Instant.ofEpochSecond(1463565600L), Instant.ofEpochSecond(1463569200L),
       location1.id(), location1.name(), false, arrayListOf<Speaker>(speaker2))
 
@@ -60,7 +62,20 @@ class MockSchedulerAdapterStub : BackendScheduleAdapter {
       Instant.ofEpochSecond(1463569200L), Instant.ofEpochSecond(1463572800L),
       location2.id(), location1.name(), false, arrayListOf<Speaker>(speaker2, speaker1))
 
-  private val session4 = SessionAutoValue.create("4", "Make shinier, faster mobile games with Vulkan",
+  private val session9 = SessionAutoValue.create("9", "Google Cast",
+      loremIpsum,
+      "Android",
+      Instant.ofEpochSecond(1463569200L), Instant.ofEpochSecond(1463572800L),
+      location2.id(), location1.name(), false, arrayListOf<Speaker>(speaker2, speaker1))
+
+  private val session10 = SessionAutoValue.create("10", "Animations for beginners",
+      loremIpsum,
+      "Android",
+      Instant.ofEpochSecond(1463569200L), Instant.ofEpochSecond(1463572800L),
+      location2.id(), location1.name(), false, arrayListOf<Speaker>(speaker2, speaker1))
+
+  private val session4 = SessionAutoValue.create("4",
+      "Make shinier, faster mobile games with Vulkan",
       "Vulkan is designed from the ground up for high-efficiency and unprecedented cross platform usage, introducing a paradigm shift in computer graphics. But what's really involved in adding Vulkan support to an existing code base? This talk covers both logistics and technical details of porting an OpenGL ES framework to Vulkan. In addition to that, it will also address some common post port topics on how to maximize the benefits of Vulkan.",
       "Android",
       Instant.ofEpochSecond(1463662800L), Instant.ofEpochSecond(1463666400L),
@@ -69,6 +84,27 @@ class MockSchedulerAdapterStub : BackendScheduleAdapter {
   private val session5 = SessionAutoValue.create("5", "Android battery and memory optimizations",
       "No one likes battery-draining apps or sluggish experience on their device. We will go over new platform features aimed at optimizing battery and memory consumption such as Doze and the new background optimizations in the N-release. We will review best practices and tools for measuring power consumption, as well as APIs that make it easy for you to write battery and memory efficient applications. Join us in helping improve battery life and performance for users.",
       "Android Battery",
+      Instant.ofEpochSecond(1463670000L), Instant.ofEpochSecond(1463673600L),
+      location2.id(), location1.name(), false, arrayListOf<Speaker>(speaker4))
+
+
+  private val session6 = SessionAutoValue.create("6", "What the fragment",
+      "Lorem ipsum",
+      "Android Battery",
+      Instant.ofEpochSecond(1463670000L), Instant.ofEpochSecond(1463673600L),
+      location2.id(), location1.name(), false, arrayListOf<Speaker>(speaker4))
+
+
+  private val session7 = SessionAutoValue.create("7", "Android Wear 2.0",
+      "No one likes battery-draining apps or sluggish experience on their device. We will go over new platform features aimed at optimizing battery and memory consumption such as Doze and the new background optimizations in the N-release. We will review best practices and tools for measuring power consumption, as well as APIs that make it easy for you to write battery and memory efficient applications. Join us in helping improve battery life and performance for users.",
+      "Android Battery",
+      Instant.ofEpochSecond(1463670000L), Instant.ofEpochSecond(1463673600L),
+      location2.id(), location1.name(), false, arrayListOf<Speaker>(speaker4))
+
+
+  private val session8 = SessionAutoValue.create("8", "Living in a Material World",
+      "No one likes battery-draining apps or sluggish experience on their device. We will go over new platform features aimed at optimizing battery and memory consumption such as Doze and the new background optimizations in the N-release. We will review best practices and tools for measuring power consumption, as well as APIs that make it easy for you to write battery and memory efficient applications. Join us in helping improve battery life and performance for users.",
+      "Material Design",
       Instant.ofEpochSecond(1463670000L), Instant.ofEpochSecond(1463673600L),
       location2.id(), location1.name(), false, arrayListOf<Speaker>(speaker4))
 
@@ -97,7 +133,12 @@ class MockSchedulerAdapterStub : BackendScheduleAdapter {
             session2,
             session3,
             session4,
-            session5
+            session5,
+            session6,
+            session7,
+            session8,
+            session9,
+            session10
         ))
       }
 }

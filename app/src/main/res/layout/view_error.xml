@@ -8,6 +8,8 @@
       android:layout_height="wrap_content"
       android:padding="16dp"
       android:layout_gravity="center"
+      android:drawableTop="@drawable/ic_error"
+      android:drawablePadding="8dp"
       />
 
 </merge>

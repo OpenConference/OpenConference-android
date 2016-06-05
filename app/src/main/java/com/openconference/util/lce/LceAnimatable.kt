@@ -1,5 +1,6 @@
 package com.openconference.util.lce
 
+import android.support.annotation.StringRes
 import android.view.View
 import android.widget.TextView
 
@@ -15,7 +16,7 @@ interface LceAnimatable<M> {
   val loadingView: View
 
   fun isRestoringViewState(): Boolean
-  fun getViewState() : LceViewState<M>?
+  fun getViewState(): LceViewState<M>?
 
   /**
    * show the loading indicator
@@ -37,7 +38,7 @@ interface LceAnimatable<M> {
   /**
    * Show the error indicator
    */
-  fun showError(throwable: Throwable) {
+  fun showError(@StringRes errorMsgRes: Int) {
     if (!isRestoringViewState() && errorView.visibility != View.VISIBLE) {
       errorView.alpha = 0f
       errorView.animate().alpha(1f).withStartAction { errorView.visibility = View.VISIBLE }.start()
@@ -47,9 +48,11 @@ interface LceAnimatable<M> {
       loadingView.visibility = View.GONE
     }
 
+    errorView.setText(errorMsgRes)
+
     contentView.visibility = View.GONE
 
-    getViewState()!!.showError(throwable)
+    getViewState()!!.showError(errorMsgRes)
   }
 
   /**

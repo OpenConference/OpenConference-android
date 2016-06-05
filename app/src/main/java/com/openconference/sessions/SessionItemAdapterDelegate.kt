@@ -8,43 +8,47 @@ import android.widget.TextView
 import butterknife.bindView
 import com.hannesdorfmann.adapterdelegates2.AbsListItemAdapterDelegate
 import com.openconference.R
-import com.openconference.model.Session
+import com.openconference.sessions.presentationmodel.GroupableSession
+import com.openconference.sessions.presentationmodel.SessionPresentationModel
 
 /**
  * Represents a Session item in a RecyclerView
  *
  * @author Hannes Dorfmann
  */
-class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater) : AbsListItemAdapterDelegate<Session, Session, SessionItemAdapterDelegate.SessionItemViewHolder>() {
+class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater) : AbsListItemAdapterDelegate<SessionPresentationModel, GroupableSession, SessionItemAdapterDelegate.SessionItemViewHolder>() {
 
-  override fun isForViewType(item: Session, items: MutableList<Session>?, position: Int): Boolean =
-      item is Session
 
-  override fun onBindViewHolder(item: Session, viewHolder: SessionItemViewHolder) {
-    viewHolder.title.text = item.title()
+  override fun isForViewType(item: GroupableSession, items: MutableList<GroupableSession>?,
+      position: Int): Boolean =
+      item is SessionPresentationModel
 
-    if (item.locationName() != null && item.locationName()!!.isNotEmpty()) {
+  override fun onBindViewHolder(item: SessionPresentationModel, viewHolder: SessionItemViewHolder) {
+    val session = item.session()
+    viewHolder.title.text = session.title()
+
+    // Time
+    if (item.time() != null) {
+      viewHolder.time.text = item.time()
+      viewHolder.time.visibility = View.VISIBLE
+    } else {
+      viewHolder.time.visibility = View.GONE
+    }
+
+    // Location
+    if (session.locationName() != null && session.locationName()!!.isNotEmpty()) {
       viewHolder.location.visibility = View.VISIBLE
-      viewHolder.location.text = item.locationName()!!
+      viewHolder.location.text = session.locationName()!!
     } else {
       viewHolder.location.visibility = View.GONE
     }
 
+    // Speakers
     val speakers = item.speakers()
-
-    if (speakers.isEmpty()) {
+    if (speakers == null) {
       viewHolder.speakers.visibility = View.GONE
     } else {
-      if (speakers.size == 1) {
-        viewHolder.speakers.text = speakers[0].name()
-      } else {
-        val names = StringBuilder(speakers[0].name())
-        for (i in 1..speakers.size - 1) {
-          names.append(", ")
-          names.append(speakers[i].name())
-        }
-        viewHolder.speakers.text = names.toString()
-      }
+      viewHolder.speakers.text = speakers.toString()
       viewHolder.speakers.visibility = View.VISIBLE
     }
   }
@@ -58,6 +62,7 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater) :
   class SessionItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
     val title: TextView by bindView(R.id.title)
     val speakers: TextView by bindView(R.id.speakers)
+    val time: TextView by bindView(R.id.time)
     val location: TextView by bindView(R.id.location)
   }
 }

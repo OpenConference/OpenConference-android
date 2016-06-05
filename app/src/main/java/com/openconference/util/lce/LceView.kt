@@ -1,5 +1,6 @@
 package com.openconference.util.lce
 
+import android.support.annotation.StringRes
 import com.hannesdorfmann.mosby.mvp.MvpView
 
 /**
@@ -17,7 +18,7 @@ interface LceView<M> : MvpView {
   /**
    * Show the error indicator
    */
-  fun showError(throwable: Throwable)
+  fun showError(@StringRes errorMsgRes: Int)
 
   /**
    * Show the content with the given data

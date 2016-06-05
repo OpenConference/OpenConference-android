@@ -3,11 +3,11 @@ package com.openconference.model.database.dao
 import android.database.Cursor
 import android.support.annotation.NonNull
 import android.support.annotation.Nullable
-import com.openconference.model.Session
-import com.openconference.model.database.*
 import com.gabrielittner.auto.value.cursor.ColumnName
 import com.gabrielittner.auto.value.cursor.CursorAdapter
 import com.google.auto.value.AutoValue
+import com.openconference.model.Session
+import com.openconference.model.database.*
 import com.ryanharter.auto.value.parcel.ParcelAdapter
 import org.threeten.bp.Instant
 import rx.functions.Func1
@@ -130,5 +130,3 @@ fun mapJoinResultToSessions(joinResults: List<SessionJoinResult>): List<Session>
               first.favorite(),
               speakers)
         }
-
-

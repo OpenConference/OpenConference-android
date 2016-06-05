@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import com.hannesdorfmann.sqlbrite.dao.Dao
 import com.openconference.model.Session
+import com.openconference.model.database.SessionDateTimeComparator
 import com.openconference.util.putOrNull
 import com.squareup.sqlbrite.BriteDatabase
 import rx.Observable
@@ -43,6 +44,8 @@ open class SessionDaoSqlite : SessionDao, Dao() {
     const val COL_SESSION_ID = "sessionId"
     const val COL_SPEAKER_ID = "speakerId"
   }
+
+  private val sortByStartDate = SessionDateTimeComparator()
 
   override fun createTable(database: SQLiteDatabase) {
 
@@ -99,6 +102,7 @@ open class SessionDaoSqlite : SessionDao, Dao() {
           .run()
           .mapToList(SessionJoinResult.mapper())
           .map(::mapJoinResultToSessions)
+          .map { it.sortedWith(sortByStartDate) }
 
   override fun insertOrUpdate(session: Session, favorite: Boolean): Observable<Long> {
     val cv = ContentValues()

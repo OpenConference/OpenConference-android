@@ -14,23 +14,23 @@ class LceViewState<M> : ViewState<LceView<M>> {
   }
 
   private var data: M? = null
-  private var error: Throwable? = null
+  private var errorMsg: Int = -1
   private var state = State.SHOW_LOADING
 
   fun showContent(data: M) {
     this.data = data
     this.state = State.SHOW_CONTENT
-    this.error = null
+    this.errorMsg = -1
   }
 
-  fun showError(throwable: Throwable) {
-    this.error = throwable
+  fun showError(errorMsgRes : Int) {
+    this.errorMsg = errorMsg
     this.state = State.SHOW_ERROR
     this.data = null
   }
 
   fun showLoading() {
-    this.error = null
+    this.errorMsg = -1
     this.data = null
     this.state = State.SHOW_LOADING
   }
@@ -39,6 +39,6 @@ class LceViewState<M> : ViewState<LceView<M>> {
       when (state) {
         State.SHOW_CONTENT -> view.showContent(data!!)
         State.SHOW_LOADING -> view.showLoading()
-        State.SHOW_ERROR -> view.showError(error!!)
+        State.SHOW_ERROR -> view.showError(errorMsg)
       }
 }

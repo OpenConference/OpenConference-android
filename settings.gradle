@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':stickyheaders'
+project(':stickyheaders').projectDir = new File('app/libraries/stickyheaders')

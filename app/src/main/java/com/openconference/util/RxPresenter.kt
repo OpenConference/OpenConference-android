@@ -2,6 +2,7 @@ package com.openconference.util
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
 import com.hannesdorfmann.mosby.mvp.MvpView
+import com.openconference.model.errormessage.ErrorMessageDeterminer
 import rx.Observable
 import rx.subscriptions.CompositeSubscription
 
@@ -10,7 +11,8 @@ import rx.subscriptions.CompositeSubscription
  * once the view has been permanently detached
  * @author Hannes Dorfmann
  */
-open class RxPresenter<V : MvpView>(private val schedulerTransformer: SchedulerTransformer) : MvpBasePresenter<V>() {
+open class RxPresenter<V : MvpView>(private val schedulerTransformer: SchedulerTransformer,
+    protected val errorMessageDeterminer: ErrorMessageDeterminer) : MvpBasePresenter<V>() {
 
   protected val subscriptions = CompositeSubscription()
 

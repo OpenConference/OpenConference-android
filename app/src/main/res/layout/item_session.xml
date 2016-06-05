@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/keyline_contentstart"
+    android:paddingTop="@dimen/sessions_item_padding_top_bottom"
+    android:paddingBottom="@dimen/sessions_item_padding_top_bottom"
+    android:paddingRight="@dimen/activity_vertical_margin"
     >
 
   <TextView
@@ -16,26 +20,14 @@
       />
 
 
-  <TextView
-      android:id="@+id/time"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/title"
-      android:layout_marginTop="@dimen/sessions_item_text_space"
-      android:drawablePadding="4dp"
-      android:drawableStart="@drawable/ic_time"
-      tools:text="22:00 - 23:00"
-      style="@style/ScheduleSessionSpeakers"
-      />
-
-
 
   <TextView
       android:id="@+id/speakers"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/time"
-      android:layout_marginTop="@dimen/sessions_item_text_space"
+      android:layout_below="@id/title"
+
+      android:layout_marginTop="@dimen/sessions_item_title_details_space"
       android:drawablePadding="4dp"
       android:drawableStart="@drawable/ic_person"
       tools:text="Speaker1, Speaker2"
@@ -44,10 +36,23 @@
 
 
   <TextView
-      android:id="@+id/location"
+      android:id="@+id/time"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@id/speakers"
+      android:layout_marginTop="@dimen/sessions_item_text_space"
+      android:drawablePadding="4dp"
+      android:drawableStart="@drawable/ic_time"
+      tools:text="22:00 - 23:00"
+      style="@style/ScheduleSessionSpeakers"
+      />
+
+
+  <TextView
+      android:id="@+id/location"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/time"
       android:layout_marginTop="@dimen/sessions_item_text_space"
       android:drawablePadding="4dp"
       android:drawableStart="@drawable/ic_location"

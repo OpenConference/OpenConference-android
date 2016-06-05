@@ -1,0 +1,18 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+  compile libs.recyclerView
+}
+
+android {
+
+  compileOptions.incremental = false
+
+  compileSdkVersion compileSdk
+  buildToolsVersion buildTools
+
+  defaultConfig {
+    minSdkVersion minSdk
+    targetSdkVersion targetSdk
+  }
+}

@@ -1,6 +1,9 @@
 package com.openconference.dagger
 
-import com.openconference.sessions.SessionsPresenter
+import com.openconference.model.ScheduleDataAwareObservableFactory
+import com.openconference.model.SessionsLoader
+import com.openconference.model.errormessage.ErrorMessageDeterminer
+import com.openconference.util.SchedulerTransformer
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,5 +15,12 @@ import javax.inject.Singleton
 @Singleton
 interface ApplicationComponent {
 
-  fun sessionPresenter(): SessionsPresenter
+  fun schedulerTransformer(): SchedulerTransformer
+
+  fun scheduleDataAwareObservableFactory(): ScheduleDataAwareObservableFactory
+
+  fun sessionLoader(): SessionsLoader
+
+  fun errorMessageDeterminer(): ErrorMessageDeterminer
+
 }
