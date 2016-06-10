@@ -6,10 +6,11 @@
       android:id="@+id/errorView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:padding="16dp"
       android:layout_gravity="center"
+      android:drawablePadding="16dp"
       android:drawableTop="@drawable/ic_error"
-      android:drawablePadding="8dp"
+      android:padding="@dimen/activity_vertical_margin"
+      style="@style/ErrorView"
       />
 
 </merge>

@@ -71,6 +71,8 @@ dependencies {
   compile libs.retrofitMoshi
   compile libs.okhttp
 
+  compile libs.timber
+
   compile libs.dagger
   kapt libs.daggerCompiler
 

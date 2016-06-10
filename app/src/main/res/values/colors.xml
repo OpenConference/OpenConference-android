@@ -2,13 +2,14 @@
 <resources>
   <color name="colorPrimary">#222222</color>
   <color name="colorPrimaryDark">#000000</color>
-  <color name="colorAccent">#88c540</color>
+  <color name="colorAccent">#8ED300</color>
 
   <color name="textColorPrimary">#6a6a6a</color>
   <color name="textColorSecondary">#919191</color>
 
   <!-- icon of list view -->
   <color name="colorListIcons">#A8A8A8</color>
+  <color name="viewpager_separator_background">#C2C2C2</color>
 
 
 </resources>

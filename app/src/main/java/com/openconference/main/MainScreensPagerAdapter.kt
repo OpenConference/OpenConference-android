@@ -8,20 +8,23 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ImageSpan
+import com.openconference.model.screen.MyScheduleScreen
 import com.openconference.model.screen.Screen
 import com.openconference.model.screen.SessionsScreen
+import com.openconference.sessions.MyScheduleFragmentBuilder
 import com.openconference.sessions.SessionsFragmentBuilder
 
 /**
  * ViewPagerAdapter for MainScreens
  * @author Hannes Dorfmann
  */
-class MainScreensPagerAdapter(private val activity: AppCompatActivity, private val screens: List<Screen>) : FragmentStatePagerAdapter(
+open class MainScreensPagerAdapter(private val activity: AppCompatActivity, private val screens: List<Screen>) : FragmentStatePagerAdapter(
     activity.supportFragmentManager) {
 
 
   override fun getItem(position: Int): Fragment = when (screens[position]) {
     is SessionsScreen -> SessionsFragmentBuilder().build()
+    is MyScheduleScreen -> MyScheduleFragmentBuilder().build()
     else -> throw IllegalArgumentException("Unknown type for screen at position $position")
   }
 

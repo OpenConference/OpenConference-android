@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- Assuming whole width is 16dp defined in @dimen/viewpager_page_margin-->
+
+  <item
+      android:drawable="@color/viewpager_separator_background"
+      android:width="@dimen/viewpager_page_margin"
+      />
+
+
+  <item android:width="4dp">
+    <shape
+        android:shape="rectangle">
+      <gradient
+          android:angle="0"
+          android:endColor="#00000000"
+          android:startColor="#A1A1A1"
+          android:type="linear"/>
+    </shape>
+  </item>
+
+
+  <item
+      android:left="12dp"
+      android:width="4dp">
+    <shape
+        android:shape="rectangle">
+      <gradient
+          android:angle="180"
+          android:endColor="#00000000"
+          android:startColor="#A1A1A1"
+          android:type="linear"/>
+    </shape>
+  </item>
+
+</layer-list>

@@ -27,6 +27,8 @@ class ViewPagerMainActivity : AppCompatActivity() {
 
 
     // Setup UI
+    viewPager.setPageMarginDrawable(R.drawable.viewpager_separator)
+    viewPager.pageMargin = resources.getDimensionPixelOffset(R.dimen.viewpager_page_margin)
     viewPager.adapter = MainScreensPagerAdapter(this, screens.screens)
     tabs.setupWithViewPager(viewPager)
 

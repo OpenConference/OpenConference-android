@@ -1,5 +1,6 @@
 package com.openconference.dagger
 
+import android.content.Context
 import com.openconference.model.ScheduleDataAwareObservableFactory
 import com.openconference.model.SessionsLoader
 import com.openconference.model.errormessage.ErrorMessageDeterminer
@@ -22,5 +23,8 @@ interface ApplicationComponent {
   fun sessionLoader(): SessionsLoader
 
   fun errorMessageDeterminer(): ErrorMessageDeterminer
+
+  @ApplicationContext
+  fun applicationContext(): Context
 
 }

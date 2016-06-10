@@ -1,5 +1,6 @@
 package com.openconference.dagger
 
+import android.content.Context
 import com.openconference.model.backend.schedule.BackendScheduleAdapter
 import com.openconference.model.backend.schedule.ScheduleSync
 import com.openconference.model.database.dao.LocationDao
@@ -23,7 +24,9 @@ import javax.inject.Singleton
     ScheduleModule::class,
     ErrorMessageModule::class)
 )
-class ApplicationModule {
+class ApplicationModule(c: Context) {
+
+  private val applicationContext = c.applicationContext
 
   @Provides
   @Singleton
@@ -33,5 +36,10 @@ class ApplicationModule {
       speakerDao: SpeakerDao,
       locationDao: LocationDao) = ScheduleSync(backend, notificationScheduler, sessionDao,
       speakerDao, locationDao)
+
+  @Provides
+  @Singleton
+  @ApplicationContext
+  fun provideApplicationContext() = applicationContext
 
 }

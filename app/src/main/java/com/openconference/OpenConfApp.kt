@@ -35,7 +35,7 @@ open class OpenConfApp : Application() {
         .loadersModule(LoadersModule())
         .schedulingModule(SchedulingModule())
         .backendModule(BackendModule(this))
-        .applicationModule(ApplicationModule())
+        .applicationModule(ApplicationModule(this))
         .scheduleModule(ScheduleModule(this))
   }
 

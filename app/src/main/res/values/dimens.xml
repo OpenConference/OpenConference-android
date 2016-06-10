@@ -12,4 +12,8 @@
   <dimen name="keyline_content_width">40dp</dimen>
   <dimen name="keyline_content_with_plus_start_padding">56dp</dimen>
 
+  <dimen name="viewpager_page_margin">16dp</dimen>
+  <dimen name="errorview_width_height">128dp</dimen>
+  <dimen name="emptyview_width_height">128dp</dimen>
+
 </resources>

@@ -11,9 +11,10 @@ import android.widget.TextView
  */
 interface LceAnimatable<M> {
 
-  val contentView: View
-  val errorView: TextView
-  val loadingView: View
+  var contentView: View
+  var errorView: TextView
+  var loadingView: View
+  var emptyView: View
 
   fun isRestoringViewState(): Boolean
   fun getViewState(): LceViewState<M>?
@@ -32,7 +33,9 @@ interface LceAnimatable<M> {
     }
     errorView.visibility = View.GONE
 
-    getViewState()!!.showLoading()
+    if (!isRestoringViewState()) {
+      getViewState()!!.showLoading()
+    }
   }
 
   /**
@@ -52,13 +55,22 @@ interface LceAnimatable<M> {
 
     contentView.visibility = View.GONE
 
-    getViewState()!!.showError(errorMsgRes)
+    if (!isRestoringViewState()) {
+      getViewState()!!.showError(errorMsgRes)
+    }
   }
 
   /**
    * Show the content with the given data
    */
   fun showContent(data: M) {
+
+    emptyView.visibility = if (isDataEmpty(data)) {
+      View.VISIBLE
+    } else {
+      View.GONE
+    }
+
     if (!isRestoringViewState() && contentView.visibility != View.VISIBLE) {
       contentView.alpha = 0f
       contentView.animate().alpha(
@@ -70,6 +82,13 @@ interface LceAnimatable<M> {
     }
 
     errorView.visibility = View.GONE
-    getViewState()!!.showContent(data)
+    if (!isRestoringViewState()) {
+      getViewState()!!.showContent(data)
+    }
   }
+
+  /**
+   * Used to determine if the data is empty so that the emty view should be displyed
+   */
+  fun isDataEmpty(data: M): Boolean
 }

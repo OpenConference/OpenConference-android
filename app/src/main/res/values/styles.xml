@@ -41,7 +41,17 @@
 
   <style name="ScheduleDate" parent="TextAppearance.AppCompat">
     <item name="android:textColor">@color/textColorSecondary</item>
-    <item name="android:textSize">14sp</item>
+    <item name="android:textSize">12sp</item>
+  </style>
+
+  <style name="EmptyView" parent="TextAppearance.AppCompat">
+    <item name="android:textColor">@color/textColorPrimary</item>
+    <item name="android:textSize">18sp</item>
+  </style>
+
+  <style name="ErrorView" parent="TextAppearance.AppCompat">
+    <item name="android:textColor">@color/textColorPrimary</item>
+    <item name="android:textSize">18sp</item>
   </style>
 
 

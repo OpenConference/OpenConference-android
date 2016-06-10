@@ -14,9 +14,8 @@ import com.hannesdorfmann.adapterdelegates2.ListDelegationAdapter
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
 import com.openconference.R
-import com.openconference.model.Session
+import com.openconference.myschedule.presentationmodel.MySchedulePresentationModel
 import com.openconference.sessions.presentationmodel.GroupableSession
-import com.openconference.sessions.presentationmodel.SessionPresentationModel
 import com.openconference.util.StableIdListAdapter
 import com.openconference.util.applicationComponent
 import com.openconference.util.findView
@@ -30,7 +29,7 @@ import com.openconference.util.lce.LceViewState
  * @author Hannes Dorfmann
  */
 @FragmentWithArgs
-open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentationModel>>, MvpViewStateFragment<SessionsView, SessionsPresenter>() {
+open class MyScheduleFragment : MyScheduleView, LceAnimatable<MySchedulePresentationModel>, MvpViewStateFragment<MyScheduleView, MySchedulePresenter>() {
 
 
   override lateinit var contentView: View
@@ -48,7 +47,7 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentati
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?): View? =
-      inflater.inflate(R.layout.fragment_sessions, container, false)
+      inflater.inflate(R.layout.fragment_my_schedule, container, false)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -98,27 +97,29 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentati
     super.showError(errorRes)
   }
 
-  override fun showContent(data: List<SessionPresentationModel>) {
-    adapter.items = data
-    stickyHeadersAdapter.sessions = data
+  override fun showContent(data: MySchedulePresentationModel) {
+    adapter.items = data.items
+    stickyHeadersAdapter.sessions = data.items
+
     adapter.notifyDataSetChanged()
-    
+
     super.showContent(data)
   }
 
-  override fun isDataEmpty(data: List<SessionPresentationModel>): Boolean = data.isEmpty()
+  override fun isDataEmpty(data: MySchedulePresentationModel): Boolean = data.items.isEmpty()
 
   private inline fun loadData() = presenter.loadSessions()
 
   override fun onNewViewStateInstance() = loadData()
 
-  override fun createPresenter(): SessionsPresenter = DaggerSessionsComponent.builder()
-      .applicationComponent(applicationComponent())
-      .sessionsModule(SessionsModule())
-      .build()
-      .sessionPresenter()
+  override fun createPresenter(): MySchedulePresenter =
+      DaggerMyScheduleComponent.builder()
+          .applicationComponent(applicationComponent())
+          .myScheduleModule(MyScheduleModule())
+          .build().mySchedulePresenter()
 
-  override fun createViewState(): LceViewState<List<Session>> = LceViewState()
+  override
+  fun createViewState(): LceViewState<MySchedulePresentationModel> = LceViewState()
 
-  override fun getViewState(): LceViewState<List<SessionPresentationModel>>? = super.getViewState() as LceViewState<List<SessionPresentationModel>>?
+  override fun getViewState(): LceViewState<MySchedulePresentationModel>? = super.getViewState() as LceViewState<MySchedulePresentationModel>?
 }

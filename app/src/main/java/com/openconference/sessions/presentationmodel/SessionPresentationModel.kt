@@ -24,6 +24,7 @@ abstract class SessionPresentationModel : GroupableSession {
   companion object {
     fun create(id: Long, dayInWeek: String?, dateShort: String?, speakers: String?, time: String?,
         session: Session): SessionPresentationModel =
-        AutoValue_SessionPresentationModel(id, dayInWeek, dateShort, time, speakers, session)
+        AutoValue_SessionPresentationModel(id, session.id().toString(), dayInWeek, dateShort, time,
+            speakers, session)
   }
 }

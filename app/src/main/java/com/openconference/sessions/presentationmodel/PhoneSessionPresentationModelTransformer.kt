@@ -1,6 +1,7 @@
 package com.openconference.sessions.presentationmodel
 
 import com.openconference.model.Session
+import com.openconference.sessions.presentationmodel.SessionPresentationModelTransformer
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
 import org.threeten.bp.format.DateTimeFormatter
@@ -11,19 +12,20 @@ import java.util.*
 /**
  * Transforms a [com.openconference.model.Session] to [SessionPresentationModel] for Phones
  * // TODO implement Tablet Transformer
+ * // TODO UNIT TEST
  * @author Hannes Dorfmann
  */
-class PhoneSessionPresentationModelTransformer : SessionPresentationModelTransformer {
+class PhoneSessionPresentationModelTransformer(dateFormat: String) : SessionPresentationModelTransformer {
 
-  val timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-  val dayInWeekFormatter = DateTimeFormatter.ofPattern("E")
-  val shortDateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT) // TODO implement format "MM/dd"
+  private val timeFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+  private val dayInWeekFormatter = DateTimeFormatter.ofPattern("EE")
+  private val shortDateFormatter = DateTimeFormatter.ofPattern(dateFormat) // TODO implement format "MM/dd"
 
   override fun transform(sessions: List<Session>): List<SessionPresentationModel> {
 
     return sessions.mapTo(ArrayList(), { s ->
 
-      // TODO check settings for time zone
+      // TODO use settings for time zone (users preferences)
       val zoneId = ZoneId.systemDefault()
 
       val start = s.startTime()
@@ -38,7 +40,8 @@ class PhoneSessionPresentationModelTransformer : SessionPresentationModelTransfo
         localStart.getLong(ChronoField.EPOCH_DAY)
       }
 
-      val diw = if (localStart == null) null else dayInWeekFormatter.format(localStart)
+      val diw = if (localStart == null) null else dayInWeekFormatter.format(
+          localStart).removeSuffix(".")
       val shortDate = if (localStart == null) null else shortDateFormatter.format(localStart)
 
       // time
@@ -68,8 +71,6 @@ class PhoneSessionPresentationModelTransformer : SessionPresentationModelTransfo
           names.toString()
         }
       }
-
-
 
       SessionPresentationModel.create(sectionId, diw, shortDate, speakersStr, time, s)
     })

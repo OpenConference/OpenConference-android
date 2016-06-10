@@ -12,6 +12,12 @@
       android:orientation="vertical"
       >
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
     <TextView
         android:id="@+id/emptyView"
         android:layout_width="wrap_content"
@@ -21,18 +27,13 @@
         android:drawablePadding="24dp"
         android:drawableTop="@drawable/ic_empty"
         android:gravity="center"
-        android:text="@string/session_empty_view"
+        android:text="@string/my_schedule_empty_view"
         android:visibility="gone"
         style="@style/EmptyView"
         />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
   </FrameLayout>
+
 
   <include layout="@layout/view_error"/>
 

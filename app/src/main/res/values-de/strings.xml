@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="screen_title_sessions">Sessions</string>
+  <string name="screen_title_my_schedule">Mein Kalender</string>
+  <string name="screen_title_speakers">Referenten</string>
+
+  <string name="error_unknown">Ein unerwarteter Fehler ist aufgetreten.</string>
+
+  <string name="sessions_sticky_date_format">dd.MM</string>
+  <string name="session_empty_view">Leider sind noch keine Sessions verfügbar</string>
+  <string name="my_schedule_empty_view">Keine Sessions in deinem Kalender.\nHier klicken um Sessions hinzuzufügen.</string>
+
+
+</resources>
