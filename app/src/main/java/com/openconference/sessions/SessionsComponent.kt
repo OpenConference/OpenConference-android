@@ -10,8 +10,10 @@ import dagger.Component
  */
 @Component (
     modules = arrayOf(SessionsModule::class), dependencies = arrayOf(ApplicationComponent::class))
-@SessionsFragmentScope
+@SessionsScope
 interface SessionsComponent {
 
   fun sessionPresenter(): SessionsPresenter
+
+  fun inject(f: SessionsFragment)
 }

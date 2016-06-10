@@ -8,6 +8,7 @@ import android.widget.TextView
 import butterknife.bindView
 import com.hannesdorfmann.adapterdelegates2.AbsListItemAdapterDelegate
 import com.openconference.R
+import com.openconference.model.Session
 import com.openconference.sessions.presentationmodel.GroupableSession
 import com.openconference.sessions.presentationmodel.SessionPresentationModel
 
@@ -16,7 +17,7 @@ import com.openconference.sessions.presentationmodel.SessionPresentationModel
  *
  * @author Hannes Dorfmann
  */
-class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater) : AbsListItemAdapterDelegate<SessionPresentationModel, GroupableSession, SessionItemAdapterDelegate.SessionItemViewHolder>() {
+class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater, private val clickListener: (Session) -> Unit) : AbsListItemAdapterDelegate<SessionPresentationModel, GroupableSession, SessionItemAdapterDelegate.SessionItemViewHolder>() {
 
 
   override fun isForViewType(item: GroupableSession, items: MutableList<GroupableSession>?,
@@ -25,6 +26,7 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater) :
 
   override fun onBindViewHolder(item: SessionPresentationModel, viewHolder: SessionItemViewHolder) {
     val session = item.session()
+    viewHolder.session = session
     viewHolder.title.text = session.title()
 
     // Time
@@ -54,15 +56,23 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater) :
   }
 
   override fun onCreateViewHolder(parent: ViewGroup): SessionItemViewHolder =
-      SessionItemViewHolder(layoutInflater.inflate(R.layout.item_session, parent, false))
+      SessionItemViewHolder(layoutInflater.inflate(R.layout.item_session, parent, false),
+          clickListener)
 
   /**
    * ViewHolder for a Session Item
    */
-  class SessionItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+  class SessionItemViewHolder(v: View, clickListener: (Session) -> Unit) : RecyclerView.ViewHolder(
+      v) {
+
+    init {
+      v.setOnClickListener({ clickListener(session!!) })
+    }
+
     val title: TextView by bindView(R.id.title)
     val speakers: TextView by bindView(R.id.speakers)
     val time: TextView by bindView(R.id.time)
     val location: TextView by bindView(R.id.location)
+    var session: Session? = null
   }
 }

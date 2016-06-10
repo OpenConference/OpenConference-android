@@ -13,6 +13,7 @@ import com.hannesdorfmann.adapterdelegates2.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates2.ListDelegationAdapter
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
+import com.openconference.Navigator
 import com.openconference.R
 import com.openconference.myschedule.presentationmodel.MySchedulePresentationModel
 import com.openconference.sessions.presentationmodel.GroupableSession
@@ -22,6 +23,7 @@ import com.openconference.util.findView
 import com.openconference.util.layoutInflater
 import com.openconference.util.lce.LceAnimatable
 import com.openconference.util.lce.LceViewState
+import javax.inject.Inject
 
 /**
  *
@@ -40,14 +42,26 @@ open class MyScheduleFragment : MyScheduleView, LceAnimatable<MySchedulePresenta
   protected lateinit var adapter: ListDelegationAdapter<List<GroupableSession>>
   protected lateinit var stickyHeadersAdapter: SessionDateStickyHeaderAdapter
 
+  protected lateinit var component: MyScheduleComponent
+
+  @Inject lateinit var navigator: Navigator
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     retainInstance = true
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? =
-      inflater.inflate(R.layout.fragment_my_schedule, container, false)
+      savedInstanceState: Bundle?): View {
+
+    component = DaggerMyScheduleComponent.builder()
+        .applicationComponent(applicationComponent())
+        .myScheduleModule(MyScheduleModule(activity))
+        .build()
+    component.inject(this)
+
+    return inflater.inflate(R.layout.fragment_my_schedule, container, false)
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -80,7 +94,8 @@ open class MyScheduleFragment : MyScheduleView, LceAnimatable<MySchedulePresenta
   open fun createAdapter(): ListDelegationAdapter<List<GroupableSession>> =
       StableIdListAdapter<List<GroupableSession>>(
           AdapterDelegatesManager<List<GroupableSession>>()
-              .addDelegate(SessionItemAdapterDelegate(layoutInflater()))
+              .addDelegate(SessionItemAdapterDelegate(layoutInflater(),
+                  { navigator.showSessionDetails(it) }))
 
           , { list, position -> list[position].getSessionId().hashCode().toLong() })
 
@@ -113,10 +128,7 @@ open class MyScheduleFragment : MyScheduleView, LceAnimatable<MySchedulePresenta
   override fun onNewViewStateInstance() = loadData()
 
   override fun createPresenter(): MySchedulePresenter =
-      DaggerMyScheduleComponent.builder()
-          .applicationComponent(applicationComponent())
-          .myScheduleModule(MyScheduleModule())
-          .build().mySchedulePresenter()
+      component!!.mySchedulePresenter()
 
   override
   fun createViewState(): LceViewState<MySchedulePresentationModel> = LceViewState()

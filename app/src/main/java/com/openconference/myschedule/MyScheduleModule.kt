@@ -1,6 +1,9 @@
 package com.openconference.sessions
 
+import android.app.Activity
 import android.content.Context
+import com.openconference.Navigator
+import com.openconference.PhoneNavigator
 import com.openconference.R
 import com.openconference.dagger.ApplicationContext
 import com.openconference.myschedule.MyScheduleScope
@@ -14,7 +17,11 @@ import dagger.Provides
  * @author Hannes Dorfmann
  */
 @Module
-class MyScheduleModule() {
+class MyScheduleModule(private val activity: Activity) {
+
+  @Provides
+  @MyScheduleScope
+  fun provideNavigator(): Navigator = PhoneNavigator(activity)
 
   @Provides
   @MyScheduleScope

@@ -10,6 +10,6 @@
 
   <string name="sessions_sticky_date_format">MM/dd</string>
 
-  <string name="my_schedule_empty_view">You haven\'t added any session to your schedule yet.\nClick here to browse all available sessions.</string>
+  <string name="my_schedule_empty_view">No session in your schedule yet.\nClick here to browse all available sessions.</string>
 
 </resources>

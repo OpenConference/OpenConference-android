@@ -15,4 +15,5 @@ import dagger.Component
 interface MyScheduleComponent {
 
   fun mySchedulePresenter(): MySchedulePresenter
+  fun inject(fragment: MyScheduleFragment)
 }

@@ -13,6 +13,7 @@ import com.hannesdorfmann.adapterdelegates2.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates2.ListDelegationAdapter
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
+import com.openconference.Navigator
 import com.openconference.R
 import com.openconference.model.Session
 import com.openconference.sessions.presentationmodel.GroupableSession
@@ -23,6 +24,7 @@ import com.openconference.util.findView
 import com.openconference.util.layoutInflater
 import com.openconference.util.lce.LceAnimatable
 import com.openconference.util.lce.LceViewState
+import javax.inject.Inject
 
 /**
  *
@@ -40,6 +42,9 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentati
   protected lateinit var recyclerView: RecyclerView
   protected lateinit var adapter: ListDelegationAdapter<List<GroupableSession>>
   protected lateinit var stickyHeadersAdapter: SessionDateStickyHeaderAdapter
+  protected lateinit var component: SessionsComponent
+
+  @Inject protected lateinit var navigator: Navigator
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -47,8 +52,16 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentati
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? =
-      inflater.inflate(R.layout.fragment_sessions, container, false)
+      savedInstanceState: Bundle?): View? {
+
+    component = DaggerSessionsComponent.builder()
+        .applicationComponent(applicationComponent())
+        .sessionsModule(SessionsModule(activity))
+        .build()
+    component.inject(this)
+
+    return inflater.inflate(R.layout.fragment_sessions, container, false)
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -81,7 +94,8 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentati
   open fun createAdapter(): ListDelegationAdapter<List<GroupableSession>> =
       StableIdListAdapter<List<GroupableSession>>(
           AdapterDelegatesManager<List<GroupableSession>>()
-              .addDelegate(SessionItemAdapterDelegate(layoutInflater()))
+              .addDelegate(SessionItemAdapterDelegate(layoutInflater(),
+                  { navigator.showSessionDetails(it) }))
 
           , { list, position -> list[position].getSessionId().hashCode().toLong() })
 
@@ -102,7 +116,7 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentati
     adapter.items = data
     stickyHeadersAdapter.sessions = data
     adapter.notifyDataSetChanged()
-    
+
     super.showContent(data)
   }
 
@@ -112,11 +126,8 @@ open class SessionsFragment : SessionsView, LceAnimatable<List<SessionPresentati
 
   override fun onNewViewStateInstance() = loadData()
 
-  override fun createPresenter(): SessionsPresenter = DaggerSessionsComponent.builder()
-      .applicationComponent(applicationComponent())
-      .sessionsModule(SessionsModule())
-      .build()
-      .sessionPresenter()
+  override fun createPresenter(): SessionsPresenter =
+      component.sessionPresenter()
 
   override fun createViewState(): LceViewState<List<Session>> = LceViewState()
 
