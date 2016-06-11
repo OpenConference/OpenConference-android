@@ -5,6 +5,7 @@ import com.hannesdorfmann.mosby.mvp.MvpView
 import com.openconference.model.errormessage.ErrorMessageDeterminer
 import rx.Observable
 import rx.subscriptions.CompositeSubscription
+import timber.log.Timber
 
 /**
  * A Presenter that automatically unsubscribes from Observable
@@ -28,6 +29,9 @@ open class RxPresenter<V : MvpView>(private val schedulerTransformer: SchedulerT
 
 
     val o = scheduler.schedule(observable)
+        .doOnError {
+          Timber.e(it, "Error caught")
+        }
 
     if (onCompleted != null) {
       subscriptions.add(o.subscribe(onNext, onError, onCompleted))

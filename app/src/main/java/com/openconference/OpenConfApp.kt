@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.openconference.dagger.*
+import timber.log.Timber
 
 /**
  * Custom application mainly to integrate dagger
@@ -17,6 +18,11 @@ open class OpenConfApp : Application() {
   override fun onCreate() {
     super.onCreate()
     AndroidThreeTen.init(this)
+    if (BuildConfig.DEBUG) {
+      Timber.plant(Timber.DebugTree())
+    } else {
+      plantProductionTimberTree()
+    }
     applicationComponent = buildApplicationComponent().build()
   }
 
@@ -37,6 +43,10 @@ open class OpenConfApp : Application() {
         .backendModule(BackendModule(this))
         .applicationModule(ApplicationModule(this))
         .scheduleModule(ScheduleModule(this))
+  }
+
+  open fun plantProductionTimberTree() {
+
   }
 
 }
