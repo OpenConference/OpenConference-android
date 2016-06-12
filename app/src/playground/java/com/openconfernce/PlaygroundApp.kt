@@ -10,6 +10,6 @@ import com.openconference.OpenConfApp
 class PlaygroundApp : OpenConfApp() {
 
   override fun buildApplicationComponent() =
-      super.buildApplicationComponent().backendModule(MockBackendModule(this))
+      super.buildApplicationComponent().networkModule(MockNetworkModule(this))
 
 }

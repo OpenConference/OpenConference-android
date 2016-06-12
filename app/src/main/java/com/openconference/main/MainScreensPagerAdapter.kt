@@ -11,8 +11,10 @@ import android.text.style.ImageSpan
 import com.openconference.model.screen.MyScheduleScreen
 import com.openconference.model.screen.Screen
 import com.openconference.model.screen.SessionsScreen
+import com.openconference.model.screen.SpeakersScreen
 import com.openconference.sessions.MyScheduleFragmentBuilder
 import com.openconference.sessions.SessionsFragmentBuilder
+import com.openconference.sessions.SpeakersFragmentBuilder
 
 /**
  * ViewPagerAdapter for MainScreens
@@ -25,6 +27,7 @@ open class MainScreensPagerAdapter(private val activity: AppCompatActivity, priv
   override fun getItem(position: Int): Fragment = when (screens[position]) {
     is SessionsScreen -> SessionsFragmentBuilder().build()
     is MyScheduleScreen -> MyScheduleFragmentBuilder().build()
+    is SpeakersScreen -> SpeakersFragmentBuilder().build()
     else -> throw IllegalArgumentException("Unknown type for screen at position $position")
   }
 

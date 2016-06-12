@@ -12,4 +12,6 @@
   <color name="viewpager_separator_background">#C2C2C2</color>
 
 
+  <color name="speakerslist_placeholder">#E0E0E0</color>
+
 </resources>

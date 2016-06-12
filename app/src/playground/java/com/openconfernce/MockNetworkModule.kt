@@ -1,7 +1,7 @@
 package com.openconfernce
 
 import android.content.Context
-import com.openconference.dagger.BackendModule
+import com.openconference.dagger.NetworkModule
 import com.openconference.model.backend.schedule.BackendScheduleAdapter
 import com.openconfernce.mock.MockSchedulerAdapterStub
 
@@ -10,7 +10,7 @@ import com.openconfernce.mock.MockSchedulerAdapterStub
  *
  * @author Hannes Dorfmann
  */
-class MockBackendModule(c: Context) : BackendModule(c) {
+class MockNetworkModule(c: Context) : NetworkModule(c) {
 
   override fun provideBackendAdapter(): BackendScheduleAdapter = MockSchedulerAdapterStub()
 }

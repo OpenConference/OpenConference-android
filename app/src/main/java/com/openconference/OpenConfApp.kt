@@ -40,11 +40,15 @@ open class OpenConfApp : Application() {
         .daoModule(DaoModule(this))
         .loadersModule(LoadersModule())
         .schedulingModule(SchedulingModule())
-        .backendModule(BackendModule(this))
+        .networkModule(NetworkModule(this))
         .applicationModule(ApplicationModule(this))
         .scheduleModule(ScheduleModule(this))
+        .picassoModule(PicassoModule(this))
   }
 
+  /**
+   * Override this method to use a Timber Tree for production with crashreporting software like crashlytics
+   */
   open fun plantProductionTimberTree() {
 
   }

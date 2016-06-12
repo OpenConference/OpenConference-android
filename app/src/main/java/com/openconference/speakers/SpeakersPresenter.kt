@@ -1,8 +1,8 @@
 package com.openconference.sessions
 
-import com.openconference.model.SessionsLoader
+import com.openconference.model.SpeakersLoader
 import com.openconference.model.errormessage.ErrorMessageDeterminer
-import com.openconference.sessions.presentationmodel.SessionPresentationModelTransformer
+import com.openconference.speakers.SpeakersView
 import com.openconference.util.RxPresenter
 import com.openconference.util.SchedulerTransformer
 import javax.inject.Inject
@@ -12,15 +12,14 @@ import javax.inject.Inject
  *
  * @author Hannes Dorfmann
  */
-class SessionsPresenter @Inject constructor(scheduler: SchedulerTransformer,
-    private val sessionsLoader: SessionsLoader,
-    private val presentationModelTransformer: SessionPresentationModelTransformer,
-    errorMessageDeterminer: ErrorMessageDeterminer) : RxPresenter<SessionsView>(
+class SpeakersPresenter @Inject constructor(scheduler: SchedulerTransformer,
+    private val speakersLoader: SpeakersLoader,
+    errorMessageDeterminer: ErrorMessageDeterminer) : RxPresenter<SpeakersView>(
     scheduler, errorMessageDeterminer) {
 
-  fun loadSessions() {
+  fun loadSpeakers() {
     view?.showLoading()
-    subscribe(sessionsLoader.allSessions().map { presentationModelTransformer.transform(it) },
+    subscribe(speakersLoader.allSpeakers(),
         {
           view?.showContent(it)
         },

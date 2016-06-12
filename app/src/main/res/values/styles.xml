@@ -64,4 +64,10 @@
     <item name="textAllCaps">false</item>
   </style>
 
+
+  <style name="SpeakersListName" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">@android:color/white</item>
+  </style>
+
 </resources>

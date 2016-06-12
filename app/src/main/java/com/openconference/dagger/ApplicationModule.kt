@@ -20,9 +20,10 @@ import javax.inject.Singleton
     DaoModule::class,
     LoadersModule::class,
     SchedulingModule::class,
-    BackendModule::class,
+    NetworkModule::class,
     ScheduleModule::class,
-    ErrorMessageModule::class)
+    ErrorMessageModule::class,
+    PicassoModule::class)
 )
 class ApplicationModule(c: Context) {
 

@@ -26,14 +26,20 @@ class MockSchedulerAdapterStub : BackendScheduleAdapter {
   // Some mock speakers
   //
   private val speaker1 = SpeakerAutoValue.create("1", "John Doe",
-      "John works as consultant since years", null,
+      "John works as consultant since years",
+      "http://gridgum.com/templates/free-themes/store/images/testimonials/1.jpg",
       "Doe Inc.", "CEO", "http://www.joe.com", null, null)
-  private val speaker2 = SpeakerAutoValue.create("2", "Larry Page", "Co Founder of Google", null,
+  private val speaker2 = SpeakerAutoValue.create("2", "Larry Page", "Co Founder of Google",
+      "http://a.abcnews.com/images/Technology/gty_larry_page_google_tk_130514_wmain.jpg",
       "Alphabet", "CEO", "http://www.google.com", null, null)
-  private val speaker3 = SpeakerAutoValue.create("3", "Chet Haase", null, null,
-      "Google", null, "http://www.google.com", null, null)
+  private val speaker3 = SpeakerAutoValue.create("3", "Chet Haase", null,
+      "http://skillsmatterblog.files.wordpress.com/2014/08/chetspeechless-5.jpg",
+      "Google",
+      null,
+      "http://www.google.com", null, null)
   private val speaker4 = SpeakerAutoValue.create("4", "Colt McAnlis",
-      "Colt McAnlis is a Developer Advocate at Google focusing on Performance & Compression", null,
+      "Colt McAnlis is a Developer Advocate at Google focusing on Performance & Compression",
+      "https://pbs.twimg.com/profile_images/1891273469/My_Pics__1_.jpg",
       "Google", null, "http://www.google.com", null, null)
 
   //

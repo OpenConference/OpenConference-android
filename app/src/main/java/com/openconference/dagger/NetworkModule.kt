@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * @author Hannes Dorfmann
  */
 @Module
-open class BackendModule(c: Context) {
+open class NetworkModule(c: Context) {
 
   protected val context: Context
   protected val okHttpClient: OkHttpClient
