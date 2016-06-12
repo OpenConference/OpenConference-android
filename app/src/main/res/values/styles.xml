@@ -66,7 +66,7 @@
 
 
   <style name="SpeakersListName" parent="TextAppearance.AppCompat">
-    <item name="android:textSize">16sp</item>
+    <item name="android:textSize">18sp</item>
     <item name="android:textColor">@android:color/white</item>
   </style>
 

@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/keyline_contentstart"
-    android:paddingTop="@dimen/sessions_item_padding_top_bottom"
+    android:background="?android:attr/selectableItemBackground"
     android:paddingBottom="@dimen/sessions_item_padding_top_bottom"
+    android:paddingLeft="@dimen/keyline_contentstart"
     android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/sessions_item_padding_top_bottom"
     >
 
   <TextView
@@ -18,7 +19,6 @@
       tools:text="Name of the Session"
       style="@style/ScheduleSessionTitle"
       />
-
 
 
   <TextView

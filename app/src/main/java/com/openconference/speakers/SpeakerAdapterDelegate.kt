@@ -10,8 +10,8 @@ import butterknife.bindView
 import com.hannesdorfmann.adapterdelegates2.AbsListItemAdapterDelegate
 import com.openconference.R
 import com.openconference.model.Speaker
+import com.openconference.util.PicassoScrollListener
 import com.squareup.picasso.Picasso
-import timber.log.Timber
 
 /**
  * Displays an profile pic image and name of a given Speaker
@@ -46,10 +46,13 @@ class SpeakerAdapterDelegate(
 
     inline fun bind(s: Speaker) {
       speaker = s
-      Timber.d("Loading ${speaker.profilePic()}")
       name.text = s.name()
-      picasso.load(speaker.profilePic()).centerCrop().fit().placeholder(
-          R.color.speakerslist_placeholder).into(image)
+      picasso.load(speaker.profilePic())
+          .tag(PicassoScrollListener.TAG)
+          .centerCrop()
+          .fit()
+          .placeholder(R.color.speakerslist_placeholder)
+          .into(image)
     }
   }
 }

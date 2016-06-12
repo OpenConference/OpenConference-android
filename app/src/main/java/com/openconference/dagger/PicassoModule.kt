@@ -22,4 +22,5 @@ class PicassoModule(c: Context) {
   @Provides
   fun providePicasso(okhttp: OkHttpClient) =
       Picasso.Builder(context).downloader(OkHttp3Downloader(okhttp)).build()
+
 }

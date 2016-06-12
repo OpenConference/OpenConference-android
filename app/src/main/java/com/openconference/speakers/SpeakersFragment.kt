@@ -60,6 +60,7 @@ open class SpeakersFragment : SpeakersView, LceAnimatable<List<Speaker>>, MvpVie
         .build()
     component.inject(this)
 
+
     return inflater.inflate(R.layout.fragment_my_schedule, container, false)
   }
 
@@ -75,6 +76,7 @@ open class SpeakersFragment : SpeakersView, LceAnimatable<List<Speaker>>, MvpVie
     adapter = createAdapter()
     recyclerView.adapter = adapter
     recyclerView.layoutManager = createRecyclerViewLayoutManager()
+    recyclerView.addOnScrollListener(PicassoScrollListener(picasso))
   }
 
   /**

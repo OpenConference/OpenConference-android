@@ -13,5 +13,6 @@
 
 
   <color name="speakerslist_placeholder">#E0E0E0</color>
+  <color name="list_item_selected">#D6D6D6</color>
 
 </resources>
