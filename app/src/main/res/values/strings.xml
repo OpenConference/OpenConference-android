@@ -10,6 +10,7 @@
 
   <string name="sessions_sticky_date_format">MM/dd</string>
 
+  <string name="session_empty_view">No sessions available yet. Stay tuned.</string>
   <string name="my_schedule_empty_view">No session in your schedule yet.\nClick here to browse all available sessions.</string>
   <string name="session_details_no_data">No data for this session available yet</string>
   <string name="session_details_added_to_schedule">Session has been added. You will receive a Notification 10 minutes before Session starts.</string>

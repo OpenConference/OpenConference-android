@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'io.fabric'
 
 
 android {
@@ -14,8 +15,8 @@ android {
     applicationId "com.openconference"
     minSdkVersion minSdk
     targetSdkVersion targetSdk
-    versionCode versionCode
-    versionName versionName
+    versionCode 1
+    versionName "1.0-beta1"
     multiDexEnabled = true
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
@@ -109,4 +110,8 @@ dependencies {
   compile libs.loganSquare
   kapt libs.loganSquareCompiler
   compile libs.loganSquareConverter
+
+  droidconBerlinCompile(libs.crashlytics) {
+    transitive = true
+  }
 }

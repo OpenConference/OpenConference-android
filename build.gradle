@@ -7,6 +7,7 @@ buildscript {
     maven {
       url 'https://dl.bintray.com/kotlin/kotlin-eap'
     }
+    maven { url 'https://maven.fabric.io/public' }
   }
 
 
@@ -34,6 +35,7 @@ buildscript {
                   loganSquareConverter: '1.4.0',
                   fragmentArgs        : '3.0.2',
                   timber              : '4.1.2',
+                  crashlytics         : '2.5.6@aar',
 
                   junit               : '4.12',
                   mockito             : '1.10.19',
@@ -90,6 +92,7 @@ buildscript {
             fragmentArgs               : "com.hannesdorfmann.fragmentargs:annotation:$versions.fragmentArgs",
             fragmentArgsCompiler       : "com.hannesdorfmann.fragmentargs:processor:$versions.fragmentArgs",
             timber                     : "com.jakewharton.timber:timber:$versions.timber",
+            crashlytics                : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics",
 
             junit                      : "junit:junit:$versions.junit",
             mockito                    : "org.mockito:mockito-core:$versions.mockito",
@@ -108,6 +111,7 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0'
+    classpath 'io.fabric.tools:gradle:1.+'
   }
 }
 
@@ -120,6 +124,8 @@ allprojects {
     maven {
       url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
+
+    maven { url 'https://maven.fabric.io/public' }
   }
 }
 

@@ -4,6 +4,7 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.CollapsingToolbarLayout
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
@@ -88,7 +89,8 @@ open class SpeakerDetailsFragment : SpeakerDetailsView, LceAnimatable<SpeakerDet
     toolbar = view.findView(R.id.toolbar)
     collapsingToolbar = view.findView(R.id.collapsingToolbar)
     profilePic = view.findView(R.id.image)
-    profilePic.setColorFilter(resources.getColor(R.color.profilepic_darken, activity.theme),
+    profilePic.setColorFilter(
+        ResourcesCompat.getColor(activity.resources, R.color.profilepic_darken, activity.theme),
         PorterDuff.Mode.DARKEN)
 
 

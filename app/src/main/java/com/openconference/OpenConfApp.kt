@@ -19,7 +19,7 @@ open class OpenConfApp : Application() {
     super.onCreate()
     AndroidThreeTen.init(this)
     if (BuildConfig.DEBUG) {
-      Timber.plant(Timber.DebugTree())
+      plantDebugTimberTree()
     } else {
       plantProductionTimberTree()
     }
@@ -33,6 +33,9 @@ open class OpenConfApp : Application() {
     }
   }
 
+  open fun plantDebugTimberTree(){
+    Timber.plant(Timber.DebugTree())
+  }
 
   open fun buildApplicationComponent(): DaggerApplicationComponent.Builder {
 
