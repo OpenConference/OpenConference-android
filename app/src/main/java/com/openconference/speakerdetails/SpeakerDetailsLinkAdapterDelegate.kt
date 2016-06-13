@@ -18,10 +18,12 @@ class SpeakerDetailsLinkAdapterDelegate(val inflater: LayoutInflater) : AbsListI
   override fun isForViewType(item: SpeakerDetailsItem, items: MutableList<SpeakerDetailsItem>?,
       position: Int) = item is SpeakerLinkItem
 
-  override fun onBindViewHolder(item: SpeakerLinkItem, viewHolder: SpeakerDetailsViewHolder) =
-      viewHolder.bind(if (item.showIcon) {
-        R.drawable.ic_link
-      } else null, item.url)
+  override fun onBindViewHolder(item: SpeakerLinkItem, viewHolder: SpeakerDetailsViewHolder) {
+    viewHolder.bind(if (item.showIcon) {
+      R.drawable.ic_link
+    } else null, item.url)
+  }
+
 
   override fun onCreateViewHolder(parent: ViewGroup) = SpeakerDetailsViewHolder(
       inflater.inflate(R.layout.item_details_icon_text, parent, false))

@@ -25,7 +25,8 @@
           app:expandedTitleMarginEnd="64dp"
           app:expandedTitleMarginStart="48dp"
           app:layout_scrollFlags="scroll|exitUntilCollapsed"
-          app:expandedTitleTextAppearance="@style/SpeakerDetailsColapsingToolbar"
+          app:theme="@style/Theme.AppCompat"
+          app:paddingStart="@dimen/keyline_contentstart"
           >
 
         <com.openconference.util.ui.SquaredImageView
@@ -42,9 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
-            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIcon="@drawable/ic_arrow_back_white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-            app:titleTextColor="@color/colorAccent"
+            app:titleMarginStart="@dimen/keyline_contentstart"
             />
 
       </android.support.design.widget.CollapsingToolbarLayout>
