@@ -72,6 +72,9 @@ open class MyScheduleFragment : MyScheduleView, LceAnimatable<MySchedulePresenta
     content_view = view.findView(R.id.contentView)
     recyclerView = view.findView(R.id.recyclerView)
     emptyView = view.findView(R.id.emptyView)
+    emptyView.setOnClickListener {
+      navigator.showSessions()
+    }
 
     errorView.setOnClickListener { loadData() }
     adapter = createAdapter()

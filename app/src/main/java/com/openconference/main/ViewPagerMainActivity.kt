@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import butterknife.bindView
 import com.openconference.R
+import com.openconference.model.screen.Screen
 import com.openconference.model.screen.Screens
 import com.openconference.util.applicationComponent
 import javax.inject.Inject
@@ -32,6 +33,13 @@ class ViewPagerMainActivity : AppCompatActivity() {
     viewPager.adapter = MainScreensPagerAdapter(this, screens.screens)
     tabs.setupWithViewPager(viewPager)
 
+  }
 
+  fun jumpToScreen(screenDetector: (Screen) -> Boolean) {
+    screens.screens.forEachIndexed { i, s ->
+      if (screenDetector(s)) {
+        viewPager.setCurrentItem(i, true)
+      }
+    }
   }
 }

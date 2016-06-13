@@ -2,8 +2,10 @@ package com.openconference
 
 import android.app.Activity
 import android.content.Intent
+import com.openconference.main.ViewPagerMainActivity
 import com.openconference.model.Session
 import com.openconference.model.Speaker
+import com.openconference.model.screen.SessionsScreen
 import com.openconference.sessiondetails.SessionDetailsActivity
 
 /**
@@ -28,9 +30,9 @@ class PhoneNavigator(private val activity: Activity) : Navigator {
     throw UnsupportedOperationException()
   }
 
-  override fun showSessions() {
-    throw UnsupportedOperationException()
-  }
+  override fun showSessions() = if (activity is ViewPagerMainActivity) {
+    activity.jumpToScreen({ it is SessionsScreen })
+  } else throw UnsupportedOperationException("Oops, something in Navigation is not setup properly")
 
   override fun showSpeakers() {
     throw UnsupportedOperationException()
