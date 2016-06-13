@@ -4,7 +4,6 @@ import android.os.Parcel;
 import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 import com.openconference.model.Location;
-import com.squareup.moshi.Json;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -13,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 @JsonObject public class DroidconBerlinLocation implements Location {
 
   @JsonField(name = "title") String name;
-  @Json(name = "nid") String id;
+  @JsonField(name = "nid") String id;
 
   @NotNull @Override public String name() {
     return name;

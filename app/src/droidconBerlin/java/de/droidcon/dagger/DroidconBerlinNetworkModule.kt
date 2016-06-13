@@ -2,7 +2,7 @@ package de.droidcon.dagger
 
 import android.content.Context
 import com.github.aurae.retrofit2.LoganSquareConverterFactory
-import com.openconference.dagger.BackendModule
+import com.openconference.dagger.NetworkModule
 import com.openconference.model.backend.schedule.BackendScheduleAdapter
 import de.droidcon.model.backend.DroidconBerlinBackend
 import de.droidcon.model.backend.DroidconBerlinBackendScheduleAdapter
@@ -11,7 +11,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 
-class DroidconBerlinBackendModule(context: Context) : BackendModule(context) {
+class DroidconBerlinNetworkModule(context: Context) : NetworkModule(context) {
 
   private val retrofit: Retrofit
   private val okHttp: OkHttpClient

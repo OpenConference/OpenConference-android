@@ -25,7 +25,8 @@ interface LceAnimatable<M> {
   fun showLoading() {
     if (!isRestoringViewState() && loadingView.visibility != View.VISIBLE) {
       loadingView.alpha = 0f
-      loadingView.animate().alpha(1f).withStartAction { View.VISIBLE }.start()
+      loadingView.animate().alpha(
+          1f).withStartAction { loadingView.visibility = View.VISIBLE }.start()
       content_view.animate().alpha(0f).withEndAction { content_view.visibility = View.GONE }.start()
     } else {
       loadingView.visibility = View.VISIBLE

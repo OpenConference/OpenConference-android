@@ -2,7 +2,7 @@ package de.droidcon
 
 import com.openconference.OpenConfApp
 import com.openconference.dagger.DaggerApplicationComponent
-import de.droidcon.dagger.DroidconBerlinBackendModule
+import de.droidcon.dagger.DroidconBerlinNetworkModule
 
 /**
  *
@@ -12,6 +12,6 @@ import de.droidcon.dagger.DroidconBerlinBackendModule
 class DroidconBerlinApp : OpenConfApp() {
 
   override fun buildApplicationComponent(): DaggerApplicationComponent.Builder {
-    return super.buildApplicationComponent().backendModule(DroidconBerlinBackendModule(this))
+    return super.buildApplicationComponent().networkModule(DroidconBerlinNetworkModule(this))
   }
 }
