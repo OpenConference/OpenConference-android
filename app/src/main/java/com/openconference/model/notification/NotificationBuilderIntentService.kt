@@ -32,10 +32,9 @@ class NotificationBuilderIntentService : IntentService("NotificationBuilderInten
 
     try {
       val component = OpenConfApp.getApplicationComponent(applicationContext)
-
       val sessionDao = component.sessionDao()
-
       val sessionId = intent.getStringExtra(KEY_SESSION_ID)
+      Timber.d("onhandleIntent() $sessionId")
 
       val session = sessionDao.getById(sessionId).toBlocking().first()
 
@@ -67,6 +66,7 @@ class NotificationBuilderIntentService : IntentService("NotificationBuilderInten
               .setContentText(String.format(application.getString(R.string.notification_text),
                   session.title(), startStr))
               .setContentIntent(pendingIntent)
+              .setAutoCancel(true)
               .build()
 
           val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager

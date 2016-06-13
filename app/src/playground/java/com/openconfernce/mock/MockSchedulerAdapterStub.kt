@@ -53,7 +53,7 @@ class MockSchedulerAdapterStub : BackendScheduleAdapter {
   //
   private val session1 = SessionAutoValue.create("1", "The making of Google",
       loremIpsum, "Founding Startup",
-      Instant.ofEpochSecond(1463565600L), Instant.ofEpochSecond(1463569200L),
+      Instant.now().plusSeconds(210), Instant.now().plusSeconds(500),
       location1.id(), location1.name(), false, arrayListOf<Speaker>(speaker2))
 
   private val session2 = SessionAutoValue.create("2", "What's new in Android",

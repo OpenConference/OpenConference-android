@@ -22,6 +22,9 @@
 
 
     <receiver android:name=".model.notification.NotificationBroadcastReceiver"></receiver>
+    <service
+        android:exported="false"
+        android:name=".model.notification.NotificationBuilderIntentService"/>
   </application>
 
 </manifest>

@@ -47,12 +47,14 @@ class LocalStorageSessionsLoader(private val scheduleDataAwareObservableFactory:
 
   override fun addSessionToSchedule(session: Session): Observable<Boolean> = sessionDao.setFavorite(
       session.id(),
-      true).map { it > 0 }.doOnNext { notificationScheduler.addOrRescheduleNotification(session) }
+      true).map { it > 0 }
+      .doOnNext { notificationScheduler.addOrRescheduleNotification(session) }
 
   override fun removeSessionFromSchedule(
       session: Session): Observable<Boolean> = sessionDao.setFavorite(
       session.id(),
-      false).map { it > 0 }.doOnNext { notificationScheduler.removeNotification(session) }
+      false).map { it > 0 }
+      .doOnNext { notificationScheduler.removeNotification(session) }
 
   override fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>> =
       scheduleDataAwareObservableFactory.create(sessionDao.getSessionsOfSpeaker(speakerId))

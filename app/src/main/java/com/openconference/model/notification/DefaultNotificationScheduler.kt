@@ -7,6 +7,9 @@ import android.content.Intent
 import android.os.Build
 import com.openconference.model.Session
 import org.threeten.bp.Instant
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.ZoneId
+import timber.log.Timber
 
 /**
  * Default [NotificationScheduler] for android
@@ -42,9 +45,12 @@ class DefaultNotificationScheduler(private val context: Context) : NotificationS
 
     val intent = buildPendingIntent(session)
     val notificationTime = if (Instant.now().plusMillis(NOTIFICTAION_BEFORE_SESSION_START).isAfter(
-        startTime)) Instant.now().plusMillis(5000)
+        startTime)) Instant.now().plusSeconds(2)
     else startTime.minusMillis(
         NOTIFICTAION_BEFORE_SESSION_START)
+
+    val localTime = LocalDateTime.ofInstant(notificationTime, ZoneId.systemDefault())
+    Timber.d("Schedule notification at $localTime  " + LocalDateTime.now(ZoneId.systemDefault()))
 
     if (Build.VERSION.SDK_INT < 23) {
       alarmService().setExact(AlarmManager.RTC_WAKEUP,
