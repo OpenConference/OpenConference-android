@@ -3,6 +3,7 @@ package de.droidcon.model.backend;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 import com.openconference.model.Session;
@@ -39,7 +40,7 @@ import org.threeten.bp.format.DateTimeFormatter;
   }
 
   @Nullable @org.jetbrains.annotations.Nullable @Override public String description() {
-    return description;
+    return description == null ? null : Html.fromHtml(description).toString();
   }
 
   @Nullable @org.jetbrains.annotations.Nullable @Override public String tags() {

@@ -3,6 +3,7 @@ package de.droidcon.model.backend;
 import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 import com.openconference.model.Speaker;
@@ -40,15 +41,15 @@ import org.jetbrains.annotations.NotNull;
   }
 
   @Nullable @org.jetbrains.annotations.Nullable @Override public String jobTitle() {
-    return jobTitle;
+    return jobTitle == null ? null : Html.fromHtml(jobTitle).toString();
   }
 
   @Nullable @org.jetbrains.annotations.Nullable @Override public String company() {
-    return company;
+    return company == null ? null : Html.fromHtml(company).toString();
   }
 
   @Nullable @org.jetbrains.annotations.Nullable @Override public String info() {
-    return info;
+    return info == null ? null : Html.fromHtml(info).toString();
   }
 
   @NonNull @NotNull @Override public String name() {
@@ -77,7 +78,7 @@ import org.jetbrains.annotations.NotNull;
   public DroidconBerlinSpeaker() {
   }
 
-  public DroidconBerlinSpeaker(String id){
+  public DroidconBerlinSpeaker(String id) {
     this.id = id;
   }
 
@@ -92,13 +93,14 @@ import org.jetbrains.annotations.NotNull;
     this.links = in.createTypedArrayList(DroidconBerlinLink.CREATOR);
   }
 
-  public static final Creator<DroidconBerlinSpeaker> CREATOR = new Creator<DroidconBerlinSpeaker>() {
-    @Override public DroidconBerlinSpeaker createFromParcel(Parcel source) {
-      return new DroidconBerlinSpeaker(source);
-    }
+  public static final Creator<DroidconBerlinSpeaker> CREATOR =
+      new Creator<DroidconBerlinSpeaker>() {
+        @Override public DroidconBerlinSpeaker createFromParcel(Parcel source) {
+          return new DroidconBerlinSpeaker(source);
+        }
 
-    @Override public DroidconBerlinSpeaker[] newArray(int size) {
-      return new DroidconBerlinSpeaker[size];
-    }
-  };
+        @Override public DroidconBerlinSpeaker[] newArray(int size) {
+          return new DroidconBerlinSpeaker[size];
+        }
+      };
 }
