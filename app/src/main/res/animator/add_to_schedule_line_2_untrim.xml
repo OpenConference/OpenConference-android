@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set android:ordering="together"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator android:interpolator="@android:interpolator/accelerate_decelerate" android:duration="@integer/add_to_schedule_duration" android:valueFrom="@fraction/add_to_schedule_plus_line_2_trim_start" android:valueTo="0" android:propertyName="trimPathStart" />
+    <objectAnimator android:interpolator="@android:interpolator/accelerate_decelerate" android:duration="@integer/add_to_schedule_duration" android:valueFrom="@fraction/add_to_schedule_plus_line_2_trim_end" android:valueTo="1" android:propertyName="trimPathEnd" />
+</set>

@@ -6,4 +6,4 @@ package com.openconference.sessiondetails.presentationmodel
  *
  * @author Hannes Dorfmann
  */
-data class SessionDetail(val detailsItems: List<SessionDetailItem>, val inMySchedule: Boolean)
+data class SessionDetail(val sessionId: String, val sessionName: String?, val detailsItems: List<SessionDetailItem>, val inMySchedule: Boolean)

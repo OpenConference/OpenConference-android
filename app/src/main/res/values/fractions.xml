@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="fraction" name="search_scrim_alpha">1.0</item>
+    <item type="fraction" name="add_to_schedule_plus_line_2_trim_end">0.96666664</item>
+    <item type="fraction" name="add_to_schedule_plus_line_2_trim_start">0.033333335</item>
+    <item type="fraction" name="add_to_schedule_tick_line_1_trim_end">0.768</item>
+    <item type="fraction" name="add_to_schedule_tick_line_1_trim_start">0.205</item>
+</resources>

@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingBottom="64dp"
         android:paddingTop="@dimen/activity_horizontal_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
@@ -75,9 +75,20 @@
         android:drawablePadding="24dp"
         android:drawableTop="@drawable/ic_empty"
         android:gravity="center"
-        android:text="@string/my_schedule_empty_view"
+        android:text="@string/session_details_no_data"
         android:visibility="gone"
         style="@style/EmptyView"
+        />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@drawable/avd_add_to_schedule"
+        android:visibility="gone"
         />
 
   </android.support.design.widget.CoordinatorLayout>

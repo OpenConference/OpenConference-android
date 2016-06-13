@@ -14,7 +14,7 @@
       android:layout_width="@dimen/keyline_content_width"
       android:layout_height="@dimen/keyline_content_width"
       android:layout_gravity="top"
-      android:padding="8dp"
+      android:padding="10dp"
       android:src="@drawable/ic_time"
 
       />

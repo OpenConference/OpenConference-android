@@ -11,5 +11,10 @@
   <string name="sessions_sticky_date_format">MM/dd</string>
 
   <string name="my_schedule_empty_view">No session in your schedule yet.\nClick here to browse all available sessions.</string>
+  <string name="session_details_no_data">No data for this session available yet</string>
+  <string name="session_details_added_to_schedule">Session has been added. You will receive a Notification 10 minutes before Session starts.</string>
+  <string name="error_session_details_added_to_schedule">An error has occurred. Please retry.</string>
+  <string name="error_session_details_removed_from_schedule">An error has occurred. Please retry.</string>
+
 
 </resources>

@@ -10,6 +10,11 @@
   <string name="sessions_sticky_date_format">dd.MM</string>
   <string name="session_empty_view">Leider sind noch keine Sessions verfügbar</string>
   <string name="my_schedule_empty_view">Keine Sessions in deinem Kalender.\nHier klicken um Sessions hinzuzufügen.</string>
+  <string name="session_details_no_data">Noch keine Daten für diese Session verfügbar</string>
+
+  <string name="session_details_added_to_schedule">Session hinzugefügt. Du bekommst eine Erinnerung 10 Minuten bevor die Session startet.</string>
+  <string name="error_session_details_added_to_schedule">Ein Fehler ist aufgetreten. Bitte wiederholen.</string>
+  <string name="error_session_details_removed_from_schedule">Ein Fehler ist aufgetreten. Bitte wiederholen.</string>
 
 
 </resources>

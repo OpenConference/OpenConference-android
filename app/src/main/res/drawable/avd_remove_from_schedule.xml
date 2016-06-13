@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector android:drawable="@drawable/ic_remove_from_schedule_anim"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <target android:name="line_1" android:animation="@animator/remove_from_schedule_line_1_untrim" />
+    <target android:name="line_1_group" android:animation="@animator/remove_from_schedule_line_1_move" />
+    <target android:name="line_2" android:animation="@animator/remove_from_schedule_line_2_trim" />
+    <target android:name="line_2_group" android:animation="@animator/remove_from_schedule_line_2_move" />
+    <target android:name="root" android:animation="@animator/remove_from_schedule_rotate" />
+</animated-vector>

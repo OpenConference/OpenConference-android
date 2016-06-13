@@ -8,4 +8,10 @@ import com.openconference.util.lce.LceView
  *
  * @author Hannes Dorfmann
  */
-interface SessionDetailsView : LceView<SessionDetail>
+interface SessionDetailsView : LceView<SessionDetail> {
+  fun showSessionAddedToSchedule()
+  fun showErrorWhileAddingSessionToSchedule()
+
+  fun showSessionRemovedFromSchedule()
+  fun showErrorWhileRemovingSessionFromSchedule()
+}

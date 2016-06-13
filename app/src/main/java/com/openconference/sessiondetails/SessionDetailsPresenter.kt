@@ -20,6 +20,7 @@ class SessionDetailsPresenter @Inject constructor(scheduler: SchedulerTransforme
 
 
   fun loadSession(sessionId: String) {
+    view?.showLoading()
     subscribe(
         sessionsLoader.getSession(sessionId).map { presentationModelTransformer.transform(it) },
         {
@@ -28,6 +29,27 @@ class SessionDetailsPresenter @Inject constructor(scheduler: SchedulerTransforme
         {
           view?.showError(errorMessageDeterminer.getErrorMessageRes(it))
         })
+  }
+
+  fun addSessionToSchedule(sessionId: String) {
+
+    schedulerTransformer.schedule(sessionsLoader.addSessionToSchedule(sessionId)).subscribe ({
+      view?.showSessionAddedToSchedule()
+    }, {
+      view?.showErrorWhileAddingSessionToSchedule()
+    }
+    )
+
+
+  }
+
+  fun removeSessionFromSchedule(sessionId: String) {
+    schedulerTransformer.schedule(sessionsLoader.removeSessionFromSchedule(sessionId)).subscribe ({
+      view?.showSessionRemovedFromSchedule()
+    }, {
+      view?.showErrorWhileRemovingSessionFromSchedule()
+    }
+    )
   }
 
 }

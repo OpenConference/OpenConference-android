@@ -12,7 +12,7 @@ import timber.log.Timber
  * once the view has been permanently detached
  * @author Hannes Dorfmann
  */
-open class RxPresenter<V : MvpView>(private val schedulerTransformer: SchedulerTransformer,
+open class RxPresenter<V : MvpView>(protected val schedulerTransformer: SchedulerTransformer,
     protected val errorMessageDeterminer: ErrorMessageDeterminer) : MvpBasePresenter<V>() {
 
   protected val subscriptions = CompositeSubscription()

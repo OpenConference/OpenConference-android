@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:name="root" android:pivotX="12.0" android:pivotY="12.0">
+        <group android:name="line_1_group" android:pivotX="12.0" android:pivotY="12.0">
+            <path android:name="line_1" android:pathData="M2.11,10.71L11.98,20.64" android:strokeColor="@android:color/white" android:strokeWidth="2" android:trimPathStart="@fraction/add_to_schedule_tick_line_1_trim_start" android:trimPathEnd="@fraction/add_to_schedule_tick_line_1_trim_end" />
+        </group>
+        <group android:name="line_2_group" android:pivotX="12.0" android:pivotY="12.0">
+            <path android:name="line_2" android:pathData="M20.31,6.3L9.7,16.91" android:strokeColor="@android:color/white" android:strokeWidth="2" />
+        </group>
+    </group>
+</vector>

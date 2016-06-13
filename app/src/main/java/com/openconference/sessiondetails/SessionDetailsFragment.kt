@@ -1,14 +1,18 @@
 package com.openconference.sessiondetails
 
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.CollapsingToolbarLayout
+import android.support.design.widget.FloatingActionButton
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import android.widget.TextView
 import com.hannesdorfmann.adapterdelegates2.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates2.ListDelegationAdapter
@@ -50,6 +54,9 @@ open class SessionDetailsFragment : SessionDetailsView, LceAnimatable<SessionDet
   protected lateinit var toolbar: Toolbar
   protected lateinit var collapsingToolbar: CollapsingToolbarLayout
   protected lateinit var title: TextView
+  protected lateinit var fab: FloatingActionButton
+  lateinit var sessionDetails: SessionDetail
+  private var runningFirstTime = true
 
   @Inject protected lateinit var navigator: Navigator
   @Inject protected lateinit var picasso: Picasso
@@ -84,9 +91,27 @@ open class SessionDetailsFragment : SessionDetailsView, LceAnimatable<SessionDet
     toolbar = view.findView(R.id.toolbar)
     collapsingToolbar = view.findView(R.id.collapsingToolbar)
     title = view.findView(R.id.title)
+    fab = view.findView(R.id.fab)
+
+    fab.setOnClickListener {
+      val animTime = resources.getInteger(R.integer.add_to_schedule_duration)
+      val animatedDrawable = fab.drawable as AnimatedVectorDrawable
+      animatedDrawable.start()
+
+      fab.isClickable = false
+
+      // TODO is there really no better way to listen for callbacks?
+      fab.postDelayed({
+        if (sessionDetails.inMySchedule) {
+          presenter.removeSessionFromSchedule(sessionDetails.sessionId)
+        } else {
+          presenter.addSessionToSchedule(sessionDetails.sessionId)
+        }
+      }, animTime + 100L)
+    }
 
     toolbar.setNavigationOnClickListener { activity.finish() }
-   // toolbar.title = session.title()
+    // toolbar.title = session.title()
     title.text = session.title()
 
     adapter = createAdapter()
@@ -113,16 +138,32 @@ open class SessionDetailsFragment : SessionDetailsView, LceAnimatable<SessionDet
 
   override fun showLoading() {
     super.showLoading()
+    fab.visibility = View.GONE
   }
 
   override fun showError(@StringRes errorRes: Int) {
     super.showError(errorRes)
+    fab.visibility = View.GONE
   }
 
   override fun showContent(data: SessionDetail) {
+    this.sessionDetails = data
     adapter.items = data.detailsItems
     adapter.notifyDataSetChanged()
 
+    setFabDrawable()
+    fab.isClickable = true
+
+    if (!isRestoringViewState && runningFirstTime) {
+      runningFirstTime = false // Only animate on first appearance
+      fab.scaleX = 0f
+      fab.scaleY = 0f
+      fab.visibility = View.VISIBLE
+      fab.animate().scaleX(1f).scaleY(1f).setInterpolator(OvershootInterpolator()).setStartDelay(
+          1000).start()
+    } else {
+      fab.visibility = View.VISIBLE
+    }
     super.showContent(data)
   }
 
@@ -135,4 +176,43 @@ open class SessionDetailsFragment : SessionDetailsView, LceAnimatable<SessionDet
   override fun createPresenter(): SessionDetailsPresenter = component.sessionDetailsPresenter()
 
   override fun createViewState(): LceViewState<SessionDetailsView> = LceViewState()
+
+  override fun showSessionAddedToSchedule() {
+    Snackbar.make(content_view, R.string.session_details_added_to_schedule,
+        Snackbar.LENGTH_LONG).show()
+  }
+
+  override fun showErrorWhileAddingSessionToSchedule() {
+    Snackbar.make(content_view, R.string.error_session_details_added_to_schedule,
+        Snackbar.LENGTH_LONG).show()
+    fab.isClickable = true
+    setFabDrawable()
+  }
+
+  override fun showSessionRemovedFromSchedule() {
+    // Not needed
+  }
+
+  override fun showErrorWhileRemovingSessionFromSchedule() {
+    Snackbar.make(content_view, R.string.error_session_details_removed_from_schedule,
+        Snackbar.LENGTH_LONG).show()
+    fab.isClickable = true
+    setFabDrawable()
+  }
+
+  private inline fun setFabDrawable() {
+
+    val drawable = fab.drawable as AnimatedVectorDrawable
+    drawable.stop()
+
+    if (sessionDetails.inMySchedule) {
+      fab.setImageDrawable(
+          resources.getDrawable(R.drawable.avd_remove_from_schedule,
+              activity.theme).mutate().constantState.newDrawable())
+    } else {
+      fab.setImageDrawable(
+          resources.getDrawable(R.drawable.avd_add_to_schedule,
+              activity.theme).mutate().constantState.newDrawable())
+    }
+  }
 }
