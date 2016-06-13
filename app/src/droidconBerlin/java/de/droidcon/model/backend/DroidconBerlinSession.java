@@ -80,7 +80,7 @@ import org.threeten.bp.format.DateTimeFormatter;
 
   @Nullable @Override public List<Speaker> speakers() {
     if (speakers == null) {
-      if (speakerIds == null || speakerIds.isEmpty()) {
+      if (speakerIds == null) {
         return null;
       }
 
