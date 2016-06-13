@@ -33,6 +33,8 @@ open class SessionDaoSqlite : SessionDao, Dao() {
     const val COL_SPEAKER_ID = "speakerId"
     const val COL_SPEAKER_NAME = "speakerName"
     const val COL_SPEAKER_PIC = "speakerPicture"
+    const val COL_SPEAKER_COMPANY = "speakerCompany"
+    const val COL_SPEAKER_JOBTITLE = "speakerJobTitle"
 
   }
 
@@ -87,7 +89,9 @@ open class SessionDaoSqlite : SessionDao, Dao() {
       "${LocationDaoSqlite.TABLE}.${LocationDaoSqlite.COL_NAME} AS $COL_LOCATION_NAME",
       "${SpeakerDaoSqlite.TABLE}.${SpeakerDaoSqlite.COL_ID} AS $COL_SPEAKER_ID",
       "${SpeakerDaoSqlite.TABLE}.${SpeakerDaoSqlite.COL_NAME} AS $COL_SPEAKER_NAME",
-      "${SpeakerDaoSqlite.TABLE}.${SpeakerDaoSqlite.COL_PICTURE} AS $COL_SPEAKER_PIC"
+      "${SpeakerDaoSqlite.TABLE}.${SpeakerDaoSqlite.COL_PICTURE} AS $COL_SPEAKER_PIC",
+      "${SpeakerDaoSqlite.TABLE}.${SpeakerDaoSqlite.COL_COMPANY} AS $COL_SPEAKER_COMPANY",
+      "${SpeakerDaoSqlite.TABLE}.${SpeakerDaoSqlite.COL_JOB_TITLE} AS $COL_SPEAKER_JOBTITLE"
   )
       .FROM(TABLE)
       .LEFT_OUTER_JOIN(LocationDaoSqlite.TABLE)

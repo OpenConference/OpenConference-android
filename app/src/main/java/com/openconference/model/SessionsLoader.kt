@@ -16,6 +16,8 @@ interface SessionsLoader {
   fun allSessions(): Observable<List<Session>>
 
   fun favoriteSessions(): Observable<List<Session>>
+
+  fun getSession(id: String): Observable<Session>
 }
 
 /**
@@ -28,4 +30,8 @@ class LocalStorageSessionsLoader(private val scheduleDataAwareObservableFactory:
 
   override fun favoriteSessions(): Observable<List<Session>> = scheduleDataAwareObservableFactory.create(
       sessionDao.getFavoriteSessions())
+
+  override fun getSession(
+      id: String): Observable<Session> = scheduleDataAwareObservableFactory.create(
+      sessionDao.getById(id))
 }

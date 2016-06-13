@@ -1,4 +1,4 @@
-package com.openconference.util
+package com.openconference.util.picasso
 
 import android.support.v7.widget.RecyclerView
 import com.squareup.picasso.Picasso

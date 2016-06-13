@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.hannesdorfmann.adapterdelegates2.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates2.ListDelegationAdapter
+import com.hannesdorfmann.fragmentargs.FragmentArgs
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateFragment
 import com.openconference.Navigator
@@ -22,6 +23,7 @@ import com.openconference.speakers.SpeakersView
 import com.openconference.util.*
 import com.openconference.util.lce.LceAnimatable
 import com.openconference.util.lce.LceViewState
+import com.openconference.util.picasso.PicassoScrollListener
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
@@ -34,7 +36,7 @@ import javax.inject.Inject
 open class SpeakersFragment : SpeakersView, LceAnimatable<List<Speaker>>, MvpViewStateFragment<SpeakersView, SpeakersPresenter>() {
 
 
-  override lateinit var contentView: View
+  override lateinit var content_view: View
   override lateinit var errorView: TextView
   override lateinit var loadingView: View
   override lateinit var emptyView: View
@@ -48,6 +50,7 @@ open class SpeakersFragment : SpeakersView, LceAnimatable<List<Speaker>>, MvpVie
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    FragmentArgs.inject(this)
     retainInstance = true
   }
 
@@ -68,7 +71,7 @@ open class SpeakersFragment : SpeakersView, LceAnimatable<List<Speaker>>, MvpVie
     super.onViewCreated(view, savedInstanceState)
     errorView = view.findView(R.id.errorView)
     loadingView = view.findView(R.id.loadingView)
-    contentView = view.findView(R.id.contentView)
+    content_view = view.findView(R.id.contentView)
     recyclerView = view.findView(R.id.recyclerView)
     emptyView = view.findView(R.id.emptyView)
 

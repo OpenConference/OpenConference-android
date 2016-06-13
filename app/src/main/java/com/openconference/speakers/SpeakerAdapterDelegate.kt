@@ -10,7 +10,7 @@ import butterknife.bindView
 import com.hannesdorfmann.adapterdelegates2.AbsListItemAdapterDelegate
 import com.openconference.R
 import com.openconference.model.Speaker
-import com.openconference.util.PicassoScrollListener
+import com.openconference.util.picasso.PicassoScrollListener
 import com.squareup.picasso.Picasso
 
 /**

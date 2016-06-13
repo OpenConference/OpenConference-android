@@ -1,9 +1,9 @@
 package com.openconference.model.database.dao
 
 import android.database.sqlite.SQLiteDatabase
+import com.hannesdorfmann.sqlbrite.dao.Dao
 import com.openconference.model.Speaker
 import com.openconference.model.database.SpeakerAutoValue
-import com.hannesdorfmann.sqlbrite.dao.Dao
 import rx.Observable
 
 /**
@@ -60,5 +60,6 @@ open class SpeakerDaoSqlite : SpeakerDao, Dao() {
   }
 
   override fun getSpeakers(): Observable<List<Speaker>> = query(
-      SELECT("*").FROM(TABLE)).run().mapToList(SpeakerAutoValue.mapper()).map { it }
+      SELECT("*").FROM(TABLE).ORDER_BY(COL_NAME)).run().mapToList(
+      SpeakerAutoValue.mapper()).map { it }
 }

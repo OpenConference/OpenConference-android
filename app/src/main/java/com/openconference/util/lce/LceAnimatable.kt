@@ -11,7 +11,7 @@ import android.widget.TextView
  */
 interface LceAnimatable<M> {
 
-  var contentView: View
+  var content_view: View
   var errorView: TextView
   var loadingView: View
   var emptyView: View
@@ -26,10 +26,10 @@ interface LceAnimatable<M> {
     if (!isRestoringViewState() && loadingView.visibility != View.VISIBLE) {
       loadingView.alpha = 0f
       loadingView.animate().alpha(1f).withStartAction { View.VISIBLE }.start()
-      contentView.animate().alpha(0f).withEndAction { contentView.visibility = View.GONE }.start()
+      content_view.animate().alpha(0f).withEndAction { content_view.visibility = View.GONE }.start()
     } else {
       loadingView.visibility = View.VISIBLE
-      contentView.visibility = View.GONE
+      content_view.visibility = View.GONE
     }
     errorView.visibility = View.GONE
 
@@ -53,7 +53,7 @@ interface LceAnimatable<M> {
 
     errorView.setText(errorMsgRes)
 
-    contentView.visibility = View.GONE
+    content_view.visibility = View.GONE
 
     if (!isRestoringViewState()) {
       getViewState()!!.showError(errorMsgRes)
@@ -71,13 +71,13 @@ interface LceAnimatable<M> {
       View.GONE
     }
 
-    if (!isRestoringViewState() && contentView.visibility != View.VISIBLE) {
-      contentView.alpha = 0f
-      contentView.animate().alpha(
-          1f).withStartAction { contentView.visibility = View.VISIBLE }.start()
+    if (!isRestoringViewState() && content_view.visibility != View.VISIBLE) {
+      content_view.alpha = 0f
+      content_view.animate().alpha(
+          1f).withStartAction { content_view.visibility = View.VISIBLE }.start()
       loadingView.animate().alpha(0f).withEndAction { loadingView.visibility = View.GONE }.start()
     } else {
-      contentView.visibility = View.VISIBLE
+      content_view.visibility = View.VISIBLE
       loadingView.visibility = View.GONE
     }
 

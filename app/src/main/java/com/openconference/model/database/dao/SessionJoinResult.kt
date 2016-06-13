@@ -84,6 +84,14 @@ abstract class SessionJoinResult {
   @ColumnName(SessionDaoSqlite.COL_SPEAKER_PIC)
   abstract fun speakerPicture(): String?
 
+  @Nullable
+  @ColumnName(SessionDaoSqlite.COL_SPEAKER_COMPANY)
+  abstract fun speakerCompany(): String?
+
+  @Nullable
+  @ColumnName(SessionDaoSqlite.COL_SPEAKER_JOBTITLE)
+  abstract fun speakerJobTitle(): String?
+
   @NonNull
   @ColumnName(SessionDaoSqlite.COL_FAVORITE)
   abstract fun favorite(): Boolean
@@ -112,8 +120,8 @@ fun mapJoinResultToSessions(joinResults: List<SessionJoinResult>): List<Session>
                     it.speakerName()!!,
                     null,
                     it.speakerPicture(),
-                    null,
-                    null,
+                    it.speakerCompany(),
+                    it.speakerJobTitle(),
                     null,
                     null,
                     null)

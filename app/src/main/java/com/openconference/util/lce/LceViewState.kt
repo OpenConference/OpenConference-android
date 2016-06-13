@@ -1,5 +1,6 @@
 package com.openconference.util.lce
 
+import android.support.annotation.StringRes
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState
 
 /**
@@ -7,6 +8,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState
  *
  * @author Hannes Dorfmann
  */
+// TODO test
 class LceViewState<M> : ViewState<LceView<M>> {
 
   private enum class State {
@@ -23,8 +25,8 @@ class LceViewState<M> : ViewState<LceView<M>> {
     this.errorMsg = -1
   }
 
-  fun showError(errorMsgRes : Int) {
-    this.errorMsg = errorMsg
+  fun showError(@StringRes errorMsgRes: Int) {
+    this.errorMsg = errorMsgRes
     this.state = State.SHOW_ERROR
     this.data = null
   }

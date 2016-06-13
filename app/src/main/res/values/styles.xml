@@ -70,4 +70,21 @@
     <item name="android:textColor">@android:color/white</item>
   </style>
 
+
+  <style name="SessionDetailsHeadline" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">16sp</item>
+    <item name="android:textColor">@color/textColorPrimary</item>
+  </style>
+
+  <style name="SessionDetailsSubHeadline" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">15sp</item>
+    <item name="android:textColor">@color/textColorSecondary</item>
+  </style>
+
+  <style name="SessionDetailsTitle" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">24sp</item>
+    <item name="android:textColor">@color/colorAccent</item>
+  </style>
+
+
 </resources>

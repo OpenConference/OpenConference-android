@@ -4,7 +4,8 @@
   <dimen name="activity_vertical_margin">16dp</dimen>
 
 
-  <dimen name="sessions_item_title_details_space">6dp</dimen> <!-- Space between session title and details like time, place etc.-->
+  <dimen name="sessions_item_title_details_space">6dp
+  </dimen> <!-- Space between session title and details like time, place etc.-->
   <dimen name="sessions_item_text_space">4dp</dimen>
   <dimen name="sessions_item_padding_top_bottom">10dp</dimen>
 
@@ -15,5 +16,7 @@
   <dimen name="viewpager_page_margin">16dp</dimen>
   <dimen name="errorview_width_height">128dp</dimen>
   <dimen name="emptyview_width_height">128dp</dimen>
+  
+  <dimen name="session_details_item_margin_top_bottom">4dp</dimen>
 
 </resources>

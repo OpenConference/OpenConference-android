@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/description"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/keyline_contentstart"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/session_details_item_margin_top_bottom"
+    android:paddingTop="@dimen/session_details_item_margin_top_bottom"
+    android:textSize="16sp"
+    android:lineSpacingMultiplier="1.2"
+    />
