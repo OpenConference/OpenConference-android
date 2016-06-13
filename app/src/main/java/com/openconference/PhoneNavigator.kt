@@ -7,6 +7,7 @@ import com.openconference.model.Session
 import com.openconference.model.Speaker
 import com.openconference.model.screen.SessionsScreen
 import com.openconference.sessiondetails.SessionDetailsActivity
+import com.openconference.sessiondetails.SpeakerDetailsActivity
 
 /**
  * A Navigator that is responsible to navigate between the different screens
@@ -27,7 +28,9 @@ class PhoneNavigator(private val activity: Activity) : Navigator {
   }
 
   override fun showSpeakerDetails(speaker: Speaker) {
-    throw UnsupportedOperationException()
+    val i = Intent(activity, SpeakerDetailsActivity::class.java)
+    i.putExtra(SpeakerDetailsActivity.KEY_SPEAKER, speaker)
+    activity.startActivity(i)
   }
 
   override fun showSessions() = if (activity is ViewPagerMainActivity) {

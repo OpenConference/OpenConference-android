@@ -16,6 +16,8 @@
     </activity>
     <activity android:name=".sessiondetails.SessionDetailsActivity">
     </activity>
+
+    <activity android:name=".sessiondetails.SpeakerDetailsActivity"></activity>
   </application>
 
 </manifest>

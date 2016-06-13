@@ -15,6 +15,7 @@
   <string name="session_details_added_to_schedule">Session hinzugefügt. Du bekommst eine Erinnerung 10 Minuten bevor die Session startet.</string>
   <string name="error_session_details_added_to_schedule">Ein Fehler ist aufgetreten. Bitte wiederholen.</string>
   <string name="error_session_details_removed_from_schedule">Ein Fehler ist aufgetreten. Bitte wiederholen.</string>
+  <string name="speaker_details_no_data">Leider sind noch keine Daten vorhanden.</string>
 
 
 </resources>

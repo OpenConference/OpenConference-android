@@ -165,5 +165,13 @@ open class SessionDaoSqlite : SessionDao, Dao() {
           .mapToList(SessionJoinResult.mapper())
           .map(::mapJoinResultToSessions)
 
+  // TODO test
+  override fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>> =
+      query(selectAll().WHERE("$COL_SPEAKER_ID = ?"))
+          .args(speakerId)
+          .run()
+          .mapToList(SessionJoinResult.mapper())
+          .map(::mapJoinResultToSessions)
+
   override fun getBriteDatabase(): BriteDatabase = db
 }

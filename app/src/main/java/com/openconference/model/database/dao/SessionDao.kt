@@ -44,6 +44,11 @@ interface SessionDao {
   fun setFavorite(sessionId: String, favorite: Boolean): Observable<Int>
 
   /**
+   * Get all sessions given by a speaker
+   */
+  fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>>
+
+  /**
    * Get a list with all sessions marked as favorite
    */
   fun getFavoriteSessions(): Observable<List<Session>>

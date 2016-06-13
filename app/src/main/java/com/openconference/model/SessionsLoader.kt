@@ -22,6 +22,8 @@ interface SessionsLoader {
   fun addSessionToSchedule(id: String): Observable<Boolean>
 
   fun removeSessionFromSchedule(id: String): Observable<Boolean>
+
+  fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>>
 }
 
 /**
@@ -45,4 +47,7 @@ class LocalStorageSessionsLoader(private val scheduleDataAwareObservableFactory:
   override fun removeSessionFromSchedule(id: String): Observable<Boolean> = sessionDao.setFavorite(
       id,
       false).map { it > 0 }
+
+  override fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>> =
+      scheduleDataAwareObservableFactory.create(sessionDao.getSessionsOfSpeaker(speakerId))
 }

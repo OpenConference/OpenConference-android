@@ -15,6 +15,6 @@
   <string name="session_details_added_to_schedule">Session has been added. You will receive a Notification 10 minutes before Session starts.</string>
   <string name="error_session_details_added_to_schedule">An error has occurred. Please retry.</string>
   <string name="error_session_details_removed_from_schedule">An error has occurred. Please retry.</string>
-
+  <string name="speaker_details_no_data">No data for this speaker available yet</string>
 
 </resources>

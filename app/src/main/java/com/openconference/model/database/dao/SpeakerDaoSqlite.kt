@@ -55,9 +55,9 @@ open class SpeakerDaoSqlite : SpeakerDao, Dao() {
 
   override fun removeAll(): Observable<Int> = delete(TABLE)
 
-  override fun getSpeaker(id: String): Observable<Speaker?> {
-    throw UnsupportedOperationException()
-  }
+  override fun getSpeaker(id: String): Observable<Speaker?> = query(
+      SELECT("*").FROM(TABLE).WHERE("$COL_ID = ?")).args(id).run().mapToOneOrDefault(
+      SpeakerAutoValue.mapper(), null).map { it }
 
   override fun getSpeakers(): Observable<List<Speaker>> = query(
       SELECT("*").FROM(TABLE).ORDER_BY(COL_NAME)).run().mapToList(

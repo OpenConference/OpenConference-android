@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/description"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/session_details_item_margin_top_bottom"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/session_details_item_margin_top_bottom"
+    >
+
+  <ImageView
+      android:layout_width="@dimen/keyline_content_width"
+      android:layout_height="@dimen/keyline_content_width"
+      android:layout_gravity="top"
+      android:padding="8dp"
+      android:src="@drawable/ic_work"
+      />
+
+  <TextView
+      android:id="@+id/jobTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginLeft="@dimen/keyline_content_with_plus_start_padding"
+      tools:text="John Doe"
+      style="@style/SessionDetailsHeadline"
+      />
+
+  <TextView
+      android:id="@+id/company"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/jobTitle"
+      android:layout_marginLeft="@dimen/keyline_content_with_plus_start_padding"
+      android:layout_marginTop="2dp"
+      tools:text="Doe Inc, Mobile Developer"
+      style="@style/SessionDetailsSubHeadline"
+      />
+
+</RelativeLayout>

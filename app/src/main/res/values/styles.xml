@@ -86,5 +86,10 @@
     <item name="android:textColor">@color/colorAccent</item>
   </style>
 
+  <style name="SpeakerDetailsColapsingToolbar" parent="TextAppearance.AppCompat.Title">
+    <item name="android:textColor">@color/colorAccent</item>
+    <item name="android:textSize">20sp</item>
+  </style>
+
 
 </resources>
