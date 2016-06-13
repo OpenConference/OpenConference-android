@@ -17,5 +17,8 @@
   <string name="error_session_details_removed_from_schedule">Ein Fehler ist aufgetreten. Bitte wiederholen.</string>
   <string name="speaker_details_no_data">Leider sind noch keine Daten vorhanden.</string>
 
+  <string name="notification_title">Eine Session startet bald</string>
+  <string name="notification_text">%1$s startet um %2$s</string>
+
 
 </resources>

@@ -30,5 +30,5 @@ open class ScheduleModule(c: Context) {
 
   @Provides
   @Singleton
-  fun provideNotificationScheduler(): NotificationScheduler = DefaultNotificationScheduler()
+  fun provideNotificationScheduler(): NotificationScheduler = DefaultNotificationScheduler(context)
 }

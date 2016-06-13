@@ -3,6 +3,7 @@
     package="com.openconference">
 
   <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
   <application
       android:name=".OpenConfApp"
@@ -18,6 +19,9 @@
     </activity>
 
     <activity android:name=".sessiondetails.SpeakerDetailsActivity"></activity>
+
+
+    <receiver android:name=".model.notification.NotificationBroadcastReceiver"></receiver>
   </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import butterknife.bindView
 import com.openconference.R
 import com.openconference.model.screen.Screen
@@ -13,9 +14,15 @@ import javax.inject.Inject
 
 class ViewPagerMainActivity : AppCompatActivity() {
 
+  companion object {
+    val KEY_TAB_INDEX = "ViewPagerMainActivity.TAB_INDEX"
+  }
+
   @Inject lateinit var screens: Screens
   private val viewPager by bindView<ViewPager>(R.id.viewpager)
   private val tabs by bindView<TabLayout>(R.id.tabs)
+  private val toolbar by bindView<Toolbar>(R.id.toolbar)
+  private var currentPageIndex = 0
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -33,6 +40,38 @@ class ViewPagerMainActivity : AppCompatActivity() {
     viewPager.adapter = MainScreensPagerAdapter(this, screens.screens)
     tabs.setupWithViewPager(viewPager)
 
+
+    viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+      override fun onPageScrollStateChanged(state: Int) {
+
+      }
+
+      override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+      }
+
+      override fun onPageSelected(position: Int) {
+        setToolbarTitle(position)
+        currentPageIndex = position
+      }
+    })
+
+    if (savedInstanceState != null) {
+      currentPageIndex = savedInstanceState.getInt(KEY_TAB_INDEX)
+      setToolbarTitle(currentPageIndex)
+    } else {
+      setToolbarTitle(0)
+    }
+
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+    outState.putInt(KEY_TAB_INDEX, currentPageIndex)
+  }
+
+  private inline fun setToolbarTitle(position: Int) {
+    toolbar.setTitle(screens.screens[position].titleRes())
   }
 
   fun jumpToScreen(screenDetector: (Screen) -> Boolean) {

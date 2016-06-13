@@ -17,4 +17,8 @@
   <string name="error_session_details_removed_from_schedule">An error has occurred. Please retry.</string>
   <string name="speaker_details_no_data">No data for this speaker available yet</string>
 
+
+  <string name="notification_title">A session starts soon</string>
+  <string name="notification_text">%1$s starts at %2$s</string>
+
 </resources>

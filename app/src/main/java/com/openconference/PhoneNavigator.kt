@@ -18,8 +18,7 @@ import com.openconference.sessiondetails.SpeakerDetailsActivity
 class PhoneNavigator(private val activity: Activity) : Navigator {
 
   override fun showSessionDetails(session: Session) {
-    val i = Intent(activity, SessionDetailsActivity::class.java)
-    i.putExtra(SessionDetailsActivity.KEY_SESSION, session)
+    val i = SessionDetailsActivity.buildIntent(activity, session)
     activity.startActivity(i)
   }
 

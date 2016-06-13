@@ -4,7 +4,9 @@ import android.content.Context
 import com.openconference.model.ScheduleDataAwareObservableFactory
 import com.openconference.model.SessionsLoader
 import com.openconference.model.SpeakersLoader
+import com.openconference.model.database.dao.SessionDao
 import com.openconference.model.errormessage.ErrorMessageDeterminer
+import com.openconference.model.notification.NotificationScheduler
 import com.openconference.util.SchedulerTransformer
 import com.squareup.picasso.Picasso
 import dagger.Component
@@ -26,9 +28,13 @@ interface ApplicationComponent {
 
   fun speakersLoader(): SpeakersLoader
 
+  fun sessionDao(): SessionDao
+
   fun errorMessageDeterminer(): ErrorMessageDeterminer
 
   fun picasso(): Picasso
+
+  fun notificationScheduler(): NotificationScheduler
 
   @ApplicationContext
   fun applicationContext(): Context

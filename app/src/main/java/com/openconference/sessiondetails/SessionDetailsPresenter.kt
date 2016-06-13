@@ -1,5 +1,6 @@
 package com.openconference.sessiondetails
 
+import com.openconference.model.Session
 import com.openconference.model.SessionsLoader
 import com.openconference.model.errormessage.ErrorMessageDeterminer
 import com.openconference.sessiondetails.presentationmodel.SessionDetailsPresentationModelTransformer
@@ -31,9 +32,9 @@ class SessionDetailsPresenter @Inject constructor(scheduler: SchedulerTransforme
         })
   }
 
-  fun addSessionToSchedule(sessionId: String) {
+  fun addSessionToSchedule(session : Session) {
 
-    schedulerTransformer.schedule(sessionsLoader.addSessionToSchedule(sessionId)).subscribe ({
+    schedulerTransformer.schedule(sessionsLoader.addSessionToSchedule(session)).subscribe ({
       view?.showSessionAddedToSchedule()
     }, {
       view?.showErrorWhileAddingSessionToSchedule()
@@ -43,8 +44,8 @@ class SessionDetailsPresenter @Inject constructor(scheduler: SchedulerTransforme
 
   }
 
-  fun removeSessionFromSchedule(sessionId: String) {
-    schedulerTransformer.schedule(sessionsLoader.removeSessionFromSchedule(sessionId)).subscribe ({
+  fun removeSessionFromSchedule(session: Session) {
+    schedulerTransformer.schedule(sessionsLoader.removeSessionFromSchedule(session)).subscribe ({
       view?.showSessionRemovedFromSchedule()
     }, {
       view?.showErrorWhileRemovingSessionFromSchedule()

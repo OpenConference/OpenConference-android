@@ -1,6 +1,7 @@
 package com.openconference.model
 
 import com.openconference.model.database.dao.SessionDao
+import com.openconference.model.notification.NotificationScheduler
 import rx.Observable
 
 /**
@@ -19,9 +20,9 @@ interface SessionsLoader {
 
   fun getSession(id: String): Observable<Session>
 
-  fun addSessionToSchedule(id: String): Observable<Boolean>
+  fun addSessionToSchedule(session: Session): Observable<Boolean>
 
-  fun removeSessionFromSchedule(id: String): Observable<Boolean>
+  fun removeSessionFromSchedule(session: Session): Observable<Boolean>
 
   fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>>
 }
@@ -29,7 +30,10 @@ interface SessionsLoader {
 /**
  * A [SessionsLoader] that uses the sessions from local database (synced with the backend)
  */
-class LocalStorageSessionsLoader(private val scheduleDataAwareObservableFactory: ScheduleDataAwareObservableFactory, private val sessionDao: SessionDao) : SessionsLoader {
+class LocalStorageSessionsLoader(private val scheduleDataAwareObservableFactory: ScheduleDataAwareObservableFactory,
+    private val sessionDao: SessionDao,
+    private val notificationScheduler: NotificationScheduler
+) : SessionsLoader {
 
   override fun allSessions(): Observable<List<Session>> =
       scheduleDataAwareObservableFactory.create(sessionDao.getSessions())
@@ -41,12 +45,14 @@ class LocalStorageSessionsLoader(private val scheduleDataAwareObservableFactory:
       id: String): Observable<Session> = scheduleDataAwareObservableFactory.create(
       sessionDao.getById(id))
 
-  override fun addSessionToSchedule(id: String): Observable<Boolean> = sessionDao.setFavorite(id,
-      true).map { it > 0 }
+  override fun addSessionToSchedule(session: Session): Observable<Boolean> = sessionDao.setFavorite(
+      session.id(),
+      true).map { it > 0 }.doOnNext { notificationScheduler.addOrRescheduleNotification(session) }
 
-  override fun removeSessionFromSchedule(id: String): Observable<Boolean> = sessionDao.setFavorite(
-      id,
-      false).map { it > 0 }
+  override fun removeSessionFromSchedule(
+      session: Session): Observable<Boolean> = sessionDao.setFavorite(
+      session.id(),
+      false).map { it > 0 }.doOnNext { notificationScheduler.removeNotification(session) }
 
   override fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>> =
       scheduleDataAwareObservableFactory.create(sessionDao.getSessionsOfSpeaker(speakerId))

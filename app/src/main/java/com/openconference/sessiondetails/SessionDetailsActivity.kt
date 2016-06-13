@@ -1,5 +1,7 @@
 package com.openconference.sessiondetails
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.openconference.R
@@ -12,6 +14,12 @@ class SessionDetailsActivity : AppCompatActivity() {
 
   companion object {
     val KEY_SESSION = "SessionDetailsActivity.SESSION"
+
+    fun buildIntent(c: Context, s: Session): Intent {
+      val intent = Intent(c, SessionDetailsActivity::class.java)
+      intent.putExtra(SessionDetailsActivity.KEY_SESSION, s)
+      return intent
+    }
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {

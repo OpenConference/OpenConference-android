@@ -74,6 +74,7 @@ class PhoneSessionDetailsPresentationModelTransformer : SessionDetailsPresentati
     }
     session.speakers().forEach { items.add(SessionSpeakerItem(it)) }
 
-    return SessionDetail(session.id(), session.title(), items, session.favorite())
+    // TODO refactor
+    return SessionDetail(session.id(), session.title(), session, items, session.favorite())
   }
 }

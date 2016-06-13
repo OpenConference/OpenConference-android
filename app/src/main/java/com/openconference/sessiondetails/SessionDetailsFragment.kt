@@ -103,9 +103,9 @@ open class SessionDetailsFragment : SessionDetailsView, LceAnimatable<SessionDet
       // TODO is there really no better way to listen for callbacks?
       fab.postDelayed({
         if (sessionDetails.inMySchedule) {
-          presenter.removeSessionFromSchedule(sessionDetails.sessionId)
+          presenter.removeSessionFromSchedule(sessionDetails.session)
         } else {
-          presenter.addSessionToSchedule(sessionDetails.sessionId)
+          presenter.addSessionToSchedule(sessionDetails.session)
         }
       }, animTime + 100L)
     }
