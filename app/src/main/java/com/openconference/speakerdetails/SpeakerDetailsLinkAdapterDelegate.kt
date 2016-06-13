@@ -24,8 +24,7 @@ class SpeakerDetailsLinkAdapterDelegate(val inflater: LayoutInflater) : AbsListI
     } else null, item.url)
   }
 
-
   override fun onCreateViewHolder(parent: ViewGroup) = SpeakerDetailsViewHolder(
-      inflater.inflate(R.layout.item_details_icon_text, parent, false))
+      inflater.inflate(R.layout.item_details_icon_link_text, parent, false))
 
 }

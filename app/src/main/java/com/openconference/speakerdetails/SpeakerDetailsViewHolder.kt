@@ -13,7 +13,7 @@ import com.openconference.R
  *
  * @author Hannes Dorfmann
  */
-class SpeakerDetailsViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+open class SpeakerDetailsViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
   val icon by bindView<ImageView>(R.id.icon)
   val text by bindView<TextView>(R.id.text)
