@@ -164,6 +164,7 @@ open class SessionDaoSqlite : SessionDao, Dao() {
           .run()
           .mapToList(SessionJoinResult.mapper())
           .map(::mapJoinResultToSessions)
+          .map { it.sortedWith(sortByStartDate) }
 
   // TODO test
   override fun getSessionsOfSpeaker(speakerId: String): Observable<List<Session>> =
@@ -172,6 +173,7 @@ open class SessionDaoSqlite : SessionDao, Dao() {
           .run()
           .mapToList(SessionJoinResult.mapper())
           .map(::mapJoinResultToSessions)
+          .map { it.sortedWith(sortByStartDate) }
 
   override fun getBriteDatabase(): BriteDatabase = db
 }

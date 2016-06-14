@@ -4,6 +4,7 @@
   <string name="screen_title_sessions">Sessions</string>
   <string name="screen_title_my_schedule">Mein Kalender</string>
   <string name="screen_title_speakers">Referenten</string>
+  <string name="screen_title_twitter">#droidconDE</string>
 
   <string name="error_unknown">Ein unerwarteter Fehler ist aufgetreten.</string>
 
@@ -20,5 +21,7 @@
   <string name="notification_title">Eine Session startet bald</string>
   <string name="notification_text">%1$s startet um %2$s</string>
 
+
+  <string name="menu_license">Lizenzen</string>
 
 </resources>

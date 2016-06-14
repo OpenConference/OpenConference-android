@@ -1,9 +1,6 @@
 package com.openconference.main
 
-import com.openconference.model.screen.MyScheduleScreen
-import com.openconference.model.screen.Screens
-import com.openconference.model.screen.SessionsScreen
-import com.openconference.model.screen.SpeakersScreen
+import com.openconference.model.screen.*
 import dagger.Module
 import dagger.Provides
 
@@ -18,6 +15,6 @@ class MainActivityModule {
   @Provides
   @MainActivityScope
   fun provideScreens(): Screens = Screens(listOf(SessionsScreen(), MyScheduleScreen(),
-      SpeakersScreen()))
+      SpeakersScreen(), TwitterScreen()))
 
 }

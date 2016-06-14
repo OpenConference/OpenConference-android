@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+
+  <notice>
+    <name>OpenConference</name>
+    <url>https://github.com/OpenConference/OpenConference-android</url>
+    <copyright>Copyright 2016 OpenConference</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>Mosby</name>
+    <url>https://github.com/sockeqwe/mosby</url>
+    <copyright>Copyright 2015 Hannes Dorfmann</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>Retrofit</name>
+    <url>https://github.com/square/retrofit</url>
+    <copyright>Copyright 2013 Square, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>OkHttp</name>
+    <url>https://github.com/square/okhttp</url>
+    <copyright>Copyright 2015 Square, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>AdapterDelegates</name>
+    <url>https://github.com/sockeqwe/AdapterDelegates</url>
+    <copyright>Copyright 2015 Hannes Dorfmann</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>Picasso</name>
+    <url>https://github.com/square/picasso</url>
+    <copyright>Copyright 2013 Square, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>RxJava</name>
+    <url>https://github.com/ReactiveX/RxJava</url>
+    <copyright>Copyright 2013 Netflix, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>Dagger 2</name>
+    <url>https://github.com/google/dagger</url>
+    <copyright>Copyright 2012 Google, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>LoganSquare</name>
+    <url>https://github.com/bluelinelabs/LoganSquare</url>
+    <copyright>Copyright 2012 BlueLine Labs, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>SqlBrite</name>
+    <url>https://github.com/square/sqlbrite</url>
+    <copyright>Copyright 2015 Square, Inc.</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+  <notice>
+    <name>FragmentArgs</name>
+    <url>https://github.com/sockeqwe/fragmentargs</url>
+    <copyright>Copyright 2014 Hannes Dorfmann</copyright>
+    <license>Apache Software License 2.0</license>
+  </notice>
+
+</notices>

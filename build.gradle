@@ -36,6 +36,8 @@ buildscript {
                   fragmentArgs        : '3.0.2',
                   timber              : '4.1.2',
                   crashlytics         : '2.5.6@aar',
+                  twitterKit          : '1.13.2',
+                  licenseDialog       : '1.8.1',
 
                   junit               : '4.12',
                   mockito             : '1.10.19',
@@ -93,6 +95,8 @@ buildscript {
             fragmentArgsCompiler       : "com.hannesdorfmann.fragmentargs:processor:$versions.fragmentArgs",
             timber                     : "com.jakewharton.timber:timber:$versions.timber",
             crashlytics                : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics",
+            twitterKit                 : "com.twitter.sdk.android:twitter:$versions.twitterKit@aar",
+            licenseDialog              : "de.psdev.licensesdialog:licensesdialog:$versions.licenseDialog",
 
             junit                      : "junit:junit:$versions.junit",
             mockito                    : "org.mockito:mockito-core:$versions.mockito",

@@ -21,7 +21,10 @@ class SpeakerDetailsBioAdapterDelegate(val inflater: LayoutInflater) : AbsListIt
   override fun onBindViewHolder(item: SpeakerBioItem, viewHolder: SpeakerDetailsViewHolder) =
       viewHolder.bind(null, item.bio)
 
-  override fun onCreateViewHolder(parent: ViewGroup) = SpeakerDetailsViewHolder(
-      inflater.inflate(R.layout.item_details_icon_text, parent, false))
+  override fun onCreateViewHolder(parent: ViewGroup): SpeakerDetailsViewHolder {
+    val view = inflater.inflate(R.layout.item_details_icon_text, parent, false)
+    view.isClickable = false
+    return SpeakerDetailsViewHolder(view)
+  }
 
 }

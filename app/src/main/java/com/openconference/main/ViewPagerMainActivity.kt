@@ -5,11 +5,14 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import butterknife.bindView
 import com.openconference.R
 import com.openconference.model.screen.Screen
 import com.openconference.model.screen.Screens
 import com.openconference.util.applicationComponent
+import de.psdev.licensesdialog.LicensesDialog
 import javax.inject.Inject
 
 class ViewPagerMainActivity : AppCompatActivity() {
@@ -40,6 +43,7 @@ class ViewPagerMainActivity : AppCompatActivity() {
     viewPager.adapter = MainScreensPagerAdapter(this, screens.screens)
     tabs.setupWithViewPager(viewPager)
 
+    setSupportActionBar(toolbar)
 
     viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
       override fun onPageScrollStateChanged(state: Int) {
@@ -71,7 +75,7 @@ class ViewPagerMainActivity : AppCompatActivity() {
   }
 
   private inline fun setToolbarTitle(position: Int) {
-    toolbar.setTitle(screens.screens[position].titleRes())
+    supportActionBar!!.setTitle(screens.screens[position].titleRes())
   }
 
   fun jumpToScreen(screenDetector: (Screen) -> Boolean) {
@@ -80,5 +84,23 @@ class ViewPagerMainActivity : AppCompatActivity() {
         viewPager.setCurrentItem(i, true)
       }
     }
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == R.id.menuLicense) {
+      LicensesDialog.Builder(this)
+          .setNotices(R.raw.notices)
+          .build()
+          .show();
+
+      return true
+    }
+
+    return super.onOptionsItemSelected(item)
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    menuInflater.inflate(R.menu.main_menu, menu)
+    return true
   }
 }
