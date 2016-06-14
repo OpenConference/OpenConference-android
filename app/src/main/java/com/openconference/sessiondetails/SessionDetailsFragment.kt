@@ -6,6 +6,7 @@ import android.support.annotation.StringRes
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
@@ -207,12 +208,12 @@ open class SessionDetailsFragment : SessionDetailsView, LceAnimatable<SessionDet
 
     if (sessionDetails.inMySchedule) {
       fab.setImageDrawable(
-          resources.getDrawable(R.drawable.avd_remove_from_schedule,
-              activity.theme).mutate().constantState.newDrawable())
+          ResourcesCompat.getDrawable(resources, R.drawable.avd_remove_from_schedule,
+              activity.theme)!!.mutate().constantState.newDrawable())
     } else {
       fab.setImageDrawable(
-          resources.getDrawable(R.drawable.avd_add_to_schedule,
-              activity.theme).mutate().constantState.newDrawable())
+          ResourcesCompat.getDrawable(resources, R.drawable.avd_add_to_schedule,
+              activity.theme)!!.mutate().constantState.newDrawable())
     }
   }
 }
