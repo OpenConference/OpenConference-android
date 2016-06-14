@@ -24,7 +24,7 @@
   <!-- Styling for a session text appeareance -->
   <style name="ScheduleSessionTitle" parent="TextAppearance.AppCompat">
     <item name="android:textColor">@color/textColorPrimary</item>
-    <item name="android:textSize">20sp</item>
+    <item name="android:textSize">18sp</item>
   </style>
 
   <style name="ScheduleSessionSpeakers" parent="TextAppearance.AppCompat">
@@ -34,7 +34,7 @@
 
   <style name="ScheduleDayInWeek" parent="TextAppearance.AppCompat">
     <item name="android:textColor">@color/textColorPrimary</item>
-    <item name="android:textSize">20sp</item>
+    <item name="android:textSize">18sp</item>
     <item name="android:textStyle">bold</item>
   </style>
 

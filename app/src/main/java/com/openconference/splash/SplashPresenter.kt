@@ -29,14 +29,17 @@ class SplashPresenter @Inject constructor(schedulerTransformer: SchedulerTransfo
     ) // no callbacks needed
 
     // wait for two seconds
-    val timer = Observable.interval(2, TimeUnit.SECONDS)
+    val timer = Observable.timer(1500, TimeUnit.MILLISECONDS)
     subscribe(
         timer,
         { // onNext
-          view?.finishSplash()
         },
         {
           // onError
+          view?.finishSplash()
+        },
+        {
+          // onCompleted (timer just fire onCompleted)
           view?.finishSplash()
         }
     )

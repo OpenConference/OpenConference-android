@@ -25,6 +25,27 @@ class SessionDateTimeComparator : Comparator<Session> {
     }
 
 
-    return lhs.startTime()!!.compareTo(rhs.startTime())
+    val dateComparisonResult =  lhs.startTime()!!.compareTo(rhs.startTime())
+    if (dateComparisonResult != 0){
+      return dateComparisonResult
+    }
+
+    val lhsLocationName = lhs.locationName()
+    val rhsLocationName = rhs.locationName()
+
+    if (lhsLocationName == null && rhsLocationName == null){
+      return 0
+    }
+
+
+    if (lhsLocationName == null && rhsLocationName != null){
+      return 1
+    }
+
+    if (lhsLocationName != null && rhsLocationName == null){
+      return -1
+    }
+
+    return lhsLocationName!!.compareTo(rhsLocationName!!)
   }
 }

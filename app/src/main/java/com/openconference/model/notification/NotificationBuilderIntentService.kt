@@ -1,6 +1,7 @@
 package com.openconference.model.notification
 
 import android.app.IntentService
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
@@ -25,8 +26,10 @@ class NotificationBuilderIntentService : IntentService("NotificationBuilderInten
 
   companion object {
     val KEY_SESSION_ID = "NotificationBuilderIntentService.SESSION_ID"
+    private var lastSoundVibrate: Long = 0
   }
 
+  val TIMEOUT_FOR_NOTIFICATION_SOUND_VIBRATE = 1000
 
   override fun onHandleIntent(intent: Intent) {
 
@@ -60,14 +63,23 @@ class NotificationBuilderIntentService : IntentService("NotificationBuilderInten
 
           val pendingIntent = PendingIntent.getActivity(applicationContext, 0, startIntent, 0)
 
-          val notification = NotificationCompat.Builder(applicationContext)
+          val notificationBuilder = NotificationCompat.Builder(applicationContext)
               .setSmallIcon(R.drawable.ic_notification_small)
               .setContentTitle(application.getString(R.string.notification_title))
               .setContentText(String.format(application.getString(R.string.notification_text),
                   session.title(), startStr))
               .setContentIntent(pendingIntent)
               .setAutoCancel(true)
-              .build()
+
+          if (System.currentTimeMillis() - lastSoundVibrate > TIMEOUT_FOR_NOTIFICATION_SOUND_VIBRATE) {
+            notificationBuilder.setDefaults(
+                // Vibrate and play sound, but not all the time
+                Notification.DEFAULT_VIBRATE or Notification.DEFAULT_SOUND)
+            lastSoundVibrate = System.currentTimeMillis()
+          }
+
+
+          val notification = notificationBuilder.build()
 
           val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
           notificationManager.notify(session.id().hashCode(), notification)
