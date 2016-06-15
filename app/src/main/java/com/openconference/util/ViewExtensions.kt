@@ -13,3 +13,11 @@ fun View.hideKeyboard() {
       Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
       windowToken, 0)
 }
+
+fun View.showKeyboard() {
+  (context.getSystemService(
+      Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(
+          InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+}
+
+
