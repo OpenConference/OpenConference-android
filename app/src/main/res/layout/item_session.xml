@@ -60,4 +60,15 @@
       style="@style/ScheduleSessionSpeakers"
       />
 
+  <ImageView
+      android:id="@+id/favorite"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:layout_margin="16dp"
+      android:src="@drawable/avd_remove_from_schedule"
+      android:tint="@color/colorAccent"
+      />
+
 </RelativeLayout>
