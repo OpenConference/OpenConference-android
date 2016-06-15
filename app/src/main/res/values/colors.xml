@@ -9,7 +9,7 @@
   <color name="textColorSecondary">#919191</color>
 
 
-  <color name="background_dark">#ff333333</color>
+  <color name="background_light">#F5F5F5</color>
   <color name="scrim">#B9323232</color>
 
   <!-- icon of list view -->
