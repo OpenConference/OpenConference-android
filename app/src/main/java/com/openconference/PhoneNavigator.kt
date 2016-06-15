@@ -44,6 +44,6 @@ class PhoneNavigator(private val activity: Activity) : Navigator {
   override fun showSearch() {
     val i = Intent(activity, SearchActivity::class.java)
     activity.startActivity(i)
-    activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
   }
 }
