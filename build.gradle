@@ -15,7 +15,7 @@ buildscript {
                   kotlin              : '1.0.2',
                   dagger              : '2.4',
                   rxJava              : '1.1.5',
-                  retrofit            : '2.0.2',
+                  retrofit            : '2.1.0',
                   rxAndroid           : '1.2.0',
                   autoValue           : '1.2',
                   autoValueParcelable : '0.2.1',
