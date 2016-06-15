@@ -10,9 +10,9 @@
     >
 
   <ImageView
-      android:layout_marginLeft="@dimen/activity_vertical_margin"
       android:layout_width="40dp"
       android:layout_height="40dp"
+      android:layout_marginLeft="@dimen/activity_vertical_margin"
       android:padding="6dp"
       android:src="@drawable/ic_sessions_details"
       />
@@ -65,10 +65,20 @@
       android:layout_below="@id/time"
       android:layout_marginLeft="@dimen/keyline_contentstart"
       android:layout_marginTop="@dimen/sessions_item_text_space"
+      android:layout_toLeftOf="@+id/favorite"
       android:drawablePadding="4dp"
       android:drawableStart="@drawable/ic_location"
       tools:text="Location 103"
       style="@style/ScheduleSessionSpeakers"
+      />
+
+  <ImageView
+      android:id="@+id/favorite"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:src="@drawable/ic_done"
       />
 
 </RelativeLayout>
