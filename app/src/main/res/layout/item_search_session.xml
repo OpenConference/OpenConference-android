@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingBottom="@dimen/sessions_item_padding_top_bottom"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/sessions_item_padding_top_bottom"
+    >
+
+  <ImageView
+      android:layout_marginLeft="@dimen/activity_vertical_margin"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:padding="6dp"
+      android:src="@drawable/ic_sessions_details"
+      />
+
+  <TextView
+      android:id="@+id/title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginLeft="@dimen/keyline_contentstart"
+      tools:text="Name of the Session"
+      style="@style/ScheduleSessionTitle"
+      />
+
+
+  <TextView
+      android:id="@+id/speakers"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/title"
+
+      android:layout_marginLeft="@dimen/keyline_contentstart"
+      android:layout_marginTop="@dimen/sessions_item_title_details_space"
+      android:drawablePadding="4dp"
+      android:drawableStart="@drawable/ic_person"
+      tools:text="Speaker1, Speaker2"
+      style="@style/ScheduleSessionSpeakers"
+      />
+
+
+  <TextView
+      android:id="@+id/time"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/speakers"
+      android:layout_marginLeft="@dimen/keyline_contentstart"
+      android:layout_marginTop="@dimen/sessions_item_text_space"
+      android:drawablePadding="4dp"
+      android:drawableStart="@drawable/ic_time"
+      tools:text="22:00 - 23:00"
+      style="@style/ScheduleSessionSpeakers"
+      />
+
+
+  <TextView
+      android:id="@+id/location"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/time"
+      android:layout_marginLeft="@dimen/keyline_contentstart"
+      android:layout_marginTop="@dimen/sessions_item_text_space"
+      android:drawablePadding="4dp"
+      android:drawableStart="@drawable/ic_location"
+      tools:text="Location 103"
+      style="@style/ScheduleSessionSpeakers"
+      />
+
+</RelativeLayout>

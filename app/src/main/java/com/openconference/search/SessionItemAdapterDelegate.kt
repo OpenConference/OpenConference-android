@@ -55,7 +55,7 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater, p
   }
 
   override fun onCreateViewHolder(parent: ViewGroup): SessionItemViewHolder =
-      SessionItemViewHolder(layoutInflater.inflate(R.layout.item_session, parent, false),
+      SessionItemViewHolder(layoutInflater.inflate(R.layout.item_search_session, parent, false),
           clickListener)
 
   /**

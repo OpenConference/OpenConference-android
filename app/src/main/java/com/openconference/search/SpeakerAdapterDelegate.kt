@@ -29,7 +29,7 @@ open class SpeakerAdapterDelegate(protected val inflater: LayoutInflater, protec
 
   override fun onCreateViewHolder(parent: ViewGroup): SpeakerViewHolder =
       SpeakerViewHolder(
-          inflater.inflate(R.layout.item_session_details_speaker, parent, false), picasso,
+          inflater.inflate(R.layout.item_search_speaker, parent, false), picasso,
           clickListener)
 
   override fun onBindViewHolder(item: SpeakerSearchableItem, viewHolder: SpeakerViewHolder) {

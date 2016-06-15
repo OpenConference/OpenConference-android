@@ -1,6 +1,5 @@
 package com.openconference.model.search
 
-import com.openconference.model.search.SearchableItem
 import rx.Observable
 import timber.log.Timber
 import java.util.*
@@ -31,6 +30,12 @@ class DefaultSearchEngine(private val searchSources: List<SearchSource>) : Searc
       )
     }
 
-    return Observable.merge(errorCatchingSources)
+    return Observable.combineLatest(errorCatchingSources, {
+      val result = ArrayList<SearchableItem>()
+      it.forEach {
+        result.addAll(it as List<SearchableItem>)
+      }
+      result
+    })
   }
 }

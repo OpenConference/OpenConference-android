@@ -31,13 +31,8 @@ class DroidconBerlinApp : OpenConfApp() {
     return super.buildApplicationComponent().networkModule(DroidconBerlinNetworkModule(this))
   }
 
-  override fun plantDebugTimberTree() {
-    plantProductionTimberTree()
-  }
-
   override fun plantProductionTimberTree() {
     super.plantProductionTimberTree()
-
     Timber.plant(CrashlyticsTimberTree())
 
   }
