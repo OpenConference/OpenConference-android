@@ -13,21 +13,17 @@ class DefaultSearchEngine(private val searchSources: List<SearchSource>) : Searc
 
   override fun search(query: String): Observable<List<SearchableItem>> {
 
-    val errorCatchingSources = ArrayList<Observable<List<SearchableItem>>>()
     var errorsCount = 0
-
-    for (source in searchSources) {
-      errorCatchingSources.add (
-          source.search(query).onErrorReturn {
-            errorsCount++
-            Timber.e(it, "Error in SearchSource $source")
-            if (errorsCount < errorCatchingSources.size) {
-              emptyList()
-            } else {
-              throw it
-            }
-          }
-      )
+    val errorCatchingSources = searchSources.map { source ->
+      source.search(query).onErrorReturn {
+        errorsCount++
+        Timber.e(it, "Error in SearchSource $source")
+        if (errorsCount < searchSources.size) {
+          emptyList()
+        } else {
+          throw it
+        }
+      }
     }
 
     return Observable.combineLatest(errorCatchingSources, {
