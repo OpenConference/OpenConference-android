@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import butterknife.bindView
 import com.hannesdorfmann.adapterdelegates2.AbsListItemAdapterDelegate
@@ -53,6 +54,13 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater, p
       viewHolder.speakers.text = speakers.toString()
       viewHolder.speakers.visibility = View.VISIBLE
     }
+
+    // Favorite
+    if (session.favorite()) {
+      viewHolder.favorite.visibility = View.VISIBLE
+    } else {
+      viewHolder.favorite.visibility = View.GONE
+    }
   }
 
   override fun onCreateViewHolder(parent: ViewGroup): SessionItemViewHolder =
@@ -73,6 +81,7 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater, p
     val speakers: TextView by bindView(R.id.speakers)
     val time: TextView by bindView(R.id.time)
     val location: TextView by bindView(R.id.location)
+    val favorite: ImageView by bindView(R.id.favorite)
     var session: Session? = null
   }
 }
