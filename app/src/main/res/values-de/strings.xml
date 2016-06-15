@@ -7,6 +7,7 @@
   <string name="screen_title_twitter">#droidconDE</string>
 
   <string name="error_unknown">Ein unerwarteter Fehler ist aufgetreten.</string>
+  <string name="error_search_invalid">Ungültige Suchanfrage</string>
 
   <string name="sessions_sticky_date_format">dd.MM</string>
   <string name="session_empty_view">Leider sind noch keine Sessions verfügbar</string>
@@ -23,5 +24,10 @@
 
 
   <string name="menu_license">Lizenzen</string>
+  <string name="menu_search">Suche</string>
+
+
+  <string name="search_query_hint">Suchbegriff ...</string>
+  <string name="search_no_results">Keine Ergebnisse gefunden</string>
 
 </resources>

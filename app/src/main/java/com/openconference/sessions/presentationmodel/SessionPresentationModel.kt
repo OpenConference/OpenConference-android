@@ -2,13 +2,14 @@ package com.openconference.sessions.presentationmodel
 
 import com.google.auto.value.AutoValue
 import com.openconference.model.Session
+import com.openconference.model.search.SearchableItem
 
 /**
  * Presentation Model of [com.openconference.model.Session] used by [com.openconference.sessions.SessionsView]
  * @author Hannes Dorfmann
  */
 @AutoValue
-abstract class SessionPresentationModel : GroupableSession {
+abstract class SessionPresentationModel : GroupableSession, SearchableItem {
 
 
   abstract fun dayInWeek(): String?

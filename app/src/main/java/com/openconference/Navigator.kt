@@ -20,4 +20,6 @@ interface Navigator {
 
   fun showSpeakerDetails(speaker: Speaker)
 
+  fun showSearch()
+
 }

@@ -53,6 +53,11 @@ interface SessionDao {
    */
   fun getFavoriteSessions(): Observable<List<Session>>
 
+  /**
+   * Find sessions containing the specified query
+   */
+  fun findSessionsWith(query: String): Observable<List<Session>>
+
   // TODO refactor that
   fun getBriteDatabase(): BriteDatabase
 

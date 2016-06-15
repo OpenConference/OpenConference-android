@@ -15,7 +15,7 @@ import timber.log.Timber
 open class RxPresenter<V : MvpView>(protected val schedulerTransformer: SchedulerTransformer,
     protected val errorMessageDeterminer: ErrorMessageDeterminer) : MvpBasePresenter<V>() {
 
-  protected val subscriptions = CompositeSubscription()
+  protected var subscriptions = CompositeSubscription()
 
   /**
    * subscribes the given observable with the given lambdas.
@@ -40,10 +40,21 @@ open class RxPresenter<V : MvpView>(protected val schedulerTransformer: Schedule
     }
   }
 
+  private fun unsubscribe(recreateComposite: Boolean) {
+    if (!subscriptions.isUnsubscribed) {
+      subscriptions.unsubscribe()
+      if (recreateComposite) subscriptions = CompositeSubscription()
+    }
+  }
+
+  protected fun unsubscribe() {
+    unsubscribe(true)
+  }
+
   override fun detachView(retainInstance: Boolean) {
     super.detachView(retainInstance)
     if (!retainInstance) {
-      subscriptions.unsubscribe()
+      unsubscribe(false)
     }
   }
 }

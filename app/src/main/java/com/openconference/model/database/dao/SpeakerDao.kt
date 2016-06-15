@@ -38,4 +38,9 @@ interface SpeakerDao {
    * Get all speakers
    */
   fun getSpeakers(): Observable<List<Speaker>>
+
+  /**
+   * Find speakers that match the following criteria
+   */
+  fun findSessionsWith(query: String): Observable<List<Speaker>>
 }

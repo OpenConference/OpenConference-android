@@ -1,6 +1,7 @@
 package com.openconference.sessiondetails.presentationmodel
 
 import com.openconference.model.Speaker
+import com.openconference.model.search.SearchableItem
 
 /**
  * Represents the base class of elements that can be represented in this app
@@ -40,4 +41,4 @@ data class SessionSpeakerItem(val speaker: Speaker) : SessionDetailItem
 /**
  * Represents a separator line
  */
-class SessionSeparatorItem() : SessionDetailItem
+class SessionSeparatorItem() : SessionDetailItem, SearchableItem

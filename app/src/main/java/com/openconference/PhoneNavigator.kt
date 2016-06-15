@@ -6,6 +6,7 @@ import com.openconference.main.ViewPagerMainActivity
 import com.openconference.model.Session
 import com.openconference.model.Speaker
 import com.openconference.model.screen.SessionsScreen
+import com.openconference.search.SearchActivity
 import com.openconference.sessiondetails.SessionDetailsActivity
 import com.openconference.sessiondetails.SpeakerDetailsActivity
 
@@ -38,5 +39,11 @@ class PhoneNavigator(private val activity: Activity) : Navigator {
 
   override fun showSpeakers() {
     throw UnsupportedOperationException()
+  }
+
+  override fun showSearch() {
+    val i = Intent(activity, SearchActivity::class.java)
+    activity.startActivity(i)
+    activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
   }
 }

@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import butterknife.bindView
+import com.openconference.Navigator
 import com.openconference.R
 import com.openconference.model.screen.Screen
 import com.openconference.model.screen.Screens
@@ -22,6 +23,7 @@ class ViewPagerMainActivity : AppCompatActivity() {
   }
 
   @Inject lateinit var screens: Screens
+  @Inject lateinit var navigator: Navigator
   private val viewPager by bindView<ViewPager>(R.id.viewpager)
   private val tabs by bindView<TabLayout>(R.id.tabs)
   private val toolbar by bindView<Toolbar>(R.id.toolbar)
@@ -33,6 +35,7 @@ class ViewPagerMainActivity : AppCompatActivity() {
 
     DaggerMainActivityComponent.builder()
         .applicationComponent(applicationComponent())
+        .mainActivityModule(MainActivityModule(this))
         .build()
         .inject(this)
 
@@ -94,6 +97,10 @@ class ViewPagerMainActivity : AppCompatActivity() {
           .show();
 
       return true
+    }
+
+    if (item.itemId == R.id.menuSearch) {
+      navigator.showSearch()
     }
 
     return super.onOptionsItemSelected(item)

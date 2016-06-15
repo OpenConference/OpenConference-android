@@ -7,6 +7,7 @@ import com.openconference.model.SpeakersLoader
 import com.openconference.model.database.dao.SessionDao
 import com.openconference.model.errormessage.ErrorMessageDeterminer
 import com.openconference.model.notification.NotificationScheduler
+import com.openconference.model.search.SearchEngine
 import com.openconference.util.SchedulerTransformer
 import com.squareup.picasso.Picasso
 import dagger.Component
@@ -35,6 +36,8 @@ interface ApplicationComponent {
   fun picasso(): Picasso
 
   fun notificationScheduler(): NotificationScheduler
+
+  fun searchEngine(): SearchEngine
 
   @ApplicationContext
   fun applicationContext(): Context

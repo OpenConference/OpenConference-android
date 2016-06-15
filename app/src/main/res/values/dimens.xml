@@ -16,7 +16,10 @@
   <dimen name="viewpager_page_margin">16dp</dimen>
   <dimen name="errorview_width_height">128dp</dimen>
   <dimen name="emptyview_width_height">128dp</dimen>
-  
+
   <dimen name="session_details_item_margin_top_bottom">4dp</dimen>
+
+
+  <dimen name="search_progress_margin">32dp</dimen>
 
 </resources>

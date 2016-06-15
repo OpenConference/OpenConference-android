@@ -175,5 +175,31 @@ open class SessionDaoSqlite : SessionDao, Dao() {
           .map(::mapJoinResultToSessions)
           .map { it.sortedWith(sortByStartDate) }
 
+  // TODO test
+  override fun findSessionsWith(query: String): Observable<List<Session>> {
+
+    val split = query.split(" ")
+    val whereClauseBuilder = StringBuilder()
+    val args = Array<String>(split.size * 3, { "" })
+    var argsIndex = 0
+
+    split.forEachIndexed { i, searchTerm ->
+      if (i > 0) {
+        whereClauseBuilder.append(" OR ")
+      }
+      whereClauseBuilder.append("$COL_TITLE LIKE ? OR $COL_DESCRIPTION LIKE ? OR $COL_TAGS LIKE ?")
+      args[argsIndex++] = "%$searchTerm%"
+      args[argsIndex++] = "%$searchTerm%"
+      args[argsIndex++] = "%$searchTerm%"
+    }
+
+    return query(selectAll().WHERE(whereClauseBuilder.toString()))
+        .args(*args)
+        .run()
+        .mapToList(SessionJoinResult.mapper())
+        .map(::mapJoinResultToSessions)
+        .map { it.sortedWith(sortByStartDate) }
+  }
+
   override fun getBriteDatabase(): BriteDatabase = db
 }

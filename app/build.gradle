@@ -67,6 +67,7 @@ dependencies {
 
   compile libs.rxJava
   compile libs.rxAndroid
+  compile libs.rxBindings
 
   compile libs.retrofit
   compile libs.retrofitRxJava

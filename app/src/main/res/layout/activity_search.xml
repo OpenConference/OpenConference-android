@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+  <SearchView
+      android:id="@+id/searchView"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="?attr/colorPrimary"
+      android:iconifiedByDefault="false"
+      android:queryHint="@string/search_query_hint"
+      />
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      >
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_dark"
+        >
+
+      <fr.castorflex.android.circularprogressbar.CircularProgressBar
+          android:id="@+id/loadingView"
+          android:layout_width="54dp"
+          android:layout_height="54dp"
+          android:layout_gravity="top|center_horizontal"
+          android:layout_margin="@dimen/search_progress_margin"
+          android:indeterminate="true"
+          />
+
+      <include layout="@layout/view_error"/>
+
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/contentView"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:visibility="gone"
+          />
+
+      <TextView
+          android:id="@+id/noResult"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="top|center_horizontal"
+          android:layout_margin="@dimen/search_progress_margin"
+          android:drawableTop="@drawable/ic_search_big"
+          android:gravity="center"
+          android:padding="16dp"
+          android:text="@string/search_no_results"
+          android:textSize="18sp"
+          />
+
+    </FrameLayout>
+
+
+  </FrameLayout>
+
+</LinearLayout>

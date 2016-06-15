@@ -38,6 +38,7 @@ buildscript {
                   crashlytics         : '2.5.6@aar',
                   twitterKit          : '1.13.2',
                   licenseDialog       : '1.8.1',
+                  rxBindings          : '0.4.0',
 
                   junit               : '4.12',
                   mockito             : '1.10.19',
@@ -97,6 +98,7 @@ buildscript {
             crashlytics                : "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics",
             twitterKit                 : "com.twitter.sdk.android:twitter:$versions.twitterKit@aar",
             licenseDialog              : "de.psdev.licensesdialog:licensesdialog:$versions.licenseDialog",
+            rxBindings                 : "com.jakewharton.rxbinding:rxbinding:$versions.rxBindings",
 
             junit                      : "junit:junit:$versions.junit",
             mockito                    : "org.mockito:mockito-core:$versions.mockito",

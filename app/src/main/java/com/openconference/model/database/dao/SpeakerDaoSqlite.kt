@@ -62,4 +62,29 @@ open class SpeakerDaoSqlite : SpeakerDao, Dao() {
   override fun getSpeakers(): Observable<List<Speaker>> = query(
       SELECT("*").FROM(TABLE).ORDER_BY(COL_NAME)).run().mapToList(
       SpeakerAutoValue.mapper()).map { it }
+
+  override fun findSessionsWith(query: String): Observable<List<Speaker>> {
+
+    val split = query.split(" ")
+    val whereClauseBuilder = StringBuilder()
+    val args = Array<String>(split.size * 3, { "" })
+    var argsIndex = 0
+
+    split.forEachIndexed { i, searchTerm ->
+      if (i > 0) {
+        whereClauseBuilder.append(" OR ")
+      }
+      whereClauseBuilder.append("${COL_NAME} LIKE ? OR ${COL_INFO} LIKE ? OR ${COL_COMPANY} LIKE ?")
+      args[argsIndex++] = "%$searchTerm%"
+      args[argsIndex++] = "%$searchTerm%"
+      args[argsIndex++] = "%$searchTerm%"
+    }
+
+    return query(
+        SELECT("*").FROM(TABLE).WHERE(whereClauseBuilder.toString()).ORDER_BY(
+            COL_NAME))
+        .args(*args)
+        .run().mapToList(
+        SpeakerAutoValue.mapper()).map { it }
+  }
 }

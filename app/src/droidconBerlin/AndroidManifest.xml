@@ -11,7 +11,7 @@
 
     <meta-data
         android:name="io.fabric.ApiKey"
-        android:value="INSERT-API-KEY"/>
+        android:value="9c9192e12701b0830ed9c97bf0df6d5dde11def5"/>
   </application>
 
 </manifest>

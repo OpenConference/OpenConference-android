@@ -7,8 +7,8 @@
   <string name="screen_title_twitter">#droidconDE</string>
 
 
-
   <string name="error_unknown">An unexpected error has occurred.</string>
+  <string name="error_search_invalid">The inserted query string is not valid</string>
 
   <string name="sessions_sticky_date_format">MM/dd</string>
 
@@ -26,5 +26,9 @@
 
 
   <string name="menu_license">License</string>
+  <string name="menu_search">Search</string>
+
+  <string name="search_query_hint">Search ...</string>
+  <string name="search_no_results">No results found</string>
 
 </resources>

@@ -23,7 +23,8 @@ import javax.inject.Singleton
     NetworkModule::class,
     ScheduleModule::class,
     ErrorMessageModule::class,
-    PicassoModule::class)
+    PicassoModule::class,
+    SearchModule::class)
 )
 class ApplicationModule(c: Context) {
 

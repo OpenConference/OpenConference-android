@@ -17,6 +17,7 @@ import dagger.Provides
 @Module
 class SessionsModule(private val activity: Activity) {
 
+
   @Provides
   @SessionsScope
   fun provideNavigator(): Navigator = PhoneNavigator(activity)
