@@ -35,7 +35,10 @@ android {
 
   productFlavors {
 
-    playground {} // Reserved for development
+    playground {
+      // Reserved for development
+      ext.enableCrashlytics = false
+    }
 
     droidconBerlin {
       applicationId "de.droidcon.berlin2016"
