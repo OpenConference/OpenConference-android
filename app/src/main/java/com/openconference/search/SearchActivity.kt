@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.transition.Transition
 import android.transition.TransitionInflater
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import butterknife.bindView
 import com.hannesdorfmann.adapterdelegates2.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates2.ListDelegationAdapter
@@ -94,6 +96,7 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
         }
 
     searchView.showKeyboard()
+    findViewById(R.id.resultsWrapper)?.setOnClickListener { finish() }
   }
 
   override fun showResults(data: List<SearchableItem>) {
@@ -162,6 +165,7 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
   override fun finish() {
     super.finish()
     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    container.hideKeyboard()
   }
 
 }
