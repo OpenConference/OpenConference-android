@@ -20,6 +20,7 @@ import com.openconference.R
 import com.openconference.model.search.SearchableItem
 import com.openconference.util.applicationComponent
 import com.openconference.util.hideKeyboard
+import com.openconference.util.showKeyboard
 import com.primetime.search.SearchViewState
 import com.squareup.picasso.Picasso
 import rx.android.schedulers.AndroidSchedulers
@@ -64,12 +65,14 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
     autoTransition = TransitionInflater.from(this).inflateTransition(R.transition.auto)
 
 
-    // init adatper
+    // init adapter
     val delegatesManager = AdapterDelegatesManager<List<SearchableItem>>()
     delegatesManager.addDelegate(SessionItemAdapterDelegate(layoutInflater, {
+      searchView.hideKeyboard()
       navigator.showSessionDetails(it)
     }))
         .addDelegate(SpeakerAdapterDelegate(layoutInflater, picasso, {
+          searchView.hideKeyboard()
           navigator.showSpeakerDetails(it)
         }))
 
@@ -91,6 +94,9 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
           lastQuery = it.queryText().toString()
           presenter.search(lastQuery)
         }
+
+    searchView.showKeyboard()
+    findViewById(R.id.resultsWrapper)?.setOnClickListener { finish() }
   }
 
   override fun showResults(data: List<SearchableItem>) {
@@ -135,6 +141,7 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
     if (!restoringViewState) {
       TransitionManager.beginDelayedTransition(container, autoTransition)
     }
+    container.setOnClickListener { finish() }
     loadingView.visibility = View.GONE
     errorView.visibility = View.GONE
     contentView.visibility = View.GONE
@@ -158,6 +165,7 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
   override fun finish() {
     super.finish()
     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+    searchView.hideKeyboard()
   }
 
 }
