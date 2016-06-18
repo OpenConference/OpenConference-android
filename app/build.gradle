@@ -15,8 +15,8 @@ android {
     applicationId "com.openconference"
     minSdkVersion minSdk
     targetSdkVersion targetSdk
-    versionCode 3
-    versionName "1.0.1"
+    versionCode 5
+    versionName "1.0.3-SNAPSHOT"
     multiDexEnabled = true
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }

@@ -4,6 +4,7 @@ import com.openconference.model.backend.schedule.ScheduleDataStateDeterminer
 import com.openconference.model.backend.schedule.ScheduleSync
 import rx.Observable
 import rx.Scheduler
+import timber.log.Timber
 
 /**
  * This is a Factory that creates an rx Observable that before running checks if the schedule data
@@ -37,7 +38,7 @@ class ScheduleDataAwareObservableFactory(private val scheduleSync: ScheduleSync,
                 .flatMap { scheduleDataStateDeterminer.markScheduleSyncedSuccessful() }
                 .observeOn(backgroundSyncScheduler)
                 .subscribeOn(backgroundSyncScheduler)
-                .subscribe()
+                .subscribe({}, { Timber.e(it, "Error when starting background sync") }, {})
 
             // Continue with original observable in parallel
             originalObservable

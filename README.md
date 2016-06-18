@@ -14,6 +14,12 @@ The documentation is not available yet, but basically there are two ways to crea
 2. Fork the whole repository and do your own thing.
 
 
+# Connect to your backend
+This app is has been built with changeable, modular and components in mind. We use dagger 2 for dependency injection and so you can override almost all components to match your needs. The most important one is: [BackendScheduleAdapter](https://github.com/OpenConference/OpenConference-android/blob/master/app/src/main/java/com/openconference/model/backend/schedule/BackendScheduleAdapter.kt) where you define how to load data from your backend (i.e. by using Retrofit).
+
+Custom styling can be applied by overriding default xml styles and layouts files.
+
+
 # License
 ```
 Copyright 2016 Open Conference

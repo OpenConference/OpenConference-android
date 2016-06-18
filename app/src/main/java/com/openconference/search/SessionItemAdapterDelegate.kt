@@ -52,6 +52,12 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater, p
       viewHolder.speakers.text = speakers.toString()
       viewHolder.speakers.visibility = View.VISIBLE
     }
+
+    viewHolder.favorite.visibility = if (session.favorite()) {
+      View.VISIBLE
+    } else {
+      View.GONE
+    }
   }
 
   override fun onCreateViewHolder(parent: ViewGroup): SessionItemViewHolder =
@@ -72,6 +78,7 @@ class SessionItemAdapterDelegate(protected val layoutInflater: LayoutInflater, p
     val speakers: TextView by bindView(R.id.speakers)
     val time: TextView by bindView(R.id.time)
     val location: TextView by bindView(R.id.location)
+    val favorite: View by bindView(R.id.favorite)
     var session: Session? = null
   }
 }

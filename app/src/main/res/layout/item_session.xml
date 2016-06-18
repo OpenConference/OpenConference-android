@@ -54,10 +54,20 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/time"
       android:layout_marginTop="@dimen/sessions_item_text_space"
+      android:layout_toLeftOf="@+id/favorite"
       android:drawablePadding="4dp"
       android:drawableStart="@drawable/ic_location"
       tools:text="Location 103"
       style="@style/ScheduleSessionSpeakers"
+      />
+
+  <ImageView
+      android:id="@+id/favorite"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:src="@drawable/ic_done"
       />
 
 </RelativeLayout>
