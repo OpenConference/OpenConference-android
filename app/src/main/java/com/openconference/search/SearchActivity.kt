@@ -7,11 +7,9 @@ import android.support.v7.widget.RecyclerView
 import android.transition.Transition
 import android.transition.TransitionInflater
 import android.transition.TransitionManager
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import butterknife.bindView
 import com.hannesdorfmann.adapterdelegates2.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates2.ListDelegationAdapter
