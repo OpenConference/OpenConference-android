@@ -70,9 +70,11 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
     // init adapter
     val delegatesManager = AdapterDelegatesManager<List<SearchableItem>>()
     delegatesManager.addDelegate(SessionItemAdapterDelegate(layoutInflater, {
+      searchView.hideKeyboard()
       navigator.showSessionDetails(it)
     }))
         .addDelegate(SpeakerAdapterDelegate(layoutInflater, picasso, {
+          searchView.hideKeyboard()
           navigator.showSpeakerDetails(it)
         }))
 
@@ -165,7 +167,7 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
   override fun finish() {
     super.finish()
     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-    container.hideKeyboard()
+    searchView.hideKeyboard()
   }
 
 }
