@@ -42,6 +42,7 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
   private val loadingView: View by bindView(R.id.loadingView)
   private val contentView: RecyclerView by bindView(R.id.contentView)
   private val noResult: View by bindView(R.id.noResult)
+  private val resultWrapper: View by bindView(R.id.resultsWrapper)
   private var lastQuery = ""
 
   private lateinit var component: SearchComponent
@@ -96,7 +97,7 @@ class SearchActivity : SearchView, MvpViewStateActivity<SearchView, SearchPresen
         }
 
     searchView.showKeyboard()
-    findViewById(R.id.resultsWrapper)?.setOnClickListener { finish() }
+    resultWrapper.setOnClickListener { finish() }
   }
 
   override fun showResults(data: List<SearchableItem>) {
