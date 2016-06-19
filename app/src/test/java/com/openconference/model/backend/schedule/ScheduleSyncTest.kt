@@ -3,11 +3,13 @@ package com.openconference.model.backend.schedule
 import com.hannesdorfmann.sqlbrite.dao.Dao
 import com.hannesdorfmann.sqlbrite.dao.DaoManager
 import com.openconference.BuildConfig
+import com.openconference.TestApplication
 import com.openconference.model.Location
 import com.openconference.model.Session
 import com.openconference.model.Speaker
 import com.openconference.model.database.LocationAutoValue
 import com.openconference.model.database.SessionAutoValue
+import com.openconference.model.database.SessionDateTimeComparator
 import com.openconference.model.database.SpeakerAutoValue
 import com.openconference.model.database.dao.*
 import com.openconference.model.notification.NotificationScheduler
@@ -24,7 +26,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = intArrayOf(21))
+@Config(constants = BuildConfig::class, sdk = intArrayOf(21), application = TestApplication::class)
 class ScheduleSyncTest {
 
   lateinit var sessionDao: SessionDao
@@ -32,6 +34,7 @@ class ScheduleSyncTest {
   lateinit var locationDao: LocationDao
   lateinit var manager: DaoManager
   var initialized = false;
+  val comparator = SessionDateTimeComparator()
 
   @Before
   fun setup() {
@@ -205,8 +208,8 @@ class ScheduleSyncTest {
                 null),
             SpeakerAutoValue.Companion.create("3", "added", null, null, null, null, null, null,
                 null)
-        ),
-        speakers)
+        ).sortedBy { it.id() },
+        speakers.sortedBy { it.id() })
   }
 
   @Test
@@ -239,7 +242,7 @@ class ScheduleSyncTest {
     sessionDao.insertOrUpdate(session3, session3.favorite()).toBlocking().first()
 
     assertEquals(
-        listOf(session1, session2, session3),
+        listOf(session1, session2, session3).sortedWith(comparator),
         sessionDao.getSessions().toBlocking().first()
     )
 
@@ -281,7 +284,7 @@ class ScheduleSyncTest {
     val sessions = sessionDao.getSessions().toBlocking().first()
 
     assertEquals(
-        listOf(session1, session2Updated, session4),
+        listOf(session1, session2Updated, session4).sortedWith(comparator),
         sessions)
 
     // TODO verify Alarm manager

@@ -122,7 +122,8 @@ dependencies {
   kapt libs.loganSquareCompiler
   droidconBerlinCompile libs.loganSquareConverter
 
-  droidconBerlinCompile(libs.crashlytics) {
+  compile(libs.crashlytics) {
     transitive = true
   }
+
 }
