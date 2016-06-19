@@ -3,6 +3,7 @@ package com.openconference.model.database.dao
 import com.hannesdorfmann.sqlbrite.dao.Dao
 import com.hannesdorfmann.sqlbrite.dao.DaoManager
 import com.openconference.BuildConfig
+import com.openconference.TestApplication
 import com.openconference.model.database.SessionAutoValue
 import com.openconference.model.database.SpeakerAutoValue
 import org.junit.Before
@@ -22,7 +23,7 @@ import kotlin.test.assertTrue
  * @author Hannes Dorfmann
  */
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = intArrayOf(21))
+@Config(constants = BuildConfig::class, sdk = intArrayOf(21), application = TestApplication::class)
 class SessionDaoSqliteTest {
 
   lateinit var sessionDao: SessionDao
