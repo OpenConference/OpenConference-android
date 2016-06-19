@@ -27,6 +27,9 @@ android {
     }
   }
 
+  lintOptions {
+    warning 'InvalidPackage'
+  }
 
   dexOptions {
     javaMaxHeapSize "4g"
@@ -35,7 +38,9 @@ android {
 
   productFlavors {
 
-    playground {} // Reserved for development
+    playground {
+      ext.enableCrashlytics = false
+    } // Reserved for development
 
     droidconBerlin {
       applicationId "de.droidcon.berlin2016"
@@ -76,6 +81,10 @@ dependencies {
 
   compile libs.timber
 
+  compile(libs.twitterKit) {
+    transitive = true;
+  }
+
   compile libs.dagger
   kapt libs.daggerCompiler
 
@@ -109,15 +118,11 @@ dependencies {
   //
   // Droidcon Berlin
   //
-  compile libs.loganSquare
+  droidconBerlinCompile libs.loganSquare
   kapt libs.loganSquareCompiler
-  compile libs.loganSquareConverter
+  droidconBerlinCompile libs.loganSquareConverter
 
   droidconBerlinCompile(libs.crashlytics) {
     transitive = true
-  }
-
-  droidconBerlinCompile(libs.twitterKit) {
-    transitive = true;
   }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="app_name">OpenConference</string>
 
   <string name="screen_title_sessions">Sessions</string>
   <string name="screen_title_my_schedule">Mein Kalender</string>
