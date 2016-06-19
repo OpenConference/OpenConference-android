@@ -1,9 +1,10 @@
 package com.openconference.model.database.dao
 
-import com.openconference.BuildConfig
-import com.openconference.model.database.LocationAutoValue
 import com.hannesdorfmann.sqlbrite.dao.Dao
 import com.hannesdorfmann.sqlbrite.dao.DaoManager
+import com.openconference.BuildConfig
+import com.openconference.TestApplication
+import com.openconference.model.database.LocationAutoValue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,7 +20,7 @@ import kotlin.test.assertTrue
  * @author Hannes Dorfmann
  */
 @RunWith(RobolectricGradleTestRunner::class)
-@Config(constants = BuildConfig::class, sdk = intArrayOf(21))
+@Config(constants = BuildConfig::class, sdk = intArrayOf(21), application = TestApplication::class)
 class LocationDaoSqliteTest {
 
   lateinit var dao: LocationDao
