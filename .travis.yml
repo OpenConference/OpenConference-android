@@ -17,7 +17,7 @@ jdk:
 
 install: true
 
-script: ./gradlew clean build --stacktrace
+script: ./gradlew clean build --info --stacktrace
 
 branches:
     except:
