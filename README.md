@@ -1,9 +1,10 @@
 # OpenConference
 
-This repositoy offers an android app that can be used by any conference to display information like sessions, speaker etc. about the conference in a native android app
+This repository offers an android app that can be used by any conference to display information like sessions, speaker etc. about the conference in a native android app
 
 Originally this app has been build for droidcon Berlin, but the app can be styled and configured freely so that it can be used by other conferences as well.
 
+[![Build Status](https://travis-ci.org/OpenConference/OpenConference-android.svg?branch=master)](https://travis-ci.org/OpenConference/OpenConference-android)
 
 # For your conference
 
