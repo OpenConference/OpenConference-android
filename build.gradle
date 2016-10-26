@@ -12,7 +12,7 @@ buildscript {
 
 
   ext.versions = [supportLib          : '23.4.0',
-                  kotlin              : '1.0.2',
+                  kotlin              : '1.0.4',
                   dagger              : '2.4',
                   rxJava              : '1.1.5',
                   retrofit            : '2.1.0',
@@ -113,7 +113,7 @@ buildscript {
 
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.1.2'
+    classpath 'com.android.tools.build:gradle:2.2.2'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.5.0'
