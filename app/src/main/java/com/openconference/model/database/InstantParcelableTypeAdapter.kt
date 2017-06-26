@@ -11,11 +11,20 @@ import org.threeten.bp.Instant
  */
 class InstantParcelableTypeAdapter : TypeAdapter<Instant> {
 
-  override fun toParcel(value: Instant, dest: Parcel) {
-    dest.writeLong(value.toEpochMilli())
+  private val NULL_VALUE = -1L;
+
+  override fun toParcel(value: Instant?, dest: Parcel) {
+    if (value == null)
+      dest.writeLong(NULL_VALUE)
+    else
+      dest.writeLong(value.toEpochMilli())
   }
 
-  override fun fromParcel(parcel: Parcel): Instant {
-    return Instant.ofEpochMilli(parcel.readLong())
+  override fun fromParcel(parcel: Parcel): Instant? {
+    val ms = parcel.readLong()
+    return if (ms == NULL_VALUE)
+      null
+    else
+      Instant.ofEpochMilli(ms)
   }
 }
