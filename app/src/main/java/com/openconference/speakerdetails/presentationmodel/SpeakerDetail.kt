@@ -5,4 +5,6 @@ package com.openconference.speakerdetails.presentationmodel
  *
  * @author Hannes Dorfmann
  */
-data class SpeakerDetail(val speakerName: String, val profilePic: String?, val detailsItems: List<SpeakerDetailsItem>)
+data class SpeakerDetail(val speakerName: String, val profilePic: String?,
+    val detailsItems: List<SpeakerDetailsItem>)
+

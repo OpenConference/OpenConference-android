@@ -112,7 +112,7 @@ open class SpeakerDetailsFragment : SpeakerDetailsView, LceAnimatable<SpeakerDet
             .addDelegate(SpeakerDetailsLinkAdapterDelegate(inflater))
             .addDelegate(SpeakerDetailsBioAdapterDelegate(inflater))
             .addDelegate(
-                SpeakerDetailsSessionDelegate(inflater,
+                (inflater,
                     { navigator.showSessionDetails(it) }))
     )
   }

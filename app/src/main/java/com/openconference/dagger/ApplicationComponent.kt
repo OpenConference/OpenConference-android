@@ -18,7 +18,6 @@ import javax.inject.Singleton
  * @author Hannes Dorfmann
  */
 @Component(modules = arrayOf(ApplicationModule::class))
-@Singleton
 interface ApplicationComponent {
 
   fun schedulerTransformer(): SchedulerTransformer
